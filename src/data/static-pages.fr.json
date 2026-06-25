@@ -1,0 +1,230 @@
+{
+  "manifesto": {
+    "title": "Manifeste",
+    "lead": "Pourquoi nous existons, comment nous travaillons, ce que nous refusons de faire.",
+    "blocks": [
+      { "type": "h", "text": "La voiture est à l'arrêt 95 % du temps" },
+      { "type": "p", "text": "Chaque voiture en Italie est garée 23 heures sur 24. Elle coûte des milliers d'euros par an entre taxe de circulation, assurance, entretien et dépréciation. Et pourtant nous en immatriculons plus d'un million et demi chaque année." },
+      { "type": "p", "text": "Quand nous avons vraiment besoin d'une voiture — pour un week-end, un déménagement, six mois de mission — nous allons au comptoir d'une marque internationale, nous nous déplaçons jusqu'à l'aéroport et nous payons des suppléments imprévus. Ou nous renonçons." },
+
+      { "type": "h", "text": "La location, ce n'est pas que Hertz, Avis ou Europcar" },
+      { "type": "p", "text": "En Italie, il existe des milliers de petits loueurs indépendants : garages, concessionnaires, agences de quartier. Ils connaissent leurs clients par leur nom. Ils louent des voitures depuis des décennies. Ils ont des prix plus bas et une souplesse que les grandes chaînes ne peuvent pas se permettre." },
+      { "type": "p", "text": "Mais en ligne, ils sont invisibles. Pas de site moderne, pas de SEO, pas d'équipe marketing. Et le client continue donc de penser que la location se résume à quatre marques." },
+
+      { "type": "h", "text": "MoviQ est un agrégateur, pas un intermédiaire" },
+      { "type": "p", "text": "Tu trouves la voiture sur MoviQ. Le loueur confirme la disponibilité. Le paiement se fait directement entre toi et lui — à la prise en charge, comme cela s'est toujours fait." },
+      { "type": "p", "text": "Nous ne nous interposons pas, nous ne prenons pas de commission sur le prix de la voiture, nous ne bloquons pas d'argent sur ton compte. La relation contractuelle est entre toi et le loueur, exactement comme si tu l'avais trouvé dans la rue." },
+
+      { "type": "h", "text": "Trois principes" },
+      { "type": "list", "items": [
+        { "strong": "Proximité", "text": " — la bonne voiture est celle près de chez toi, pas à 30 km à l'aéroport. La recherche affiche par défaut ton quartier, pas la catégorie." },
+        { "strong": "Transparence", "text": " — pas de suppléments surprise à la prise en charge. Le prix affiché sur l'annonce est celui que tu paies. Caution, assurance et kilométrage inclus : tout est écrit à l'avance." },
+        { "strong": "Indépendance", "text": " — les loueurs restent maîtres de leurs prix, de leurs conditions et de leurs clients. Nous n'imposons pas de politique commerciale, nous ne bloquons pas les avis, nous ne pénalisons pas ceux qui ne paient pas d'abonnement premium." }
+      ] },
+
+      { "type": "h", "text": "Ce que nous NE faisons PAS" },
+      { "type": "list", "items": [
+        "Nous ne possédons pas de voitures.",
+        "Nous ne gérons ni cautions ni assurances à la place des loueurs.",
+        "Nous ne vendons pas tes données à des tiers et nous ne faisons pas de tracking publicitaire.",
+        "Nous n'utilisons pas de dark patterns pour t'arracher des ventes additionnelles au paiement.",
+        "Nous ne pénalisons pas les loueurs qui te donnent leur numéro de téléphone direct."
+      ] },
+
+      { "type": "h", "text": "D'où nous venons" },
+      { "type": "p", "text": "MoviQ naît en Italie, en 2026, d'une petite équipe indépendante. Nous nous finançons par un abonnement mensuel pour les loueurs qui veulent apparaître — pas par des commissions sur les clients, pas par de la publicité de tiers." },
+      { "type": "p", "text": "Nous voulons construire une infrastructure numérique pour un secteur qui existe depuis des décennies mais qui est resté hors du Web. Rien de plus, rien de moins." },
+
+      { "type": "h", "text": "Où nous allons" },
+      { "type": "p", "text": "Il faut un pont entre celui qui possède une voiture et la loue chaque jour, et celui qui cherche une voiture juste pour une semaine. Nous voulons être ce pont — propre, léger, fait en Italie." },
+      { "type": "quote", "text": "La bonne voiture près de toi. C'est tout." }
+    ]
+  },
+
+  "sicurezza": {
+    "title": "Sécurité",
+    "lead": "Comment nous protégeons clients et loueurs.",
+    "blocks": [
+      { "type": "h", "text": "Vérification des loueurs" },
+      { "type": "p", "text": "Chaque loueur sur MoviQ est vérifié lors de l'inscription : pièce d'identité du représentant légal, numéro de TVA avec un code d'activité compatible et assurance responsabilité civile sur les véhicules. Les loueurs vérifiés affichent un badge sur leur annonce." },
+
+      { "type": "h", "text": "Vérification des clients" },
+      { "type": "p", "text": "À la première connexion, nous demandons un e-mail valide (lien de confirmation) et un numéro de téléphone (code SMS). Les loueurs ne voient ces données qu'après ta confirmation d'une réservation. Le permis de conduire et les documents sont présentés directement à la prise en charge ; ils ne passent pas par nous." },
+
+      { "type": "h", "text": "Assurances et cautions" },
+      { "type": "p", "text": "Chaque loueur déclare lors de l'inscription disposer d'une couverture responsabilité civile valide sur les véhicules publiés. Vérifier que la couverture est valide au moment de la location reste à la charge du client, qui peut la demander au loueur avant la prise en charge. Les couvertures additionnelles (tous risques, vol, réduction de franchise) et la gestion de la caution sont entièrement décidées par le loueur, selon les conditions de son propre contrat." },
+      { "type": "p", "text": "MoviQ ne bloque aucun montant sur la carte du client, ne gère pas de séquestre (escrow) et n'intervient en aucune manière dans la gestion des cautions ou des franchises." },
+
+      { "type": "h", "text": "Paiements" },
+      { "type": "p", "text": "Le paiement de la location se fait directement entre client et loueur, selon les moyens acceptés par le loueur — carte (Visa/MC/Amex/Maestro), virement ou espèces dans la limite légale. MoviQ n'encaisse pas, ne traite pas et ne bloque pas de paiements pour le compte du loueur." },
+
+      { "type": "h", "text": "Le rôle de MoviQ en cas de problème" },
+      { "type": "p", "text": "MoviQ est une plateforme d'intermédiation informative : elle n'est PAS partie au contrat de location. Les litiges liés à la location — voiture indisponible à la prise en charge, dommages, sinistres, litiges de paiement, qualité du service — doivent être gérés directement entre toi et le loueur, selon les conditions du contrat concerné et le droit applicable." },
+      { "type": "p", "text": "Tu peux nous signaler des incidents graves à support@moviq.it : nous utiliserons le signalement uniquement à des fins de modération et de qualité de service (par exemple, évaluer le maintien du loueur sur la plateforme). MoviQ n'offre pas de service de médiation, d'arbitrage ou d'assistance juridique et ne garantit pas de délais de réponse opérationnels sur les litiges entre utilisateur et loueur." },
+      { "type": "p", "text": "Pour les litiges avec un loueur, tu peux t'adresser aux organismes de règlement extrajudiciaire des litiges (RELC/ADR), à la plateforme européenne RLL/ODR (ec.europa.eu/consumers/odr) ou à la juridiction compétente." },
+
+      { "type": "h", "text": "Sécurité du compte" },
+      { "type": "p", "text": "L'accès se fait via un lien magique par e-mail — aucun mot de passe à voler. La session expire après 30 jours d'inactivité. Tu peux déconnecter toutes les sessions actives depuis la page « Paramètres » de ton profil." }
+    ]
+  },
+
+  "contatti": {
+    "title": "Contact",
+    "lead": "Écris-nous. Nous répondons sous 24 h les jours ouvrés.",
+    "blocks": [
+      { "type": "h", "text": "E-mail" },
+      { "type": "kv", "items": [
+        { "k": "Support client", "v": "support@moviq.it" },
+        { "k": "Loueurs partenaires", "v": "partner@moviq.it" },
+        { "k": "Presse et communication", "v": "press@moviq.it" },
+        { "k": "Confidentialité et données personnelles", "v": "privacy@moviq.it" },
+        { "k": "Tout le reste", "v": "hello@moviq.it" }
+      ] },
+
+      { "type": "h", "text": "Pendant une location en cours" },
+      { "type": "p", "text": "Pour tout besoin pendant la location (voiture non livrée, panne, sinistre, dommage, contestation), l'interlocuteur est toujours le loueur — tu trouves son numéro direct dans les détails de la réservation et dans l'e-mail de confirmation. MoviQ ne fournit pas d'assistance pendant la location et n'intervient pas dans la relation contractuelle entre toi et le loueur." },
+      { "type": "p", "text": "Pour les problèmes d'assurance ou sur la route, tu peux aussi contacter l'assistance dépannage prévue par ta police ou appeler le 112." },
+      { "type": "p", "text": "Tu peux toujours écrire à support@moviq.it pour nous signaler des incidents que tu juges pertinents pour la qualité de la plateforme : nous utiliserons ton signalement pour modérer les loueurs, mais nous ne pouvons pas agir comme médiateurs du litige." },
+
+      { "type": "h", "text": "Siège social" },
+      { "type": "p", "text": "Les coordonnées complètes de la société seront publiées au lancement public." }
+    ]
+  },
+
+  "come-funziona": {
+    "title": "Comment ça marche",
+    "lead": "De la recherche à la restitution, tout ce qu'il faut savoir pour louer une voiture sur MoviQ. Temps de lecture : 4 minutes.",
+    "blocks": [
+      { "type": "h", "text": "En bref" },
+      { "type": "p", "text": "MoviQ est un moteur de recherche pour les loueurs de voitures indépendants italiens. Tu cherches une voiture, tu la réserves, le loueur confirme, tu la récupères au point indiqué et tu le paies directement. Entre toi et le loueur, il n'y a aucun intermédiaire financier." },
+
+      { "type": "h", "text": "1 · Recherche" },
+      { "type": "p", "text": "Indique la ville où tu as besoin de la voiture et les dates de prise en charge et de restitution. MoviQ t'affiche toutes les voitures disponibles des loueurs de la zone — pas seulement les grandes marques, mais aussi les garages de quartier et les petites flottes indépendantes que tu ne trouverais pas autrement." },
+      { "type": "p", "text": "Le prix affiché sur la carte est le prix total pour la période indiquée. Pas de suppléments surprise : taxes, kilométrage inclus, assurance obligatoire et frais de service sont déjà comptés. La caution, lorsqu'elle est exigée, est indiquée séparément." },
+
+      { "type": "h", "text": "2 · Comparaison" },
+      { "type": "p", "text": "Filtre par catégorie (citadine, SUV, électrique, utilitaire, cabriolet, longue durée), carburant (essence, diesel, hybride, électrique), tranche de prix, boîte (manuelle/automatique). Trie par prix, distance depuis ton adresse ou voitures les plus vues." },
+      { "type": "p", "text": "Ouvre l'annonce d'une voiture pour voir : photos et description, kilométrage inclus, éventuelles options (siège enfant, GPS, conducteur supplémentaire), les conditions de location de chaque loueur, les moyens de paiement acceptés (carte, virement, espèces dans les limites légales), ses avis et ses délais de réponse moyens." },
+
+      { "type": "h", "text": "3 · Réservation" },
+      { "type": "p", "text": "Clique sur \"Demander une réservation\". Si c'est ta première fois sur MoviQ, nous te demandons e-mail, nom et numéro de téléphone — seulement ces trois informations. Tu recevras un e-mail de confirmation avec un lien magique pour te connecter (aucun mot de passe à retenir)." },
+      { "type": "p", "text": "Ta demande est transmise au loueur, qui a 24 heures pour confirmer ou refuser. La plupart des loueurs répondent en 2 heures les jours ouvrés. Tu reçois une notification par e-mail et push dès que le statut change." },
+      { "type": "p", "text": "À ce stade, tu ne paies rien. Aucun débit ni blocage en préautorisation n'est effectué sur ta carte. La réservation est une demande, pas un achat." },
+
+      { "type": "h", "text": "4 · Prise en charge de la voiture" },
+      { "type": "p", "text": "À l'heure convenue, présente-toi au point de prise en charge indiqué sur la page de la réservation — c'est l'adresse de l'établissement du loueur. Apporte avec toi :" },
+      { "type": "list", "items": [
+        "Une pièce d'identité en cours de validité.",
+        "Un permis de conduire valable pour la catégorie du véhicule (catégorie B pour les voitures, ≥ 21 ans et permis depuis au moins 1 an chez la plupart des loueurs).",
+        "Une carte de crédit au nom du conducteur pour la caution (si le loueur l'exige par carte) — ou des espèces ou un virement s'ils sont acceptés."
+      ] },
+      { "type": "p", "text": "Le loueur vérifie les documents, te fait signer le contrat de location (papier ou numérique, selon lui), encaisse le prix convenu et l'éventuelle caution, te remet les clés et fait l'état des lieux de remise (carburant, dommages préexistants, kilométrage). Durée moyenne de la prise en charge : 15-25 minutes." },
+
+      { "type": "h", "text": "5 · Conduite" },
+      { "type": "p", "text": "Tu as la voiture, elle est à toi pour la période convenue. Les conditions d'utilisation (kilométrage, zone géographique autorisée, interdiction de transporter des animaux ou de fumer, etc.) sont celles du contrat du loueur — lis-les avant de signer." },
+      { "type": "p", "text": "En cas de problème pendant la location (panne, accident, amende), ton premier interlocuteur est toujours le loueur — tu trouves son numéro direct sur la page de la réservation sur MoviQ. Pour une assistance complémentaire, MoviQ est joignable à support@moviq.it." },
+
+      { "type": "h", "text": "6 · Restitution" },
+      { "type": "p", "text": "Restitue la voiture au même endroit, à l'heure convenue, avec le niveau de carburant exigé par le contrat (en général identique à la prise en charge). Le loueur vérifie la voiture, le kilométrage et le carburant, et rend la caution si tout est en ordre." },
+      { "type": "p", "text": "Dans les 48 heures suivant la restitution, tu reçois un e-mail pour laisser un avis sur le loueur. Les avis sont publics et aident ceux qui réservent après toi." },
+
+      { "type": "h", "text": "Annulation" },
+      { "type": "p", "text": "Tu peux annuler gratuitement jusqu'à 24 heures avant l'heure de prise en charge depuis ta page \"Réservations\" ou en cliquant sur le lien d'annulation dans l'e-mail de confirmation. Aucune justification n'est nécessaire." },
+      { "type": "p", "text": "Pour les annulations au-delà de ce délai, les politiques de chaque loueur s'appliquent ; elles sont indiquées sur l'annonce de la voiture au moment de la réservation et rappelées dans l'e-mail de confirmation. Les politiques les plus courantes sont : retenue de 50 % pour une annulation entre 24h et 6h avant la prise en charge, retenue de 100 % en cas de non-présentation ou d'annulation moins de 6h avant." },
+
+      { "type": "h", "text": "Modification de la réservation" },
+      { "type": "p", "text": "Pour changer les dates, la durée ou la voiture, contacte directement le loueur (numéro sur l'annonce) ou écris à support@moviq.it en indiquant le numéro de réservation. Les modifications sont soumises à la disponibilité du véhicule." },
+
+      { "type": "h", "text": "Le rôle de MoviQ" },
+      { "type": "p", "text": "MoviQ est exclusivement un service d'intermédiation informative : nous t'aidons à trouver la voiture et à envoyer la demande au loueur. Le contrat de location, le paiement, les conditions, la caution, l'assurance, l'assistance pendant la location ainsi que la gestion des dommages ou des sinistres relèvent entièrement du loueur. MoviQ n'est pas partie au contrat et n'est pas responsable des obligations contractuelles entre toi et le loueur." },
+
+      { "type": "h", "text": "Questions fréquentes" },
+      { "type": "h", "text": "Qui paie en cas de dommage ou de sinistre ?" },
+      { "type": "p", "text": "La relation est exclusivement entre toi et le loueur. Les couvertures (responsabilité civile obligatoire, franchises éventuelles, rachat de franchise optionnel) et les procédures de gestion des sinistres sont celles prévues par le contrat de chaque loueur. MoviQ n'intervient pas dans la gestion des sinistres, des dommages ou des litiges liés à l'usage du véhicule." },
+      { "type": "h", "text": "Quel âge faut-il pour louer ?" },
+      { "type": "p", "text": "Cela dépend du loueur. La plupart exigent ≥ 21 ans et un permis B depuis au moins 1 an. Pour les voitures premium et les grands SUV, certains exigent ≥ 25 ans. L'exigence précise est indiquée sur l'annonce de la voiture." },
+      { "type": "h", "text": "Puis-je louer pour un autre conducteur ?" },
+      { "type": "p", "text": "Oui, mais le second conducteur doit être déclaré au loueur (généralement moyennant un petit supplément) et se présenter à la prise en charge avec une pièce d'identité et un permis." },
+      { "type": "h", "text": "Que se passe-t-il si le loueur ne répond pas sous 24h ?" },
+      { "type": "p", "text": "La demande expire automatiquement, sans frais. Tu peux envoyer une nouvelle demande à d'autres loueurs de la zone via la recherche. MoviQ ne garantit pas de réponse de la part des loueurs, qui restent libres d'accepter ou de refuser chaque demande." },
+
+      { "type": "cta", "label": "Trouve une voiture près de chez toi", "href": "/" }
+    ]
+  },
+
+  "per-noleggiatori": {
+    "title": "Pour les loueurs",
+    "lead": "MoviQ est le canal en ligne des petits loueurs de voitures indépendants italiens. Sans commission sur le prix, sans intermédiation sur le paiement, sans exclusivité.",
+    "blocks": [
+      { "type": "h", "text": "À qui nous nous adressons" },
+      { "type": "p", "text": "Si tu as une petite ou moyenne activité de location de voitures en Italie — un garage, un concessionnaire avec flotte de location, une agence de quartier, une société indépendante de 5 à 200 véhicules — MoviQ te donne de la visibilité en ligne sans te demander de renoncer à la relation directe avec le client." },
+      { "type": "p", "text": "Nous ne nous adressons pas aux grandes chaînes internationales. Elles ont déjà leurs canaux. Nous servons le segment aujourd'hui invisible sur le web." },
+
+      { "type": "h", "text": "Ce que tu obtiens" },
+      { "type": "list", "items": [
+        { "strong": "Visibilité dans les résultats de recherche", "text": " — ta flotte apparaît quand un utilisateur cherche une voiture dans ta ville, aux dates où tu as de la disponibilité." },
+        { "strong": "Zéro commission sur le prix de la location", "text": " — le client te paie, directement, avec le moyen que tu acceptes. MoviQ n'encaisse pas, ne bloque pas, ne prélève rien." },
+        { "strong": "Back-office complet inclus", "text": " — gère ta flotte, tes prix (y compris dynamiques selon la saison), le calendrier de disponibilité de chaque véhicule, les demandes entrantes, les réservations confirmées, les avis clients, les statistiques et le chiffre d'affaires estimé depuis un seul tableau de bord." },
+        { "strong": "Contrôle total de la relation client", "text": " — le numéro de téléphone et l'e-mail du client sont à toi. Tu peux le rappeler, le fidéliser, lui offrir des remises pour de futures locations directement. Pas de \"mur\" comme le font les grands marketplaces." },
+        { "strong": "Aucune exclusivité", "text": " — tu continues d'utiliser ton site, le bouche-à-oreille, d'autres portails, le téléphone. MoviQ est un canal de plus, pas le seul." },
+        { "strong": "Conditions de location personnalisées", "text": " — tu publies tes conditions (kilométrage, âge minimum, franchise, politique d'annulation, moyens de paiement acceptés). Nous n'imposons pas de règles commerciales." }
+      ] },
+
+      { "type": "h", "text": "Comment ça marche de ton côté" },
+      { "type": "p", "text": "Après l'inscription, tu accèdes au back-office MoviQ avec ton lien magique par e-mail. De là :" },
+      { "type": "list", "items": [
+        { "strong": "Tu charges ta flotte", "text": " — pour chaque voiture, tu ajoutes des photos (5-8 recommandées), marque/modèle/année, carburant, boîte, places, bagages, options, kilomètres inclus, prix de base journalier. Ajoute une \"note interne\" privée avec plaque, dommages préexistants et infos de gestion — non visible par les clients." },
+        { "strong": "Tu règles le calendrier", "text": " — tu bloques les dates où une voiture n'est pas disponible, tu fixes des prix différents pour la haute/basse saison ou les week-ends." },
+        { "strong": "Tu reçois des demandes", "text": " — quand un utilisateur réserve, tu reçois un e-mail + push avec le détail. Tu as 24h pour confirmer ou refuser. Des délais de réponse rapides améliorent ton classement dans les résultats." },
+        { "strong": "Tu gères prises en charge et restitutions", "text": " — tu gères tout à ton point de vente comme aujourd'hui. MoviQ n'interfère pas avec le contrat papier ou numérique que vous signez." },
+        { "strong": "Tu consultes tes indicateurs", "text": " — voitures les plus vues, les plus enregistrées, périodes de forte demande, chiffre d'affaires estimé, modèle le plus demandé pour ta ville, prix moyen par segment (aussi face à la concurrence locale, sous forme agrégée)." }
+      ] },
+
+      { "type": "h", "text": "Ce que nous te demandons" },
+      { "type": "list", "items": [
+        { "strong": "Numéro de TVA italien actif", "text": " dans le secteur de la location de véhicules (code ATECO 77.11 ou compatible)." },
+        { "strong": "Pièce d'identité du représentant légal", "text": " pour la vérification anti-fraude lors de l'inscription (une seule fois)." },
+        { "strong": "Assurance responsabilité civile valide", "text": " sur toute la flotte publiée sur MoviQ. Nous le demandons car nos utilisateurs s'attendent à ce que chaque voiture publiée soit assurée — c'est la base de confiance de la plateforme." },
+        { "strong": "Conditions de location écrites", "text": " et accessibles au client avant la confirmation (tu les publies sur ton profil MoviQ — modifiables librement à tout moment)." },
+        { "strong": "Réponse sous 24h", "text": " aux demandes de réservation. En dessous de ce seuil, les demandes expirent et les clients sont orientés ailleurs." }
+      ] },
+
+      { "type": "h", "text": "Combien ça coûte" },
+      { "type": "p", "text": "Un abonnement unique, forfaitaire, indépendant du nombre de voitures de la flotte et du chiffre d'affaires que tu génères. Aucune commission sur le prix des locations, aucun frais par demande, aucun seuil minimum de transactions." },
+      { "type": "kv", "items": [
+        { "k": "Abonnement mensuel", "v": "49 € + TVA / mois" },
+        { "k": "Période d'essai gratuite", "v": "30 jours à la première activation" },
+        { "k": "Renouvellement", "v": "Automatique chaque mois à la date d'activation" },
+        { "k": "Désactivation", "v": "À tout moment depuis le back-office, sans pénalités" }
+      ] },
+      { "type": "p", "text": "À l'inscription, tu enregistres un moyen de paiement (carte de crédit ou de débit Visa/Mastercard/Amex). Pendant les 30 premiers jours, aucun débit n'est effectué — c'est la période d'essai gratuite pendant laquelle tu peux charger ta flotte, recevoir des réservations et évaluer le retour." },
+      { "type": "p", "text": "À la fin des 30 jours, l'abonnement s'active automatiquement et la première mensualité est débitée. Dès lors, le renouvellement est automatique chaque mois à la même date, jusqu'à ce que tu désactives. La désactivation se fait directement depuis le back-office, dans la section \"Abonnement\" — ton compte reste actif jusqu'à la fin du cycle payé, puis il est suspendu sans aucun débit supplémentaire." },
+
+      { "type": "h", "text": "Combien je gagne ?" },
+      { "type": "p", "text": "Cela dépend de ta flotte, de ta ville et de tes prix. Sur la base des tests pilotes, notre estimation est de 8 à 15 réservations supplémentaires pour 10 voitures en flotte, au cours des 6 premiers mois, dans une ville de taille moyenne (>200 000 habitants). Le prix moyen d'une location courte à Milan en 2026 est d'environ 65 €/jour pour une citadine, 95 €/jour pour un SUV compact." },
+      { "type": "p", "text": "Le seuil de rentabilité de l'abonnement (49 €/mois) est 1 location supplémentaire par mois d'une citadine pour 1 jour. Au-delà, c'est de la marge nette." },
+
+      { "type": "h", "text": "Comment nous t'aidons à démarrer" },
+      { "type": "list", "items": [
+        "Onboarding accompagné : nous t'aidons à charger tes 5-10 premières voitures sur la plateforme, avec des photos professionnelles si besoin (service gratuit pendant la période de lancement).",
+        "Account manager dédié pendant les 60 premiers jours : une personne réelle, joignable par e-mail ou téléphone, qui t'aide à régler prix, calendrier et conditions.",
+        "Matériel promotionnel : un badge \"Trouvez-moi sur MoviQ\" pour ton site et tes réseaux, à télécharger gratuitement depuis le tableau de bord.",
+        "Webinaire mensuel pour les partenaires : bonnes pratiques, nouveautés de la plateforme, retours directs de l'équipe."
+      ] },
+
+      { "type": "h", "text": "Questions fréquentes" },
+      { "type": "h", "text": "Puis-je désactiver le compte à tout moment ?" },
+      { "type": "p", "text": "Oui, à tout moment depuis les Paramètres du back-office. Les réservations déjà confirmées restent valides. Les nouvelles demandes s'arrêtent immédiatement. L'abonnement ne se renouvelle pas au cycle suivant." },
+      { "type": "h", "text": "Puis-je faire varier les prix au cours de l'année ?" },
+      { "type": "p", "text": "Oui, tous les prix sont modifiables à tout moment. Tu peux aussi définir des prix différents pour des périodes précises (haute saison, événements, week-ends) via le calendrier." },
+      { "type": "h", "text": "MoviQ m'oblige-t-il à accepter tous les clients ?" },
+      { "type": "p", "text": "Non. Tu peux refuser une demande sans la justifier. Des taux de refus très élevés (>30 %) pénalisent ta visibilité dans les résultats, mais l'accès ne t'est pas retiré." },
+      { "type": "h", "text": "Que se passe-t-il si un client ne se présente pas à la prise en charge (no-show) ?" },
+      { "type": "p", "text": "Tu appliques ta politique de no-show indiquée dans tes conditions. MoviQ recueille le signalement depuis ton back-office et pénalise l'utilisateur sur la note de la plateforme. En cas de no-show répétés, nous suspendons le compte de l'utilisateur." },
+      { "type": "h", "text": "MoviQ voit-il les données de mes voitures et de mes clients ?" },
+      { "type": "p", "text": "Nous voyons les voitures que tu publies (c'est le produit). Des clients, nous voyons e-mail, nom, téléphone et réservations — utilisés exclusivement pour faire fonctionner la plateforme. Nous ne les revendons pas, ne les partageons pas avec d'autres partenaires, ne les utilisons pas pour de la publicité de tiers." },
+
+      { "type": "cta", "label": "Écris à partner@moviq.it", "href": "mailto:partner@moviq.it", "mailto": true }
+    ]
+  }
+}

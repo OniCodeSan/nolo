@@ -1,0 +1,47 @@
+{
+  "name": "moviq",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "build:with-sitemap": "vite build && node scripts/generate-sitemap.js",
+    "build:seo": "vite build && SITEMAP_FETCH=1 node scripts/generate-sitemap.js && PRERENDER=1 node scripts/prerender.js",
+    "preview": "vite preview --host 0.0.0.0",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:install": "playwright install --with-deps chromium webkit"
+  },
+  "dependencies": {
+    "@sentry/react": "^10.53.1",
+    "@supabase/supabase-js": "^2.45.4",
+    "@tiptap/extension-image": "^3.26.1",
+    "@tiptap/extension-link": "^3.26.1",
+    "@tiptap/pm": "^3.26.1",
+    "@tiptap/react": "^3.26.1",
+    "@tiptap/starter-kit": "^3.26.1",
+    "dompurify": "^3.4.8",
+    "i18next": "^26.2.0",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "leaflet": "^1.9.4",
+    "marked": "^18.0.5",
+    "posthog-js": "^1.384.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^17.0.8",
+    "react-markdown": "^9.1.0",
+    "react-router-dom": "^6.30.4",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@sentry/vite-plugin": "^5.3.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^5.4.8"
+  },
+  "overrides": {
+    "dompurify": "$dompurify"
+  }
+}

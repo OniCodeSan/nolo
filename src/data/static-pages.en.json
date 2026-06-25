@@ -1,0 +1,461 @@
+{
+  "manifesto": {
+    "title": "Manifesto",
+    "lead": "Why we exist, how we work, what we refuse to do.",
+    "blocks": [
+      { "type": "h", "text": "Cars sit idle 95% of the time" },
+      { "type": "p", "text": "Every car in Italy is parked 23 hours out of 24. It costs thousands of euros a year in road tax, insurance, maintenance and depreciation. And yet we register more than a million and a half new ones every year." },
+      { "type": "p", "text": "When we really need a car — for a weekend, a house move, a six-month work assignment — we go to an international-brand rental desk, travel all the way to the airport, and pay surcharges we hadn't planned for. Or we just give up." },
+
+      { "type": "h", "text": "Car rental isn't just Hertz, Avis or Europcar" },
+      { "type": "p", "text": "In Italy there are thousands of small independent rental companies: garages, dealerships, local agencies. They know their customers by name. They have been renting cars for decades. They offer lower prices and a flexibility the big chains simply can't match." },
+      { "type": "p", "text": "But online they are invisible. They don't have a modern website, they don't know how to do SEO, they have no marketing team. And so customers keep believing that car rental means just four brands." },
+
+      { "type": "h", "text": "MoviQ is an aggregator, not a middleman" },
+      { "type": "p", "text": "You find the car on MoviQ. The rental company confirms availability. Payment happens directly between you and them — at pickup, the way it has always been done." },
+      { "type": "p", "text": "We don't get in the middle, we don't take commissions on the price of the car, we don't hold money on your account. The contract is between you and the rental company, exactly as if you had found them down the street." },
+
+      { "type": "h", "text": "Three principles" },
+      { "type": "list", "items": [
+        { "strong": "Proximity", "text": " — the right car is the one near your home, not 30 km away at the airport. The search defaults to your neighbourhood, not the vehicle category." },
+        { "strong": "Transparency", "text": " — no surprise surcharges at pickup. The price you see on the listing is the price you pay. Deposit, insurance and included mileage: all written down up front." },
+        { "strong": "Independence", "text": " — rental companies stay in control of their prices, their terms and their customers. We don't impose commercial policies, we don't block reviews, we don't penalise those who don't pay for premium subscriptions." }
+      ] },
+
+      { "type": "h", "text": "What we DON'T do" },
+      { "type": "list", "items": [
+        "We don't own cars.",
+        "We don't manage deposits or insurance on behalf of the rental companies.",
+        "We don't sell your data to third parties and we don't do advertising tracking.",
+        "We don't use dark patterns to squeeze upsells out of you at checkout.",
+        "We don't penalise rental companies that give you their direct phone number."
+      ] },
+
+      { "type": "h", "text": "Where we come from" },
+      { "type": "p", "text": "MoviQ was born in Italy, in 2026, out of a small and independent team. We fund ourselves through a monthly subscription for rental companies that want to be listed — not through commissions on customers, not through third-party advertising." },
+      { "type": "p", "text": "We want to build digital infrastructure for a sector that has existed for decades but has stayed off the grid. Nothing more, nothing less." },
+
+      { "type": "h", "text": "Where we're going" },
+      { "type": "p", "text": "There needs to be a bridge between those who own a car and rent it out every day, and those who just need a car for a week. We want to be that bridge — clean, lightweight, made in Italy." },
+      { "type": "quote", "text": "The right car near you. That's all there is to it." }
+    ]
+  },
+
+  "sicurezza": {
+    "title": "Safety",
+    "lead": "How we protect customers and rental companies.",
+    "blocks": [
+      { "type": "h", "text": "Verifying rental companies" },
+      { "type": "p", "text": "Every rental company on MoviQ is verified during onboarding: ID of the legal representative, VAT number with a compatible business activity code, and third-party liability insurance on the vehicles. Verified rental companies carry a badge on their listing." },
+
+      { "type": "h", "text": "Verifying customers" },
+      { "type": "p", "text": "On first access we ask for a valid email (confirmation link) and a phone number (SMS code). Rental companies see this information only after you confirm a booking. Your driving licence and documents are shown directly at pickup — they never pass through us." },
+
+      { "type": "h", "text": "Insurance and deposits" },
+      { "type": "p", "text": "Each rental company declares during onboarding that it holds valid liability coverage on the vehicles it lists. Checking that the coverage is valid at the time of the rental remains the customer's responsibility and can be requested from the rental company before pickup. Additional coverage (collision, theft, excess reduction) and deposit handling are entirely decided by the rental company, according to the terms of its own rental contract." },
+      { "type": "p", "text": "MoviQ does not block amounts on the customer's card, does not operate escrow, and does not intervene in any way in the handling of security deposits or excesses." },
+
+      { "type": "h", "text": "Payments" },
+      { "type": "p", "text": "Payment for the rental happens directly between customer and rental company, using the methods the rental company accepts — card (Visa/MC/Amex/Maestro), bank transfer, or cash up to the legal limit. MoviQ does not collect, process or block payments on behalf of the rental company." },
+
+      { "type": "h", "text": "MoviQ's role if something goes wrong" },
+      { "type": "p", "text": "MoviQ is an informational intermediation platform: it is NOT a party to the rental contract. Disputes relating to the rental — car unavailable at pickup, damage, accidents, payment disputes, service quality — must be handled directly between you and the rental company, according to the terms of the relevant contract and the applicable law." },
+      { "type": "p", "text": "You can report serious incidents to support@moviq.it: we will use the report solely for moderation and service-quality purposes (e.g. deciding whether the rental company stays on the platform). MoviQ does not offer mediation, arbitration or legal assistance, and does not guarantee operational response times on disputes between user and rental company." },
+      { "type": "p", "text": "For disputes with a rental company you may turn to the alternative dispute resolution (ADR) bodies registered with the MISE, to the European ODR platform (ec.europa.eu/consumers/odr), or to the competent court." },
+
+      { "type": "h", "text": "Account security" },
+      { "type": "p", "text": "Access is via a magic link sent by email — there is no password to steal. The session expires after 30 days of inactivity. You can sign out of all active sessions from the \"Settings\" page of your profile." }
+    ]
+  },
+
+  "contatti": {
+    "title": "Contact",
+    "lead": "Write to us. We reply within 24h on business days.",
+    "blocks": [
+      { "type": "h", "text": "Email" },
+      { "type": "kv", "items": [
+        { "k": "Customer support", "v": "support@moviq.it" },
+        { "k": "Partner rental companies", "v": "partner@moviq.it" },
+        { "k": "Press and communications", "v": "press@moviq.it" },
+        { "k": "Privacy and personal data", "v": "privacy@moviq.it" },
+        { "k": "Everything else", "v": "hello@moviq.it" }
+      ] },
+
+      { "type": "h", "text": "During an active rental" },
+      { "type": "p", "text": "For anything you need during the rental (car not delivered, breakdown, accident, damage, dispute) your point of reference is always the rental company — you'll find its direct number on the booking details and in the confirmation email. MoviQ does not provide assistance during the rental and does not intervene in the contractual relationship between you and the rental company." },
+      { "type": "p", "text": "For insurance or road issues you can also contact the roadside assistance included in your policy, or call 112." },
+      { "type": "p", "text": "You can always write to support@moviq.it to flag incidents you believe are relevant to the platform's quality: we will use your report to moderate rental companies, but we cannot act as mediators in the dispute." },
+
+      { "type": "h", "text": "Registered office" },
+      { "type": "p", "text": "The company's full details will be published at the public launch." }
+    ]
+  },
+
+  "come-funziona": {
+    "title": "How it works",
+    "lead": "From search to return, everything you need to know to rent a car on MoviQ. Reading time: 4 minutes.",
+    "blocks": [
+      { "type": "h", "text": "In short" },
+      { "type": "p", "text": "MoviQ is a search engine for independent Italian car rental companies. You search for a car, you book it, the rental company confirms, you pick it up at the indicated point and pay them directly. There is no financial intermediary between you and the rental company." },
+
+      { "type": "h", "text": "1 · Search" },
+      { "type": "p", "text": "Enter the city where you need the car and the pickup and return dates. MoviQ shows you all the available cars from rental companies in the area — not just the big brands, but also neighbourhood garages and small independent fleets you wouldn't otherwise find." },
+      { "type": "p", "text": "The price you see on the card is the total price for the period you indicated. No surprise surcharges: taxes, included mileage, mandatory insurance and the service fee are already counted. The deposit, where required, is shown separately." },
+
+      { "type": "h", "text": "2 · Compare" },
+      { "type": "p", "text": "Filter by category (city car, SUV, electric, van, convertible, long-term), fuel type (petrol, diesel, hybrid, electric), price range, transmission (manual/automatic). Sort by price, distance from your address, or most-viewed cars." },
+      { "type": "p", "text": "Open a car's listing to see: photos and description, included mileage, any optional extras (child seat, GPS, additional driver), the individual rental company's terms, the payment methods it accepts (card, bank transfer, cash within legal limits), its reviews and its average response times." },
+
+      { "type": "h", "text": "3 · Book" },
+      { "type": "p", "text": "Press \"Request booking\". If it's your first time using MoviQ we ask for your email, name and phone number — just these three details. You'll receive a confirmation email with a magic link to sign in (no password to remember)." },
+      { "type": "p", "text": "Your request is forwarded to the rental company, which has 24 hours to confirm or decline. Most rental companies respond within 2 hours on weekdays. You'll get a notification by email and push as soon as the status changes." },
+      { "type": "p", "text": "At this stage you don't pay anything. Your card is not charged, there is no pre-authorisation hold. The booking is a request, not a purchase." },
+
+      { "type": "h", "text": "4 · Pick up the car" },
+      { "type": "p", "text": "At the agreed time, show up at the pickup point indicated on the booking page — it's the address of the rental company's premises. Bring with you:" },
+      { "type": "list", "items": [
+        "A valid ID document.",
+        "A driving licence valid for the vehicle category (category B for cars, ≥ 21 years old and a licence held for at least 1 year for most rental companies).",
+        "A credit card in the driver's name for the deposit (if the rental company requires it on card) — or cash or bank transfer if accepted."
+      ] },
+      { "type": "p", "text": "The rental company checks the documents, has you sign the rental contract (paper or digital, up to them), collects the agreed price and any deposit, hands you the keys and walks you through the car handover (fuel, pre-existing damage, mileage). Average pickup time: 15-25 minutes." },
+
+      { "type": "h", "text": "5 · Drive" },
+      { "type": "p", "text": "You've got the car, it's yours for the agreed period. The terms of use (mileage, permitted geographic area, no animals or smoking, etc.) are those of the rental company's contract — read them before signing." },
+      { "type": "p", "text": "If problems arise during the rental (breakdown, accident, fine) your first point of contact is always the rental company — you'll find its direct number on the booking page on MoviQ. For additional assistance, MoviQ can be reached at support@moviq.it." },
+
+      { "type": "h", "text": "6 · Return" },
+      { "type": "p", "text": "Return the car to the same point, at the agreed time, with the fuel level required by the contract (usually the same as at pickup). The rental company checks the car, mileage and fuel, and returns the deposit if everything is in order." },
+      { "type": "p", "text": "Within 48 hours of the return you'll receive an email to leave a review of the rental company. Reviews are public and help those who book after you." },
+
+      { "type": "h", "text": "Cancellation" },
+      { "type": "p", "text": "You can cancel free of charge up to 24 hours before the pickup time from your \"Bookings\" page or by clicking the cancellation link in the confirmation email. You don't need to give a reason." },
+      { "type": "p", "text": "For cancellations beyond this threshold the individual rental company's policies apply, shown on the car's listing at the time of booking and recalled in the confirmation email. The most common policies are: 50% retention for cancellations between 24h and 6h before pickup, 100% retention for no-shows or cancellations less than 6h before." },
+
+      { "type": "h", "text": "Changing your booking" },
+      { "type": "p", "text": "To change dates, duration or car, contact the rental company directly (number on the listing) or write to support@moviq.it indicating the booking number. Changes are subject to vehicle availability." },
+
+      { "type": "h", "text": "MoviQ's role" },
+      { "type": "p", "text": "MoviQ is exclusively an informational intermediation service: we help you find the car and send the request to the rental company. The rental contract, payment, terms, deposit, insurance, assistance during the rental, and the handling of damage or accidents are entirely the responsibility of the rental company. MoviQ is not a party to the contract and is not liable for the contractual obligations between you and the rental company." },
+
+      { "type": "h", "text": "Frequently asked questions" },
+      { "type": "h", "text": "Who pays in case of damage or an accident?" },
+      { "type": "p", "text": "The relationship is exclusively between you and the rental company. Coverage (mandatory liability, any excess, optional collision damage waiver) and accident-handling procedures are those set out in the individual rental company's contract. MoviQ does not intervene in the handling of accidents, damage or disputes connected to the use of the vehicle." },
+      { "type": "h", "text": "How old do you have to be to rent?" },
+      { "type": "p", "text": "It depends on the rental company. Most require ≥ 21 years old and a category B licence held for at least 1 year. For premium cars and large SUVs, some require ≥ 25 years old. The specific requirement is shown on the car's listing." },
+      { "type": "h", "text": "Can I rent for another driver?" },
+      { "type": "p", "text": "Yes, but the second driver must be declared to the rental company (usually with a small surcharge) and must show up at pickup with ID and licence." },
+      { "type": "h", "text": "What happens if the rental company doesn't respond within 24h?" },
+      { "type": "p", "text": "The request lapses automatically, with no charge. You can send a new request to other rental companies in the area using the search. MoviQ does not guarantee a response from rental companies, which remain free to accept or decline any request." },
+
+      { "type": "cta", "label": "Find a car near you", "href": "/" }
+    ]
+  },
+
+  "per-noleggiatori": {
+    "title": "For rental companies",
+    "lead": "MoviQ is the online channel for Italy's small independent car rental companies. No commission on the price, no intermediation on payment, no exclusivity.",
+    "blocks": [
+      { "type": "h", "text": "Who we're talking to" },
+      { "type": "p", "text": "If you run a small or medium car rental business in Italy — a garage, a dealership with a rental fleet, a local agency, an independent company with 5-200 vehicles — MoviQ gives you online visibility without asking you to give up the direct relationship with the customer." },
+      { "type": "p", "text": "We don't talk to the big international chains. They already have their own channels. We serve the segment that today is invisible on the web." },
+
+      { "type": "h", "text": "What you get" },
+      { "type": "list", "items": [
+        { "strong": "Visibility in search results", "text": " — your fleet appears when a user searches for a car in your city, on the dates you have availability." },
+        { "strong": "Zero commission on the rental price", "text": " — the customer pays you, directly, with the method you accept. MoviQ doesn't collect, doesn't hold, doesn't skim anything." },
+        { "strong": "Full backoffice included", "text": " — manage your fleet, prices (including seasonal dynamic pricing), the availability calendar for each vehicle, incoming requests, confirmed bookings, customer reviews, statistics and estimated revenue from a single dashboard." },
+        { "strong": "Full control of the customer relationship", "text": " — the customer's phone number and email are yours. You can call them back, build loyalty, offer them discounts on future rentals directly. No \"wall\" like the big marketplaces use." },
+        { "strong": "No exclusivity", "text": " — you keep using your own website, word of mouth, other portals, the phone. MoviQ is an extra channel, not the only one." },
+        { "strong": "Custom rental terms", "text": " — you publish your own conditions (mileage, minimum age, excess, cancellation policy, accepted payment methods). We don't impose commercial rules." }
+      ] },
+
+      { "type": "h", "text": "How it works on your side" },
+      { "type": "p", "text": "After onboarding, you access the MoviQ backoffice with your magic link by email. From there:" },
+      { "type": "list", "items": [
+        { "strong": "You upload your fleet", "text": " — for each car you add photos (5-8 recommended), make/model/year, fuel, transmission, seats, luggage, options, included mileage, base daily price. Add a private \"internal note\" with the plate, pre-existing damage and management info — not visible to customers." },
+        { "strong": "You set the calendar", "text": " — block the dates a car is unavailable, set different prices for high/low season or weekends." },
+        { "strong": "You receive requests", "text": " — when a user books, you get an email + push with the details. You have 24h to confirm or decline. Fast response times improve your ranking in the results." },
+        { "strong": "You manage pickups and returns", "text": " — you handle everything at your premises as you do today. MoviQ does not interfere with the paper or digital contract you sign." },
+        { "strong": "You read your metrics", "text": " — most-viewed cars, most-saved cars, high-demand periods, estimated revenue, the most requested model for your city, the average price per segment (also versus local competition, in aggregate form)." }
+      ] },
+
+      { "type": "h", "text": "What we ask of you" },
+      { "type": "list", "items": [
+        { "strong": "Active Italian VAT number", "text": " in the vehicle rental sector (ATECO code 77.11 or compatible)." },
+        { "strong": "ID of the legal representative", "text": " for anti-fraud verification during onboarding (just once)." },
+        { "strong": "Valid liability insurance", "text": " on the entire fleet listed on MoviQ. We ask for it because our users expect every listed car to be insured — it's the platform's foundation of trust." },
+        { "strong": "Written rental terms", "text": " accessible to the customer before confirmation (you publish them on your MoviQ profile — freely editable at any time)." },
+        { "strong": "Response within 24h", "text": " to booking requests. Below this threshold, requests expire and customers are directed elsewhere." }
+      ] },
+
+      { "type": "h", "text": "How much it costs" },
+      { "type": "p", "text": "A single, flat subscription, independent of the number of cars in your fleet and the revenue you generate. No commission on rental prices, no fee per request, no minimum transaction threshold." },
+      { "type": "kv", "items": [
+        { "k": "Monthly subscription", "v": "€49 + VAT / month" },
+        { "k": "Free trial period", "v": "30 days on first activation" },
+        { "k": "Renewal", "v": "Automatic every month on the activation date" },
+        { "k": "Deactivation", "v": "At any time from the backoffice, no penalties" }
+      ] },
+      { "type": "p", "text": "On sign-up you register a payment method (Visa/Mastercard/Amex credit or debit card). For the first 30 days no charge is made — it's the free trial during which you can upload your fleet, receive bookings and assess the return." },
+      { "type": "p", "text": "At the end of the 30 days, the subscription activates automatically and the first monthly fee is charged. From then on, renewal is automatic every month on the same date, until you deactivate. Deactivation happens directly from the backoffice in the \"Subscription\" section — your account stays active until the end of the paid cycle, then it is suspended with no further charge." },
+
+      { "type": "h", "text": "How much will I earn?" },
+      { "type": "p", "text": "It depends on your fleet, your city and your prices. Based on pilot tests, our estimate is 8-15 additional bookings for every 10 cars in your fleet, in the first 6 months, in a medium-sized city (>200k inhabitants). The average price of a short rental in Milan in 2026 is around €65/day for a city car, €95/day for a compact SUV." },
+      { "type": "p", "text": "The break-even on the subscription (€49/month) is 1 additional rental per month of a city car for 1 day. Above this threshold, it's net margin." },
+
+      { "type": "h", "text": "How we help you get started" },
+      { "type": "list", "items": [
+        "Assisted onboarding: we help you upload your first 5-10 cars to the platform, with professional photos if you need them (free service during the launch period).",
+        "Dedicated account manager for the first 60 days: a real person, reachable by email or phone, who helps you set up prices, calendar and conditions.",
+        "Promotional material: a \"Find me on MoviQ\" badge for your website and social media, free to download from the dashboard.",
+        "Monthly partner webinar: best practices, platform news, direct feedback from the team."
+      ] },
+
+      { "type": "h", "text": "Frequently asked questions" },
+      { "type": "h", "text": "Can I deactivate my account at any time?" },
+      { "type": "p", "text": "Yes, at any time from the backoffice Settings. Bookings already confirmed remain valid. New requests stop immediately. The subscription does not renew for the next cycle." },
+      { "type": "h", "text": "Can I change prices during the year?" },
+      { "type": "p", "text": "Yes, all prices are editable at any time. You can also set different prices for specific periods (high season, events, weekends) through the calendar." },
+      { "type": "h", "text": "Does MoviQ force me to accept every customer?" },
+      { "type": "p", "text": "No. You can decline a request without giving a reason. Very high decline rates (>30%) penalise your visibility in the results, but you are not cut off." },
+      { "type": "h", "text": "What happens if a customer doesn't show up for pickup (no-show)?" },
+      { "type": "p", "text": "You apply your own no-show policy as stated in your conditions. MoviQ collects the report from your backoffice and penalises the user on the platform rating. In case of repeated no-shows, we suspend the user's account." },
+      { "type": "h", "text": "Does MoviQ see my cars' and customers' data?" },
+      { "type": "p", "text": "We see the cars you publish (that's the product). Of customers we see email, name, phone and bookings — used exclusively to run the platform. We don't resell them, we don't share them with other partners, we don't use them for third-party advertising." },
+
+      { "type": "cta", "label": "Write to partner@moviq.it", "href": "mailto:partner@moviq.it", "mailto": true }
+    ]
+  },
+
+  "privacy": {
+    "title": "Privacy Policy",
+    "lead": "Pursuant to Articles 13 and 14 of EU Regulation 2016/679 (GDPR) and Italian Legislative Decree 196/2003 as amended. Version 1.0 — in force from 1 May 2026. The official, legally binding version is the Italian one.",
+    "blocks": [
+      { "type": "h", "text": "1. Data controller" },
+      { "type": "p", "text": "The controller of personal data is MoviQ S.r.l., a company being incorporated, with registered office in Italy. The contact details of the controller and of the data protection officer (DPO), once appointed, will be published at the public launch of the service." },
+      { "type": "p", "text": "For any matter relating to the processing of your personal data you can write to privacy@moviq.it." },
+
+      { "type": "h", "text": "2. Categories of data processed" },
+      { "type": "p", "text": "MoviQ processes only the data strictly necessary to provide the service." },
+      { "type": "list", "items": [
+        { "strong": "Identification data", "text": " — first name, last name, email address, mobile phone number. Provided directly by the user during registration or profile completion." },
+        { "strong": "Booking data", "text": " — rental dates and city, selected vehicle, amount, any text notes, identifier of the counterpart rental company, request status." },
+        { "strong": "Service usage data", "text": " — IP address (anonymised on the last two octets after 30 days), browser user-agent, interface language, essential navigation events (login, booking, error) collected via Plausible Analytics in aggregate form without unique identifiers." },
+        { "strong": "Technical cookies", "text": " — session cookies strictly necessary for authentication and for keeping user preferences. See our Cookie Policy for details." }
+      ] },
+      { "type": "p", "text": "MoviQ NEVER processes: driving licence data, credit or payment card data, biometric data, data on health, political opinions, religion, trade union membership or sexual life. This data stays entirely between the user and the rental company at the time of vehicle pickup." },
+
+      { "type": "h", "text": "3. Purposes and legal basis of processing" },
+      { "type": "kv", "items": [
+        { "k": "Service provision (account, bookings)", "v": "Performance of a contract — Art. 6(1)(b) GDPR" },
+        { "k": "Tax, accounting, anti-money-laundering obligations", "v": "Legal obligation — Art. 6(1)(c) GDPR" },
+        { "k": "Platform security and anti-fraud", "v": "Legitimate interest — Art. 6(1)(f) GDPR" },
+        { "k": "Aggregate analytics (Plausible)", "v": "Legitimate interest — Art. 6(1)(f) GDPR" },
+        { "k": "Promotional communications (newsletter)", "v": "Explicit, revocable consent — Art. 6(1)(a) GDPR" }
+      ] },
+
+      { "type": "h", "text": "4. Processing methods" },
+      { "type": "p", "text": "Data is processed with IT and electronic tools, with security measures adequate to ensure confidentiality, integrity and availability. The platform uses encrypted connections (HTTPS / TLS 1.2+), protected access via magic link (no password), and logical data separation at database level through Row Level Security." },
+      { "type": "p", "text": "Data is not transferred outside the European Economic Area. All technical providers are based in the EU or adopt safeguards equivalent to the GDPR (Standard Contractual Clauses, adequacy decisions)." },
+
+      { "type": "h", "text": "5. Data recipients" },
+      { "type": "p", "text": "Personal data may be communicated solely to the following categories of recipients, to the extent strictly necessary:" },
+      { "type": "list", "items": [
+        { "strong": "Counterpart rental company", "text": " — upon confirmation of a booking, it receives name, email, phone and rental details. It is an autonomous controller for the data it receives." },
+        { "strong": "Technical providers", "text": " — Supabase (database and authentication, EU), Hetzner Online GmbH (hosting, Germany), transactional email provider (EU). All contracted as data processors under Art. 28 GDPR." },
+        { "strong": "Competent authorities", "text": " — in case of a legitimate request from law enforcement or judicial authorities, within the limits of the law." }
+      ] },
+      { "type": "p", "text": "MoviQ does NOT sell, rent or transfer personal data to third parties for commercial, advertising or profiling purposes." },
+
+      { "type": "h", "text": "6. Retention period" },
+      { "type": "kv", "items": [
+        { "k": "User account", "v": "For the duration of registration, plus 24 months from last access (closure for inactivity)" },
+        { "k": "Bookings and accounting logs", "v": "10 years from the booking date (Italian D.P.R. 600/1973, Art. 22)" },
+        { "k": "Technical and security logs", "v": "12 months (Italian Legislative Decree 196/2003, Art. 132)" },
+        { "k": "Technical cookies", "v": "From session expiry to 30 days" },
+        { "k": "Newsletter (if subscribed)", "v": "Until consent is withdrawn" }
+      ] },
+
+      { "type": "h", "text": "7. Rights of the data subject" },
+      { "type": "p", "text": "Pursuant to Articles 15-22 GDPR, the user has the right at any time to:" },
+      { "type": "list", "items": [
+        "access their personal data and obtain a copy (right of access, Art. 15);",
+        "request rectification if inaccurate or incomplete (Art. 16);",
+        "request erasure, subject to legal obligations (right to be forgotten, Art. 17);",
+        "request restriction of processing (Art. 18);",
+        "obtain the data in a structured, readable format (portability, Art. 20);",
+        "object to processing based on legitimate interest (Art. 21);",
+        "withdraw at any time the consents given, without affecting the lawfulness of prior processing (Art. 7.3)."
+      ] },
+      { "type": "p", "text": "Rights can be exercised free of charge by writing to privacy@moviq.it or from the \"Settings → Privacy\" section of your profile. MoviQ responds within 30 days of the request." },
+      { "type": "p", "text": "The user also has the right to lodge a complaint with the Italian Data Protection Authority (Piazza Venezia 11, 00187 Rome — garanteprivacy.it)." },
+
+      { "type": "h", "text": "8. Nature of the provision of data" },
+      { "type": "p", "text": "Providing identification data (email, name, phone) is optional, but necessary to create the account and use the service. Failure to provide it prevents registration and vehicle booking." },
+
+      { "type": "h", "text": "9. Automated decision-making" },
+      { "type": "p", "text": "MoviQ does NOT use fully automated decision-making that produces significant legal effects on the user under Art. 22 GDPR. Any anti-fraud scoring systems are used as a mere decision-making aid and every final decision (e.g. account suspension) is validated by a human operator." },
+
+      { "type": "h", "text": "10. Changes to this policy" },
+      { "type": "p", "text": "MoviQ reserves the right to update this policy to reflect regulatory changes or service developments. Substantial changes will be notified to registered users by email with at least 30 days' notice. The current version is always available at moviq.it/privacy with the date of last update." }
+    ]
+  },
+
+  "termini": {
+    "title": "Terms of Service",
+    "lead": "General Terms of Use of the MoviQ platform. Version 1.0 — in force from 1 May 2026. The official, legally binding version is the Italian one.",
+    "blocks": [
+      { "type": "h", "text": "1. Definitions" },
+      { "type": "list", "items": [
+        { "strong": "\"Platform\"", "text": " — the website moviq.it, its possible mobile versions and every digital service provided under the MoviQ brand." },
+        { "strong": "\"MoviQ\"", "text": " or \"we\" — the legal entity that owns the Platform, MoviQ S.r.l. (being incorporated), with registered office in Italy." },
+        { "strong": "\"User\"", "text": " — any adult natural person who accesses the Platform to search, compare and book a vehicle rental." },
+        { "strong": "\"Rental company\"", "text": " — an economic operator, a natural person holding a VAT number or a legal entity, duly authorised in Italy to carry out self-drive vehicle rental, that publishes its offer on the Platform." },
+        { "strong": "\"Service\"", "text": " — the activity of publishing rental listings and connecting User and Rental company provided by MoviQ through the Platform." },
+        { "strong": "\"Rental contract\"", "text": " — the autonomous contract concluded directly between User and Rental company at the time of vehicle pickup, governed by the conditions of the individual Rental company and applicable Italian law." }
+      ] },
+
+      { "type": "h", "text": "2. Subject and nature of the Service" },
+      { "type": "p", "text": "MoviQ is an INFORMATIONAL INTERMEDIATION platform that allows Users to search, compare and send booking requests for vehicles to independent professional Rental companies operating in Italy." },
+      { "type": "p", "text": "MoviQ's activity qualifies as an information society service under Italian Legislative Decree 70/2003 and Directive 2000/31/EC, and as a provider of online intermediation services under Regulation (EU) 2019/1150." },
+      { "type": "p", "text": "MoviQ is NOT a party to the Rental contract. MoviQ does NOT own vehicles, does NOT provide the rental service, does NOT collect, hold or process payment for the rental on behalf of the Rental company, does NOT manage deposits, securities, excesses, insurance policies or accidents. The Rental contract is concluded and performed entirely between User and Rental company, is governed by the contractual conditions set by the individual Rental company and by applicable law, and produces no legal effect on MoviQ." },
+      { "type": "p", "text": "Everything relating to the rental relationship — including but not limited to: cancellation policy, amount and method of the deposit, insurance coverage, handling of damage, fines, accidents, payment disputes, loss or theft of the vehicle, assistance during the rental — is governed solely by the Rental company's contract and falls under the exclusive responsibility of User and Rental company." },
+
+      { "type": "h", "text": "3. Registration and account" },
+      { "type": "p", "text": "Using the booking features requires creating a personal account. Registration requires a valid email, first name, last name and phone number, and acceptance of these Terms and the Privacy Policy." },
+      { "type": "p", "text": "The User warrants that the data provided is truthful, complete and up to date, and undertakes to keep it so for the entire duration of registration. It is forbidden to create accounts using others' identities, false data or fictitious names with deceptive intent. Access is via magic link sent to the registered email address (passwordless authentication)." },
+      { "type": "p", "text": "The User is responsible for safeguarding their credentials (in particular access to the email inbox associated with the account) and for any activity carried out through their account. In case of unauthorised or suspected use, the User must report it promptly to support@moviq.it." },
+
+      { "type": "h", "text": "4. Booking process" },
+      { "type": "p", "text": "The User chooses a vehicle, indicates pickup and return dates and times, and sends a booking request. The request does NOT constitute conclusion of the Rental contract, nor does it cause any charge or hold on the User's payment methods." },
+      { "type": "p", "text": "The Rental company has 24 hours to accept or decline the request. If accepted, the User receives confirmation by email and push notification. The Rental contract is finalised at the time of vehicle pickup, at the agreed time and place, by signing the Rental company's paper or digital contract and paying the price." },
+      { "type": "p", "text": "The price shown on the Platform includes the base rental price, mandatory liability insurance, applicable taxes and, where indicated, the included mileage. Any extras (additional driver, child seat, GPS, accessory coverage, fuel) are indicated separately. The final price may change as a result of changes to the rental period requested at pickup or damage assessed at return." },
+
+      { "type": "h", "text": "5. Cancellation and changes" },
+      { "type": "p", "text": "5.1 — Cancellation, change, no-show and penalty policies are set by the individual Rental company and indicated on the vehicle listing at the time of booking. MoviQ does not determine, collect or manage any cancellation penalty." },
+      { "type": "p", "text": "5.2 — By way of illustration only, most Rental companies provide free cancellation up to 24 hours before pickup; beyond that threshold, retentions may apply. The exact value is always indicated by the Rental company." },
+      { "type": "p", "text": "5.3 — Changes to the booking (dates, duration, vehicle) require the Rental company's consent and are subject to availability. MoviQ does not guarantee the acceptance of changes." },
+
+      { "type": "h", "text": "6. User obligations and responsibilities" },
+      { "type": "list", "items": [
+        "Provide truthful data at registration and booking.",
+        "Show up at vehicle pickup with a valid ID document and a driving licence suitable for the booked vehicle's category.",
+        "Comply with the contractual conditions set by the Rental company (mileage, permitted area, use restrictions, return procedures).",
+        "Use the vehicle in accordance with the Highway Code and applicable law.",
+        "Be personally liable for administrative penalties, fines, damage caused to third parties or to the vehicle during the rental period, within the limits set by the contract and the insurance coverage.",
+        "Not use the Platform for unlawful, fraudulent purposes or those harmful to third-party rights."
+      ] },
+
+      { "type": "h", "text": "7. EXCLUSIVE obligations and responsibilities of the Rental company" },
+      { "type": "p", "text": "The Rental company is the SOLE and EXCLUSIVE party responsible, towards the User, the Authorities and any third party, for everything relating to the vehicle and the Rental contract, including by way of example and not limited to:" },
+      { "type": "list", "items": [
+        "availability and suitability of the vehicle at the agreed time, place and conditions;",
+        "maintenance, inspection, type-approval and compliance of the vehicle with road safety rules;",
+        "taking out and maintaining adequate mandatory liability insurance on the vehicle;",
+        "management of excesses, collision waivers, excess reductions and any other accessory coverage offered or sold to the customer;",
+        "collection of the rental fee and management of the deposit/security;",
+        "issuing receipts, invoices and tax documents to the customer;",
+        "handling of accidents, damage, repairs, disputes, fines, administrative seizures and any other event connected to the use of the vehicle;",
+        "compliance with tax, anti-money-laundering, privacy and consumer regulations in relations with the customer;",
+        "correctness, truthfulness, completeness and updating of prices, photos, descriptions, conditions and payment methods published on the MoviQ listing."
+      ] },
+      { "type": "p", "text": "The Rental company indemnifies and holds MoviQ harmless from any claim, damage, cost, penalty or legal expense (including fees of lawyers and experts) arising from its rental activity or from the breach of applicable rules." },
+
+      { "type": "h", "text": "8. Exclusion and limitation of MoviQ's liability" },
+      { "type": "p", "text": "8.1 — MoviQ is subject only to the responsibilities of an information society service provider under Articles 14, 15 and 17 of Italian Legislative Decree 70/2003. In no case does MoviQ assume obligations of the Rental company or enter into any contractual relationship with the User concerning the vehicle rental." },
+      { "type": "p", "text": "8.2 — Within the limits permitted by applicable law, MoviQ is NOT liable, by way of example and not limited to, for: (a) unavailability, delay, defects or breakdowns of the vehicle; (b) road accidents, damage to property or persons, loss or theft of the vehicle; (c) disputes arising between User and Rental company relating to payment, deposit, excess, insurance, rental conditions or return; (d) unlawful, fraudulent or negligent conduct by the User or Rental company; (e) breaches, errors, omissions or false statements by the Rental company in the content published on the Platform; (f) Service interruptions due to maintenance, updates or force majeure; (g) indirect or consequential damage, loss of opportunity, profit or reputation." },
+      { "type": "p", "text": "8.3 — MoviQ does not offer, in any form, assistance during the rental, dispute mediation or arbitration. Reports received via support@moviq.it are used solely for platform moderation and service quality: they do not constitute any assumption of liability by MoviQ nor a right of the User to a specific outcome or response time." },
+      { "type": "p", "text": "8.4 — Should a competent authority establish — in derogation from the above — direct liability of MoviQ, this is in any case limited to the amount possibly received by MoviQ for the single contested transaction, and in any case may not exceed €100 per single event or €500 in total per calendar year. The mandatory consumer rights provided by applicable law are unaffected." },
+
+      { "type": "h", "text": "9. Reviews" },
+      { "type": "p", "text": "A User who has completed a rental may leave a review of the Rental company. Reviews must be truthful, based on personal experience, and free of defamatory, offensive, discriminatory or unlawful content. MoviQ reserves the right to remove reviews that breach these rules or that are manifestly false or manipulative." },
+
+      { "type": "h", "text": "10. Account suspension and closure" },
+      { "type": "p", "text": "MoviQ may suspend or close an account, with written notice by email stating the reasons, in case of: breach of these Terms; fraudulent, harmful or dangerous conduct towards other Users or Rental companies; repeated failure to comply with Rental companies' conditions (e.g. repeated no-shows); prolonged inactivity (over 36 months from last access). The User may close their account at any time from the \"Settings → Account\" section or by writing to support@moviq.it." },
+
+      { "type": "h", "text": "11. Intellectual property" },
+      { "type": "p", "text": "The \"MoviQ\" trademark, the logo, the interface, the source code, the editorial texts, the graphics and any other original content of the Platform are the exclusive property of MoviQ S.r.l. and protected by copyright and industrial property law. Photos and descriptions of vehicles remain the property of the respective Rental companies, which grant MoviQ a limited, non-exclusive, revocable licence for publication on the Platform." },
+
+      { "type": "h", "text": "12. Changes to the Terms" },
+      { "type": "p", "text": "MoviQ may change these Terms at any time to adapt them to service developments or regulatory changes. Substantial changes are communicated to registered Users with at least 30 days' notice by email. The version in force is always available at moviq.it/termini. Continued use of the Platform after the changes take effect implies their acceptance; otherwise the User may withdraw by closing the account." },
+
+      { "type": "h", "text": "13. Applicable law and jurisdiction" },
+      { "type": "p", "text": "These Terms are governed by Italian law. For disputes arising between MoviQ and Users qualifying as consumers under Italian Legislative Decree 206/2005, the court of the consumer's place of residence or domicile has exclusive jurisdiction. For disputes with non-consumer Users and with Rental companies, the court of Milan has exclusive jurisdiction." },
+      { "type": "p", "text": "The consumer User may also turn to the European ODR platform for the alternative resolution of online disputes: ec.europa.eu/consumers/odr." },
+
+      { "type": "h", "text": "14. Final provisions" },
+      { "type": "p", "text": "If any provision of these Terms is declared null, invalid or unenforceable, the remaining provisions remain fully effective. MoviQ's tolerance of User breaches does not constitute a waiver of the rights provided by the Terms or by applicable law." }
+    ]
+  },
+
+  "cookie": {
+    "title": "Cookie Policy",
+    "lead": "Which cookies and similar technologies we use, why, and how you can manage them. Compliant with the Italian Data Protection Authority measure of 10 June 2021 and EDPB guidelines 03/2022. Version 1.0 — 1 May 2026. The official, legally binding version is the Italian one.",
+    "blocks": [
+      { "type": "h", "text": "1. What cookies are" },
+      { "type": "p", "text": "Cookies are small text files that websites save on the user's device to store information useful for the operation of the site itself, for security, for preferences or for measuring usage statistics. Similar technologies (browser local storage, tracking pixels, fingerprinting) are subject to the same rules." },
+
+      { "type": "h", "text": "2. Types of cookies used by MoviQ" },
+      { "type": "p", "text": "MoviQ uses only first-party cookies (set by the moviq.it domain) and does not install profiling, marketing or third-party advertising cookies." },
+
+      { "type": "h", "text": "2.1 Essential technical cookies" },
+      { "type": "p", "text": "Necessary for the operation of the Platform. They do not require consent under Art. 122 of the Italian Privacy Code. Without these cookies the user cannot authenticate or complete a booking." },
+      { "type": "kv", "items": [
+        { "k": "sb-access-token", "v": "Authentication session token (Supabase Auth) — duration 60 minutes — HttpOnly, Secure, SameSite=Lax" },
+        { "k": "sb-refresh-token", "v": "Session renewal token — duration 30 days — HttpOnly, Secure, SameSite=Lax" },
+        { "k": "moviq_session", "v": "Anonymous application session identifier — browser session duration" },
+        { "k": "cookie_consent", "v": "Stores the user's consent choices — duration 12 months" }
+      ] },
+
+      { "type": "h", "text": "2.2 Functional (preference) cookies" },
+      { "type": "p", "text": "They store interface preferences that the User has actively set. Activated only if the User sets them. They are stored in the browser's local storage, not in HTTP cookies." },
+      { "type": "kv", "items": [
+        { "k": "moviq.theme", "v": "Chosen theme (light/dark/automatic) — persistent until local deletion" },
+        { "k": "moviq.lang", "v": "Interface language — persistent until local deletion" },
+        { "k": "moviq.search.recent", "v": "User's last searches (stored only locally) — persistent until local deletion" }
+      ] },
+
+      { "type": "h", "text": "2.3 Aggregate analytics cookies" },
+      { "type": "p", "text": "MoviQ uses Plausible Analytics, a privacy-friendly European analytics solution that does NOT use persistent cookies, does NOT track unique device identifiers, does NOT use browser fingerprinting, does NOT share data with third parties. Collection is entirely aggregate and anonymous." },
+      { "type": "p", "text": "For this reason, in line with the 2021 Italian Data Protection Authority guidelines, our aggregate analytics qualify as technical tools equivalent to technical cookies and do not require explicit consent. The User can however disable them from the profile Settings or via their browser's Do-Not-Track setting, which we respect." },
+      { "type": "p", "text": "Data collected in aggregate form: page visited, country of access (at state level), browser and operating system type (at family level), referrer (the originating site, if any)." },
+
+      { "type": "h", "text": "3. Third-party cookies" },
+      { "type": "p", "text": "MoviQ does NOT install third-party cookies for advertising, profiling or marketing purposes." },
+      { "type": "p", "text": "Some Platform features may use third-party technical services necessary for their operation. As things stand:" },
+      { "type": "list", "items": [
+        { "strong": "Supabase (Auth and Database)", "text": " — EU technical provider, manages the authentication session via the tokens listed above. It does not use advertising cookies." },
+        { "strong": "Maps (OpenStreetMap via Leaflet)", "text": " — loading of map tiles from OpenStreetMap servers. It does not set cookies on your device. Your IP is seen by the tile provider during loading." },
+        { "strong": "Cloudflare (CDN/DDoS protection)", "text": " — infrastructure security provider. It may set technical security cookies (e.g. __cf_bm, duration 30 minutes) to distinguish human traffic from bots. Technical cookies, no profiling." }
+      ] },
+
+      { "type": "h", "text": "4. Summary table" },
+      { "type": "kv", "items": [
+        { "k": "Essential technical cookies", "v": "Always active · No consent required · Duration: from session to 30 days" },
+        { "k": "Functional / preference cookies", "v": "Active only by user choice · Duration: persistent local" },
+        { "k": "Plausible aggregate analytics", "v": "Active by default · No user ID collected · Opt-out available" },
+        { "k": "Advertising / profiling cookies", "v": "NEVER installed" },
+        { "k": "Third-party advertising cookies", "v": "NEVER installed" },
+        { "k": "CDN technical security cookies", "v": "Active · Cloudflare __cf_bm · Duration 30 min" }
+      ] },
+
+      { "type": "h", "text": "5. How to manage cookies" },
+      { "type": "p", "text": "The User can at any time manage and delete cookies from their browser settings:" },
+      { "type": "list", "items": [
+        "Chrome: Settings → Privacy and security → Cookies and other site data",
+        "Firefox: Preferences → Privacy & Security → Cookies and Site Data",
+        "Safari: Preferences → Privacy → Manage Website Data",
+        "Edge: Settings → Cookies and site permissions"
+      ] },
+      { "type": "p", "text": "The analytics opt-out (disabling Plausible) is available directly from the \"Settings → Privacy\" page of the user profile." },
+      { "type": "p", "text": "WARNING: deleting essential technical cookies results in being signed out of the account; at the next access you will need to authenticate again via magic link. Disabling functional cookies results in the loss of preferences (theme, language) and the recent-searches list." },
+
+      { "type": "h", "text": "6. Transfers outside the EU" },
+      { "type": "p", "text": "The data collected via the cookies listed above is processed exclusively within the European Economic Area. Cloudflare, the CDN provider, operates in a GDPR-compliant manner through Standard Contractual Clauses. No data is transferred to countries lacking an adequacy decision." },
+
+      { "type": "h", "text": "7. Updates" },
+      { "type": "p", "text": "This Cookie Policy may be updated in case of evolution of the technologies used or the regulatory framework. The version in force is always available at moviq.it/cookie with the date of last update. For any questions about the use of cookies, the User can write to privacy@moviq.it." }
+    ]
+  }
+}

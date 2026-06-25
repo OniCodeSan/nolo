@@ -1,0 +1,230 @@
+{
+  "manifesto": {
+    "title": "Manifesto",
+    "lead": "Porque existimos, como trabalhamos, o que nos recusamos a fazer.",
+    "blocks": [
+      { "type": "h", "text": "O carro está parado 95% do tempo" },
+      { "type": "p", "text": "Cada carro em Itália está estacionado 23 horas em cada 24. Custa milhares de euros por ano entre imposto de circulação, seguro, manutenção e desvalorização. E mesmo assim matriculamos mais de um milhão e meio por ano." },
+      { "type": "p", "text": "Quando precisamos mesmo de um carro — para um fim de semana, uma mudança, seis meses de trabalho fora — vamos ao balcão de uma marca internacional, deslocamo-nos até ao aeroporto e pagamos sobretaxas que não tínhamos previsto. Ou desistimos." },
+
+      { "type": "h", "text": "O aluguer não é só Hertz, Avis ou Europcar" },
+      { "type": "p", "text": "Em Itália há milhares de pequenas empresas de aluguer independentes: oficinas, concessionários, agências locais. Conhecem os clientes pelo nome. Alugam carros há décadas. Têm preços mais baixos e uma flexibilidade que as grandes cadeias não conseguem oferecer." },
+      { "type": "p", "text": "Mas online são invisíveis. Não têm um site moderno, não sabem fazer SEO, não têm equipa de marketing. E assim o cliente continua a pensar que o aluguer se resume a quatro marcas." },
+
+      { "type": "h", "text": "A MoviQ é um agregador, não um intermediário" },
+      { "type": "p", "text": "Encontras o carro na MoviQ. A empresa de aluguer confirma a disponibilidade. O pagamento é feito diretamente entre ti e ela — no levantamento, como sempre foi." },
+      { "type": "p", "text": "Não nos metemos no meio, não cobramos comissões sobre o preço do carro, não bloqueamos dinheiro na tua conta. A relação contratual é entre ti e a empresa de aluguer, exatamente como se a tivesses encontrado na rua." },
+
+      { "type": "h", "text": "Três princípios" },
+      { "type": "list", "items": [
+        { "strong": "Proximidade", "text": " — o carro certo é o que está perto de casa, não a 30 km no aeroporto. A pesquisa mostra por defeito o teu bairro, não a categoria." },
+        { "strong": "Transparência", "text": " — sem sobretaxas surpresa no levantamento. O preço que vês no anúncio é o que pagas. Caução, seguro e quilometragem incluída: tudo escrito à partida." },
+        { "strong": "Independência", "text": " — as empresas de aluguer continuam donas dos seus preços, das suas condições e dos seus clientes. Não impomos políticas comerciais, não bloqueamos avaliações, não penalizamos quem não paga subscrições premium." }
+      ] },
+
+      { "type": "h", "text": "O que NÃO fazemos" },
+      { "type": "list", "items": [
+        "Não possuímos carros.",
+        "Não gerimos cauções nem seguros em nome das empresas de aluguer.",
+        "Não vendemos os teus dados a terceiros nem fazemos rastreio publicitário.",
+        "Não usamos dark patterns para te impingir vendas adicionais no pagamento.",
+        "Não penalizamos as empresas de aluguer que te dão o número de telefone direto."
+      ] },
+
+      { "type": "h", "text": "De onde viemos" },
+      { "type": "p", "text": "A MoviQ nasce em Itália, em 2026, de uma equipa pequena e independente. Financiamo-nos com uma subscrição mensal para as empresas de aluguer que querem aparecer — não com comissões sobre os clientes, nem com publicidade de terceiros." },
+      { "type": "p", "text": "Queremos construir uma infraestrutura digital para um setor que existe há décadas mas que ficou fora da rede. Nada mais, nada menos." },
+
+      { "type": "h", "text": "Para onde vamos" },
+      { "type": "p", "text": "É preciso uma ponte entre quem tem um carro e o aluga todos os dias, e quem procura um carro só por uma semana. Queremos ser essa ponte — limpa, leve, feita em Itália." },
+      { "type": "quote", "text": "O carro certo perto de ti. É só isto." }
+    ]
+  },
+
+  "sicurezza": {
+    "title": "Segurança",
+    "lead": "Como protegemos clientes e empresas de aluguer.",
+    "blocks": [
+      { "type": "h", "text": "Verificação das empresas de aluguer" },
+      { "type": "p", "text": "Cada empresa de aluguer na MoviQ é verificada no registo: documento de identidade do representante legal, número de IVA com um código de atividade compatível e seguro de responsabilidade civil sobre os veículos. As empresas verificadas têm um selo no anúncio." },
+
+      { "type": "h", "text": "Verificação dos clientes" },
+      { "type": "p", "text": "No primeiro acesso pedimos um email válido (link de confirmação) e um número de telemóvel (código SMS). As empresas de aluguer veem estes dados apenas depois de confirmares uma reserva. A carta de condução e os documentos são mostrados diretamente no levantamento; não passam por nós." },
+
+      { "type": "h", "text": "Seguros e cauções" },
+      { "type": "p", "text": "Cada empresa de aluguer declara no registo que dispõe de cobertura de responsabilidade civil válida sobre os veículos publicados. Verificar se a cobertura é válida no momento do aluguer é responsabilidade do cliente, que a pode pedir à empresa antes do levantamento. As coberturas adicionais (danos próprios, furto, redução de franquia) e a gestão da caução são inteiramente decididas pela empresa de aluguer, de acordo com as condições do seu próprio contrato." },
+      { "type": "p", "text": "A MoviQ não bloqueia montantes no cartão do cliente, não gere depósitos em garantia (escrow) e não intervém de forma alguma na gestão de cauções ou franquias." },
+
+      { "type": "h", "text": "Pagamentos" },
+      { "type": "p", "text": "O pagamento do aluguer é feito diretamente entre cliente e empresa de aluguer, segundo os métodos que esta aceita — cartão (Visa/MC/Amex/Maestro), transferência ou dinheiro até ao limite legal. A MoviQ não cobra, não processa e não bloqueia pagamentos em nome da empresa de aluguer." },
+
+      { "type": "h", "text": "O papel da MoviQ em caso de problemas" },
+      { "type": "p", "text": "A MoviQ é uma plataforma de intermediação informativa: NÃO é parte do contrato de aluguer. Os litígios relativos ao aluguer — carro indisponível no levantamento, danos, sinistros, disputas de pagamento, qualidade do serviço — devem ser tratados diretamente entre ti e a empresa de aluguer, segundo as condições do respetivo contrato e a lei aplicável." },
+      { "type": "p", "text": "Podes comunicar-nos incidentes graves para support@moviq.it: usaremos a comunicação apenas para fins de moderação e qualidade do serviço (por exemplo, avaliar a permanência da empresa na plataforma). A MoviQ não oferece serviços de mediação, arbitragem ou assistência jurídica e não garante tempos de resposta operacionais nos litígios entre utilizador e empresa de aluguer." },
+      { "type": "p", "text": "Para os litígios com uma empresa de aluguer podes recorrer aos organismos de resolução alternativa de litígios (RAL/ADR), à plataforma europeia ODR (ec.europa.eu/consumers/odr) ou ao tribunal competente." },
+
+      { "type": "h", "text": "Segurança da conta" },
+      { "type": "p", "text": "O acesso é feito através de um link mágico por email — não há palavra-passe para roubar. A sessão expira após 30 dias de inatividade. Podes terminar todas as sessões ativas a partir da página «Definições» do teu perfil." }
+    ]
+  },
+
+  "contatti": {
+    "title": "Contactos",
+    "lead": "Escreve-nos. Respondemos em 24h nos dias úteis.",
+    "blocks": [
+      { "type": "h", "text": "Email" },
+      { "type": "kv", "items": [
+        { "k": "Apoio ao cliente", "v": "support@moviq.it" },
+        { "k": "Empresas de aluguer parceiras", "v": "partner@moviq.it" },
+        { "k": "Imprensa e comunicação", "v": "press@moviq.it" },
+        { "k": "Privacidade e dados pessoais", "v": "privacy@moviq.it" },
+        { "k": "Tudo o resto", "v": "hello@moviq.it" }
+      ] },
+
+      { "type": "h", "text": "Durante um aluguer ativo" },
+      { "type": "p", "text": "Para tudo o que precisares durante o aluguer (carro não entregue, avaria, sinistro, dano, reclamação), o ponto de referência é sempre a empresa de aluguer — encontras o número direto nos detalhes da reserva e no email de confirmação. A MoviQ não presta assistência durante o aluguer e não intervém na relação contratual entre ti e a empresa de aluguer." },
+      { "type": "p", "text": "Para problemas de seguro ou na estrada, podes ainda contactar a assistência em viagem prevista na tua apólice ou ligar 112." },
+      { "type": "p", "text": "Podes sempre escrever para support@moviq.it para nos comunicar incidentes que consideres relevantes para a qualidade da plataforma: usaremos a tua comunicação para moderar as empresas de aluguer, mas não podemos atuar como mediadores do litígio." },
+
+      { "type": "h", "text": "Sede social" },
+      { "type": "p", "text": "Os dados completos da sociedade serão publicados no lançamento público." }
+    ]
+  },
+
+  "come-funziona": {
+    "title": "Como funciona",
+    "lead": "Da pesquisa à devolução, tudo o que precisas de saber para alugar um carro na MoviQ. Tempo de leitura: 4 minutos.",
+    "blocks": [
+      { "type": "h", "text": "Em resumo" },
+      { "type": "p", "text": "A MoviQ é um motor de busca de empresas de aluguer de automóveis independentes italianas. Procuras um carro, reservas, a empresa de aluguer confirma, levantas no ponto indicado e pagas-lhe diretamente. Entre ti e a empresa de aluguer não há nenhum intermediário financeiro." },
+
+      { "type": "h", "text": "1 · Pesquisa" },
+      { "type": "p", "text": "Indica a cidade onde precisas do carro e as datas de levantamento e devolução. A MoviQ mostra-te todos os carros disponíveis das empresas de aluguer da zona — não só as grandes marcas, mas também as oficinas de bairro e as pequenas frotas independentes que de outra forma não encontrarias." },
+      { "type": "p", "text": "O preço que vês no cartão é o preço total para o período indicado. Sem sobretaxas surpresa: impostos, quilometragem incluída, seguro obrigatório e taxa de serviço já estão contabilizados. A caução, quando exigida, é indicada à parte." },
+
+      { "type": "h", "text": "2 · Compara" },
+      { "type": "p", "text": "Filtra por categoria (citadino, SUV, elétrico, carrinha, descapotável, longa duração), combustível (gasolina, gasóleo, híbrido, elétrico), faixa de preço, caixa (manual/automática). Ordena por preço, distância da tua morada ou carros mais vistos." },
+      { "type": "p", "text": "Abre o anúncio de um carro para ver: fotos e descrição, quilometragem incluída, eventuais extras opcionais (cadeira de criança, GPS, segundo condutor), as condições de aluguer de cada empresa, os métodos de pagamento que aceita (cartão, transferência, dinheiro dentro dos limites legais), as suas avaliações e os tempos médios de resposta." },
+
+      { "type": "h", "text": "3 · Reserva" },
+      { "type": "p", "text": "Carrega em \"Pedir reserva\". Se é a primeira vez que usas a MoviQ, pedimos email, nome e número de telemóvel — apenas estes três dados. Receberás um email de confirmação com um link mágico para entrar (sem palavra-passe para memorizar)." },
+      { "type": "p", "text": "O teu pedido é encaminhado para a empresa de aluguer, que tem 24 horas para confirmar ou recusar. A maioria responde em 2 horas nos dias úteis. Receberás uma notificação por email e push assim que o estado mudar." },
+      { "type": "p", "text": "Nesta fase não pagas nada. O cartão não é debitado, não há bloqueio por pré-autorização. A reserva é um pedido, não uma compra." },
+
+      { "type": "h", "text": "4 · Levanta o carro" },
+      { "type": "p", "text": "À hora combinada, apresenta-te no ponto de levantamento indicado na página da reserva — é a morada das instalações da empresa de aluguer. Leva contigo:" },
+      { "type": "list", "items": [
+        "Um documento de identidade válido.",
+        "Uma carta de condução válida para a categoria do veículo (categoria B para automóveis, ≥ 21 anos e carta há pelo menos 1 ano na maioria das empresas).",
+        "Um cartão de crédito em nome do condutor para a caução (se a empresa o exigir em cartão) — ou dinheiro ou transferência, se aceites."
+      ] },
+      { "type": "p", "text": "A empresa de aluguer verifica os documentos, faz-te assinar o contrato de aluguer (em papel ou digital, conforme a empresa), cobra o preço acordado e a eventual caução, entrega-te as chaves e faz a vistoria de entrega do carro (combustível, danos preexistentes, quilometragem). Tempo médio de levantamento: 15-25 minutos." },
+
+      { "type": "h", "text": "5 · Conduz" },
+      { "type": "p", "text": "Tens o carro, é teu durante o período acordado. As condições de uso (quilometragem, zona geográfica permitida, proibição de transportar animais ou de fumar, etc.) são as do contrato da empresa de aluguer — lê-as antes de assinar." },
+      { "type": "p", "text": "Em caso de problemas durante o aluguer (avaria, sinistro, multa), o primeiro contacto é sempre a empresa de aluguer — encontras o número direto na página da reserva na MoviQ. Para assistência adicional, a MoviQ está disponível em support@moviq.it." },
+
+      { "type": "h", "text": "6 · Devolução" },
+      { "type": "p", "text": "Devolve o carro no mesmo ponto, à hora combinada, com o nível de combustível exigido pelo contrato (normalmente igual ao do levantamento). A empresa de aluguer verifica carro, quilometragem e combustível, e devolve a caução se estiver tudo em ordem." },
+      { "type": "p", "text": "Até 48 horas após a devolução recebes um email para deixar uma avaliação da empresa de aluguer. As avaliações são públicas e ajudam quem reservar depois de ti." },
+
+      { "type": "h", "text": "Cancelamento" },
+      { "type": "p", "text": "Podes cancelar gratuitamente até 24 horas antes da hora de levantamento a partir da tua página \"Reservas\" ou clicando no link de cancelamento no email de confirmação. Não é preciso justificar o cancelamento." },
+      { "type": "p", "text": "Para cancelamentos para além deste limite aplicam-se as políticas de cada empresa de aluguer, indicadas no anúncio do carro no momento da reserva e relembradas no email de confirmação. As políticas mais comuns são: retenção de 50% para cancelamentos entre 24h e 6h antes do levantamento, retenção de 100% por não comparência ou cancelamento com menos de 6h de antecedência." },
+
+      { "type": "h", "text": "Alterações à reserva" },
+      { "type": "p", "text": "Para alterar datas, duração ou carro, contacta diretamente a empresa de aluguer (número no anúncio) ou escreve para support@moviq.it indicando o número da reserva. As alterações estão sujeitas à disponibilidade do veículo." },
+
+      { "type": "h", "text": "O papel da MoviQ" },
+      { "type": "p", "text": "A MoviQ é exclusivamente um serviço de intermediação informativa: ajudamos-te a encontrar o carro e a enviar o pedido à empresa de aluguer. O contrato de aluguer, o pagamento, as condições, a caução, o seguro, a assistência durante o aluguer e a gestão de danos ou sinistros são inteiramente da responsabilidade da empresa de aluguer. A MoviQ não é parte do contrato e não responde pelas obrigações contratuais entre ti e a empresa de aluguer." },
+
+      { "type": "h", "text": "Perguntas frequentes" },
+      { "type": "h", "text": "Quem paga em caso de dano ou sinistro?" },
+      { "type": "p", "text": "A relação é exclusivamente entre ti e a empresa de aluguer. As coberturas (responsabilidade civil obrigatória, eventuais franquias, danos próprios opcionais) e os procedimentos de gestão de sinistros são os previstos no contrato de cada empresa. A MoviQ não intervém na gestão de sinistros, danos ou litígios relacionados com o uso do veículo." },
+      { "type": "h", "text": "Que idade é preciso ter para alugar?" },
+      { "type": "p", "text": "Depende da empresa de aluguer. A maioria exige ≥ 21 anos e carta B há pelo menos 1 ano. Para carros premium e SUV grandes, algumas exigem ≥ 25 anos. O requisito específico é indicado no anúncio do carro." },
+      { "type": "h", "text": "Posso alugar para outro condutor?" },
+      { "type": "p", "text": "Sim, mas o segundo condutor tem de ser declarado à empresa de aluguer (normalmente com uma pequena sobretaxa) e tem de se apresentar no levantamento com documento e carta de condução." },
+      { "type": "h", "text": "O que acontece se a empresa de aluguer não responder em 24h?" },
+      { "type": "p", "text": "O pedido caduca automaticamente, sem custos. Podes enviar um novo pedido a outras empresas da zona usando a pesquisa. A MoviQ não garante resposta das empresas de aluguer, que continuam livres de aceitar ou recusar cada pedido." },
+
+      { "type": "cta", "label": "Encontra um carro perto de ti", "href": "/" }
+    ]
+  },
+
+  "per-noleggiatori": {
+    "title": "Para empresas de aluguer",
+    "lead": "A MoviQ é o canal online das pequenas empresas de aluguer de automóveis independentes italianas. Sem comissões sobre o preço, sem intermediação no pagamento, sem exclusividade.",
+    "blocks": [
+      { "type": "h", "text": "Com quem falamos" },
+      { "type": "p", "text": "Se tens uma pequena ou média empresa de aluguer de automóveis em Itália — uma oficina, um concessionário com frota de aluguer, uma agência local, uma empresa independente com 5-200 veículos — a MoviQ dá-te visibilidade online sem te pedir que abdiques da relação direta com o cliente." },
+      { "type": "p", "text": "Não falamos com as grandes cadeias internacionais. Elas já têm os seus canais. Nós servimos o segmento que hoje é invisível na web." },
+
+      { "type": "h", "text": "O que obténs" },
+      { "type": "list", "items": [
+        { "strong": "Visibilidade nos resultados de pesquisa", "text": " — a tua frota aparece quando um utilizador procura um carro na tua cidade, nas datas em que tens disponibilidade." },
+        { "strong": "Zero comissões sobre o preço do aluguer", "text": " — o cliente paga-te a ti, diretamente, com o método que aceitas. A MoviQ não cobra, não bloqueia, não retém nada." },
+        { "strong": "Backoffice completo incluído", "text": " — gere frota, preços (também dinâmicos por época), calendário de disponibilidade de cada veículo, pedidos recebidos, reservas confirmadas, avaliações de clientes, estatísticas e faturação estimada num único painel." },
+        { "strong": "Controlo total da relação com o cliente", "text": " — o número de telefone e o email do cliente são teus. Podes voltar a ligar-lhe, fidelizá-lo, oferecer-lhe descontos para alugueres futuros diretamente. Sem \"muro\" como fazem os grandes marketplaces." },
+        { "strong": "Sem exclusividade", "text": " — continuas a usar o teu site, o passa-a-palavra, outros portais, o telefone. A MoviQ é mais um canal, não o único." },
+        { "strong": "Condições de aluguer personalizadas", "text": " — publicas as tuas condições (quilometragem, idade mínima, franquia, política de cancelamento, métodos de pagamento aceites). Não impomos regras comerciais." }
+      ] },
+
+      { "type": "h", "text": "Como funciona do teu lado" },
+      { "type": "p", "text": "Após o registo, acedes ao backoffice da MoviQ com o teu link mágico por email. A partir daí:" },
+      { "type": "list", "items": [
+        { "strong": "Carregas a frota", "text": " — para cada carro adicionas fotos (recomendadas 5-8), marca/modelo/ano, combustível, caixa, lugares, bagagem, extras, quilómetros incluídos, preço base diário. Acrescenta uma \"nota interna\" privada com matrícula, danos preexistentes e informação de gestão — não visível aos clientes." },
+        { "strong": "Defines o calendário", "text": " — bloqueias as datas em que um carro não está disponível, fixas preços diferentes para época alta/baixa ou fins de semana." },
+        { "strong": "Recebes pedidos", "text": " — quando um utilizador reserva, recebes um email + push com o detalhe. Tens 24h para confirmar ou recusar. Tempos de resposta rápidos melhoram o teu posicionamento nos resultados." },
+        { "strong": "Geres levantamentos e devoluções", "text": " — geres tudo no teu ponto de venda como fazes hoje. A MoviQ não interfere no contrato em papel ou digital que assinam." },
+        { "strong": "Lês as tuas métricas", "text": " — carros mais vistos, carros mais guardados, períodos de alta procura, faturação estimada, modelo mais pedido para a tua cidade, preço médio por segmento (também face à concorrência local, de forma agregada)." }
+      ] },
+
+      { "type": "h", "text": "O que te pedimos" },
+      { "type": "list", "items": [
+        { "strong": "Número de IVA italiano ativo", "text": " no setor do aluguer de veículos (código ATECO 77.11 ou compatível)." },
+        { "strong": "Documento de identidade do representante legal", "text": " para a verificação antifraude no registo (uma única vez)." },
+        { "strong": "Apólice de responsabilidade civil válida", "text": " sobre toda a frota publicada na MoviQ. Pedimo-lo porque os nossos utilizadores esperam que cada carro publicado esteja seguro — é a base de confiança da plataforma." },
+        { "strong": "Condições de aluguer por escrito", "text": " e acessíveis ao cliente antes da confirmação (publica-las tu no teu perfil MoviQ — editáveis livremente a qualquer momento)." },
+        { "strong": "Resposta em 24h", "text": " aos pedidos de reserva. Abaixo deste limite, os pedidos expiram e os clientes são encaminhados para outro lado." }
+      ] },
+
+      { "type": "h", "text": "Quanto custa" },
+      { "type": "p", "text": "Subscrição única, fixa, independente do número de carros na frota e da faturação que geras. Sem comissões sobre o preço dos alugueres, sem taxa por pedido, sem limite mínimo de faturação." },
+      { "type": "kv", "items": [
+        { "k": "Subscrição mensal", "v": "49 € + IVA / mês" },
+        { "k": "Período de teste gratuito", "v": "30 dias na primeira ativação" },
+        { "k": "Renovação", "v": "Automática todos os meses na data de ativação" },
+        { "k": "Desativação", "v": "A qualquer momento no backoffice, sem penalizações" }
+      ] },
+      { "type": "p", "text": "No registo, indicas o método de pagamento (cartão de crédito ou débito Visa/Mastercard/Amex). Nos primeiros 30 dias não é feita qualquer cobrança — é o período de teste gratuito durante o qual podes carregar a frota, receber reservas e avaliar o retorno." },
+      { "type": "p", "text": "No fim dos 30 dias, a subscrição ativa-se automaticamente e é cobrada a primeira mensalidade. A partir daí, a renovação é automática todos os meses na mesma data, até desativares. A desativação é feita diretamente no backoffice, na secção \"Subscrição\" — a tua conta fica ativa até ao fim do ciclo pago e depois é suspensa sem qualquer cobrança adicional." },
+
+      { "type": "h", "text": "Quanto ganho?" },
+      { "type": "p", "text": "Depende da tua frota, da tua cidade e dos teus preços. Com base nos testes-piloto, a nossa estimativa é de 8-15 reservas adicionais por cada 10 carros na frota, nos primeiros 6 meses, numa cidade de média dimensão (>200 mil habitantes). O preço médio de um aluguer curto em Milão em 2026 é cerca de 65 €/dia para um citadino, 95 €/dia para um SUV compacto." },
+      { "type": "p", "text": "O ponto de equilíbrio da subscrição (49 €/mês) é 1 aluguer adicional por mês de um citadino por 1 dia. Acima desse limite, é margem líquida." },
+
+      { "type": "h", "text": "Como te ajudamos a começar" },
+      { "type": "list", "items": [
+        "Registo assistido: ajudamos-te a carregar os primeiros 5-10 carros na plataforma, com fotos profissionais se precisares (serviço gratuito no período de lançamento).",
+        "Gestor de conta dedicado nos primeiros 60 dias: uma pessoa real, contactável por email ou telefone, que te ajuda a definir preços, calendário e condições.",
+        "Material promocional: selo \"Encontra-me na MoviQ\" para o teu site e redes sociais, descarregável gratuitamente no painel.",
+        "Webinar mensal para parceiros: boas práticas, novidades da plataforma, feedback direto da equipa."
+      ] },
+
+      { "type": "h", "text": "Perguntas frequentes" },
+      { "type": "h", "text": "Posso desativar a conta a qualquer momento?" },
+      { "type": "p", "text": "Sim, a qualquer momento nas Definições do backoffice. As reservas já confirmadas mantêm-se válidas. Os novos pedidos param de imediato. A subscrição não se renova no ciclo seguinte." },
+      { "type": "h", "text": "Posso variar os preços ao longo do ano?" },
+      { "type": "p", "text": "Sim, todos os preços são editáveis a qualquer momento. Também podes definir preços diferentes para períodos específicos (época alta, eventos, fins de semana) através do calendário." },
+      { "type": "h", "text": "A MoviQ obriga-me a aceitar todos os clientes?" },
+      { "type": "p", "text": "Não. Podes recusar um pedido sem justificação. Taxas de recusa muito altas (>30%) penalizam a tua visibilidade nos resultados, mas não te é retirado o acesso." },
+      { "type": "h", "text": "O que acontece se um cliente não comparecer no levantamento (no-show)?" },
+      { "type": "p", "text": "Aplicas a tua política de no-show indicada nas condições. A MoviQ recolhe a comunicação a partir do teu backoffice e penaliza o utilizador na classificação da plataforma. Em caso de no-show repetidos, suspendemos a conta do utilizador." },
+      { "type": "h", "text": "A MoviQ vê os dados dos meus carros e dos meus clientes?" },
+      { "type": "p", "text": "Vemos os carros que publicas (é o produto). Dos clientes vemos email, nome, telefone e reservas — usados exclusivamente para o funcionamento da plataforma. Não os revendemos, não os partilhamos com outros parceiros, não os usamos para publicidade de terceiros." },
+
+      { "type": "cta", "label": "Escreve para partner@moviq.it", "href": "mailto:partner@moviq.it", "mailto": true }
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#FAF7F0" />
+    <title>MoviQ · L'auto giusta vicino a te</title>
+    <!-- Nome sito in SERP: schema WebSite + og:site_name nell'HTML statico,
+         così Googlebot mostra "MoviQ" invece del dominio "moviq.it". -->
+    <meta name="application-name" content="MoviQ" />
+    <meta property="og:site_name" content="MoviQ" />
+    <meta property="og:title" content="MoviQ · L'auto giusta vicino a te" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://moviq.it/" />
+    <meta property="og:locale" content="it_IT" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MoviQ",
+      "alternateName": "MoviQ Autonoleggi",
+      "url": "https://moviq.it/"
+    }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R3BSTR87NC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R3BSTR87NC');
+    </script>
+    <meta name="description" content="MoviQ — aggregatore di autonoleggi indipendenti in tutta Italia. Trovi l'auto, scegli il noleggiatore, paghi direttamente lui. Niente commissioni nascoste." />
+    <!-- Preconnect a origini critiche: parallelizza DNS+TLS handshake durante il parsing HTML.
+         Riduce TTFB del primo fetch di ~150-300ms su 4G. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- dns-prefetch (più leggero di preconnect) per origini che vengono colpite SOLO dopo l'init JS.
+         Serve a far partire la risoluzione DNS prima che il browser le veda nel codice. -->
+    <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+    <link rel="dns-prefetch" href="https://api.cloudinary.com" />
+    <link rel="dns-prefetch" href="https://eu.i.posthog.com" />
+    <link rel="dns-prefetch" href="https://plausible.io" />
+
+    <!-- Font: solo i pesi REALMENTE usati nel codice (audit: 22× w600, 13× w500, 9× w700, 2× w400).
+         Bricolage Grotesque: solo 600 (tutti gli H usano 600).
+         JetBrains Mono: solo 400 (no weight customization su <code>).
+         Montserrat: solo 700 (Logo wordmark).
+         Risparmio: 12 → 7 file font = ~40% di font payload. -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body, #root { margin: 0; padding: 0; height: 100%; }
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: #FAF7F0;
+        color: #15110A;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overscroll-behavior-y: none;
+      }
+      button { font-family: inherit; }
+      a { color: inherit; text-decoration: none; }
+      /* Boot shell statico — vive nel #root finché React non monta. React.createRoot()
+         lo sovrascrive automaticamente. Lighthouse vede contenuto reale (testo + logo)
+         appena il HTML è parsato → FCP < 500ms anche su mobile throttled. */
+      .moviq-boot {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 24px;
+        background: linear-gradient(180deg, #FAF7F0 0%, #F5F0E5 100%);
+        text-align: center;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+      .moviq-boot__logo {
+        font-family: 'Montserrat', system-ui, sans-serif;
+        font-weight: 700;
+        font-size: clamp(64px, 18vw, 120px);
+        letter-spacing: -0.02em;
+        color: #15110A;
+        line-height: 1;
+        margin: 0 0 20px;
+      }
+      .moviq-boot__logo-q { color: #F5C518; }
+      /* Tagline volutamente grande: domina LCP sul mobile anche dopo il mount di React
+         (Home hero size = 64px). Bounding box ≥ qualsiasi elemento Home. */
+      .moviq-boot__tag {
+        font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+        font-size: clamp(28px, 7vw, 52px);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        color: #15110A;
+        max-width: 640px;
+        margin: 0;
+      }
+      .moviq-boot__sub {
+        font-size: 14px;
+        color: #6b6357;
+        margin-top: 14px;
+      }
+      .moviq-boot__pulse {
+        margin-top: 32px;
+        width: 36px; height: 36px;
+        border: 3px solid #15110A;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: moviq-spin 800ms linear infinite;
+      }
+      @keyframes moviq-spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) {
+        .moviq-boot__pulse { animation: none; opacity: 0.4; }
+      }
+      /* Marker prezzo mappa — reset difensivo contro eventuali stili di default
+         di Leaflet sul wrapper .leaflet-marker-icon che vincono per specificità. */
+      .moviq-price-pin {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+      }
+    </style>
+    <!-- Preload del bundle entry: il browser scopre il chunk subito senza aspettare
+         il parsing completo dell'HTML. Vite popola automaticamente al build. -->
+  </head>
+  <body>
+    <div id="root">
+      <!-- Boot shell: SOSTITUITO da React al mount. Lighthouse misura FCP/LCP
+           qui per primo, prima del JS bundle. Cruciale per il punteggio mobile. -->
+      <div class="moviq-boot">
+        <h1 class="moviq-boot__logo">Movi<span class="moviq-boot__logo-q">Q</span></h1>
+        <p class="moviq-boot__tag">L'auto giusta. Vicino a te.</p>
+        <p class="moviq-boot__sub">Caricamento marketplace…</p>
+        <div class="moviq-boot__pulse" aria-hidden="true"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

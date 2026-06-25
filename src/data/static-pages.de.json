@@ -1,0 +1,230 @@
+{
+  "manifesto": {
+    "title": "Manifest",
+    "lead": "Warum es uns gibt, wie wir arbeiten, was wir uns weigern zu tun.",
+    "blocks": [
+      { "type": "h", "text": "Autos stehen 95 % der Zeit still" },
+      { "type": "p", "text": "Jedes Auto in Italien steht 23 von 24 Stunden geparkt. Es kostet Tausende Euro im Jahr an Kfz-Steuer, Versicherung, Wartung und Wertverlust. Und trotzdem lassen wir jedes Jahr über anderthalb Millionen neue zu." },
+      { "type": "p", "text": "Wenn wir wirklich ein Auto brauchen – für ein Wochenende, einen Umzug, einen sechsmonatigen Auswärtseinsatz – gehen wir zum Schalter einer internationalen Marke, fahren bis zum Flughafen und zahlen Zuschläge, mit denen wir nicht gerechnet hatten. Oder wir verzichten ganz." },
+
+      { "type": "h", "text": "Autovermietung ist nicht nur Hertz, Avis oder Europcar" },
+      { "type": "p", "text": "In Italien gibt es Tausende kleine, unabhängige Vermieter: Werkstätten, Autohäuser, lokale Agenturen. Sie kennen ihre Kunden beim Namen. Sie vermieten seit Jahrzehnten Autos. Sie haben niedrigere Preise und eine Flexibilität, die sich die großen Ketten nicht leisten können." },
+      { "type": "p", "text": "Online sind sie jedoch unsichtbar. Sie haben keine moderne Website, können kein SEO, haben kein Marketingteam. Und so glauben Kundinnen und Kunden weiterhin, Autovermietung bestehe nur aus vier Marken." },
+
+      { "type": "h", "text": "MoviQ ist ein Aggregator, kein Zwischenhändler" },
+      { "type": "p", "text": "Du findest das Auto auf MoviQ. Der Vermieter bestätigt die Verfügbarkeit. Die Zahlung erfolgt direkt zwischen dir und ihm – bei der Abholung, so wie es immer war." },
+      { "type": "p", "text": "Wir mischen uns nicht ein, wir nehmen keine Provision auf den Autopreis, wir blockieren kein Geld auf deinem Konto. Das Vertragsverhältnis besteht zwischen dir und dem Vermieter, genau so, als hättest du ihn auf der Straße gefunden." },
+
+      { "type": "h", "text": "Drei Prinzipien" },
+      { "type": "list", "items": [
+        { "strong": "Nähe", "text": " — das richtige Auto ist das in deiner Nähe, nicht 30 km entfernt am Flughafen. Die Suche zeigt standardmäßig dein Viertel, nicht die Kategorie." },
+        { "strong": "Transparenz", "text": " — keine überraschenden Zuschläge bei der Abholung. Der Preis, den du im Inserat siehst, ist der, den du zahlst. Kaution, Versicherung und Freikilometer: alles vorab schriftlich." },
+        { "strong": "Unabhängigkeit", "text": " — die Vermieter bleiben Herr über ihre Preise, ihre Bedingungen und ihre Kunden. Wir geben keine Geschäftspolitik vor, blockieren keine Bewertungen und benachteiligen niemanden, der keine Premium-Abos zahlt." }
+      ] },
+
+      { "type": "h", "text": "Was wir NICHT tun" },
+      { "type": "list", "items": [
+        "Wir besitzen keine Autos.",
+        "Wir verwalten keine Kautionen oder Versicherungen im Namen der Vermieter.",
+        "Wir verkaufen deine Daten nicht an Dritte und betreiben kein Werbe-Tracking.",
+        "Wir nutzen keine Dark Patterns, um dir an der Kasse Zusatzverkäufe abzuringen.",
+        "Wir benachteiligen keine Vermieter, die dir ihre direkte Telefonnummer geben."
+      ] },
+
+      { "type": "h", "text": "Woher wir kommen" },
+      { "type": "p", "text": "MoviQ entsteht 2026 in Italien aus einem kleinen, unabhängigen Team. Wir finanzieren uns über ein monatliches Abo für Vermieter, die gelistet werden möchten – nicht über Provisionen auf Kunden, nicht über Werbung Dritter." },
+      { "type": "p", "text": "Wir wollen eine digitale Infrastruktur für eine Branche bauen, die es seit Jahrzehnten gibt, die aber im Netz nicht stattfindet. Nicht mehr und nicht weniger." },
+
+      { "type": "h", "text": "Wohin wir gehen" },
+      { "type": "p", "text": "Es braucht eine Brücke zwischen denen, die ein Auto besitzen und täglich vermieten, und denen, die nur für eine Woche ein Auto suchen. Wir wollen diese Brücke sein – klar, leicht, made in Italy." },
+      { "type": "quote", "text": "Das richtige Auto in deiner Nähe. Mehr ist es nicht." }
+    ]
+  },
+
+  "sicurezza": {
+    "title": "Sicherheit",
+    "lead": "Wie wir Kunden und Vermieter schützen.",
+    "blocks": [
+      { "type": "h", "text": "Überprüfung der Vermieter" },
+      { "type": "p", "text": "Jeder Vermieter auf MoviQ wird beim Onboarding überprüft: Ausweis des gesetzlichen Vertreters, USt-IdNr. mit passendem Tätigkeitscode und Kfz-Haftpflichtversicherung der Fahrzeuge. Verifizierte Vermieter erhalten ein Abzeichen auf ihrem Inserat." },
+
+      { "type": "h", "text": "Überprüfung der Kunden" },
+      { "type": "p", "text": "Beim ersten Zugriff fragen wir nach einer gültigen E-Mail (Bestätigungslink) und einer Telefonnummer (SMS-Code). Die Vermieter sehen diese Daten erst, nachdem du eine Buchung bestätigt hast. Führerschein und Dokumente werden direkt bei der Abholung gezeigt; sie laufen nicht über uns." },
+
+      { "type": "h", "text": "Versicherung und Kaution" },
+      { "type": "p", "text": "Jeder Vermieter erklärt beim Onboarding, dass für die gelisteten Fahrzeuge eine gültige Haftpflichtdeckung besteht. Die Prüfung, ob die Deckung zum Zeitpunkt der Anmietung gültig ist, bleibt Sache des Kunden, der sie vor der Abholung beim Vermieter anfragen kann. Zusatzdeckungen (Vollkasko, Diebstahl, Selbstbeteiligungsreduzierung) und die Handhabung der Kaution entscheidet allein der Vermieter gemäß den Bedingungen seines eigenen Mietvertrags." },
+      { "type": "p", "text": "MoviQ blockiert keine Beträge auf der Karte des Kunden, betreibt kein Treuhandkonto und greift in keiner Weise in die Verwaltung von Kautionen oder Selbstbeteiligungen ein." },
+
+      { "type": "h", "text": "Zahlungen" },
+      { "type": "p", "text": "Die Zahlung der Anmietung erfolgt direkt zwischen Kunde und Vermieter, mit den vom Vermieter akzeptierten Methoden – Karte (Visa/MC/Amex/Maestro), Überweisung oder Bargeld bis zur gesetzlichen Grenze. MoviQ zieht keine Zahlungen ein, verarbeitet sie nicht und blockiert sie nicht im Namen des Vermieters." },
+
+      { "type": "h", "text": "Die Rolle von MoviQ bei Problemen" },
+      { "type": "p", "text": "MoviQ ist eine Plattform zur informativen Vermittlung: Es ist NICHT Vertragspartei des Mietvertrags. Streitigkeiten rund um die Anmietung – Auto bei der Abholung nicht verfügbar, Schäden, Unfälle, Zahlungsstreitigkeiten, Servicequalität – sind direkt zwischen dir und dem Vermieter zu klären, gemäß den Bedingungen des jeweiligen Vertrags und dem geltenden Recht." },
+      { "type": "p", "text": "Schwerwiegende Vorfälle kannst du an support@moviq.it melden: Wir nutzen die Meldung ausschließlich zur Moderation und zur Servicequalität (z. B. zur Bewertung, ob der Vermieter auf der Plattform bleibt). MoviQ bietet keine Mediation, Schiedsverfahren oder Rechtsberatung und garantiert keine operativen Reaktionszeiten bei Streitigkeiten zwischen Nutzer und Vermieter." },
+      { "type": "p", "text": "Für Streitigkeiten mit einem Vermieter kannst du dich an die Stellen zur alternativen Streitbeilegung (ADR), an die europäische ODR-Plattform (ec.europa.eu/consumers/odr) oder an das zuständige Gericht wenden." },
+
+      { "type": "h", "text": "Kontosicherheit" },
+      { "type": "p", "text": "Der Zugang erfolgt über einen Magic Link per E-Mail – es gibt kein Passwort, das gestohlen werden könnte. Die Sitzung läuft nach 30 Tagen Inaktivität ab. Du kannst alle aktiven Sitzungen auf der Seite „Einstellungen“ deines Profils beenden." }
+    ]
+  },
+
+  "contatti": {
+    "title": "Kontakt",
+    "lead": "Schreib uns. Wir antworten innerhalb von 24 Std. an Werktagen.",
+    "blocks": [
+      { "type": "h", "text": "E-Mail" },
+      { "type": "kv", "items": [
+        { "k": "Kundensupport", "v": "support@moviq.it" },
+        { "k": "Partner-Vermieter", "v": "partner@moviq.it" },
+        { "k": "Presse und Kommunikation", "v": "press@moviq.it" },
+        { "k": "Datenschutz und personenbezogene Daten", "v": "privacy@moviq.it" },
+        { "k": "Alles Übrige", "v": "hello@moviq.it" }
+      ] },
+
+      { "type": "h", "text": "Während einer laufenden Anmietung" },
+      { "type": "p", "text": "Für alles, was du während der Anmietung brauchst (Auto nicht übergeben, Panne, Unfall, Schaden, Beanstandung), ist immer der Vermieter dein Ansprechpartner – seine Direktnummer findest du in den Buchungsdetails und in der Bestätigungs-E-Mail. MoviQ leistet während der Anmietung keinen Support und greift nicht in das Vertragsverhältnis zwischen dir und dem Vermieter ein." },
+      { "type": "p", "text": "Bei Versicherungs- oder Straßenproblemen kannst du außerdem den in deiner Police vorgesehenen Pannendienst oder die 112 kontaktieren." },
+      { "type": "p", "text": "Du kannst jederzeit an support@moviq.it schreiben, um uns Vorfälle zu melden, die du für die Qualität der Plattform für relevant hältst: Wir nutzen deine Meldung zur Moderation der Vermieter, können aber nicht als Vermittler in der Streitigkeit auftreten." },
+
+      { "type": "h", "text": "Eingetragener Sitz" },
+      { "type": "p", "text": "Die vollständigen Angaben zum Unternehmen werden zum öffentlichen Start veröffentlicht." }
+    ]
+  },
+
+  "come-funziona": {
+    "title": "So funktioniert's",
+    "lead": "Von der Suche bis zur Rückgabe – alles, was du wissen musst, um ein Auto auf MoviQ zu mieten. Lesezeit: 4 Minuten.",
+    "blocks": [
+      { "type": "h", "text": "Kurz gesagt" },
+      { "type": "p", "text": "MoviQ ist eine Suchmaschine für unabhängige italienische Autovermieter. Du suchst ein Auto, buchst es, der Vermieter bestätigt, du holst es am angegebenen Ort ab und zahlst direkt an ihn. Zwischen dir und dem Vermieter gibt es keinen finanziellen Zwischenhändler." },
+
+      { "type": "h", "text": "1 · Suchen" },
+      { "type": "p", "text": "Gib die Stadt ein, in der du das Auto brauchst, sowie Abhol- und Rückgabedatum. MoviQ zeigt dir alle verfügbaren Autos der Vermieter in der Umgebung – nicht nur die großen Marken, sondern auch die Werkstätten im Viertel und kleine unabhängige Flotten, die du sonst nicht finden würdest." },
+      { "type": "p", "text": "Der Preis auf der Karte ist der Gesamtpreis für den angegebenen Zeitraum. Keine überraschenden Zuschläge: Steuern, Freikilometer, Pflichtversicherung und Servicegebühr sind bereits enthalten. Die Kaution wird, falls erforderlich, separat ausgewiesen." },
+
+      { "type": "h", "text": "2 · Vergleichen" },
+      { "type": "p", "text": "Filtere nach Kategorie (Kleinwagen, SUV, Elektro, Transporter, Cabrio, Langzeit), Antrieb (Benzin, Diesel, Hybrid, Elektro), Preisklasse und Getriebe (manuell/automatik). Sortiere nach Preis, Entfernung von deiner Adresse oder meistgesehenen Autos." },
+      { "type": "p", "text": "Öffne das Inserat eines Autos und sieh: Fotos und Beschreibung, Freikilometer, optionale Extras (Kindersitz, GPS, Zusatzfahrer), die Bedingungen des jeweiligen Vermieters, die akzeptierten Zahlungsmethoden (Karte, Überweisung, Bargeld im gesetzlichen Rahmen), seine Bewertungen und seine durchschnittlichen Antwortzeiten." },
+
+      { "type": "h", "text": "3 · Buchen" },
+      { "type": "p", "text": "Klicke auf \"Buchung anfragen\". Wenn du MoviQ zum ersten Mal nutzt, fragen wir nach E-Mail, Name und Telefonnummer – nur diese drei Angaben. Du erhältst eine Bestätigungs-E-Mail mit einem Magic Link zum Anmelden (kein Passwort zu merken)." },
+      { "type": "p", "text": "Deine Anfrage geht an den Vermieter, der 24 Stunden Zeit hat, sie zu bestätigen oder abzulehnen. Die meisten Vermieter antworten werktags innerhalb von 2 Stunden. Du erhältst eine Benachrichtigung per E-Mail und Push, sobald sich der Status ändert." },
+      { "type": "p", "text": "In dieser Phase zahlst du nichts. Deine Karte wird nicht belastet, es gibt keine Vorautorisierung. Die Buchung ist eine Anfrage, kein Kauf." },
+
+      { "type": "h", "text": "4 · Auto abholen" },
+      { "type": "p", "text": "Erscheine zur vereinbarten Zeit am Abholort, der auf der Buchungsseite angegeben ist – das ist die Adresse des Vermieters. Bring mit:" },
+      { "type": "list", "items": [
+        "Ein gültiges Ausweisdokument.",
+        "Einen für die Fahrzeugklasse gültigen Führerschein (Klasse B für Autos, bei den meisten Vermietern ≥ 21 Jahre und Führerschein seit mindestens 1 Jahr).",
+        "Eine auf den Fahrer ausgestellte Kreditkarte für die Kaution (falls der Vermieter sie per Karte verlangt) – oder Bargeld bzw. Überweisung, sofern akzeptiert."
+      ] },
+      { "type": "p", "text": "Der Vermieter prüft die Dokumente, lässt dich den Mietvertrag unterschreiben (auf Papier oder digital, je nach Vermieter), kassiert den vereinbarten Preis und die etwaige Kaution, übergibt dir die Schlüssel und führt die Fahrzeugübergabe durch (Kraftstoff, Vorschäden, Kilometerstand). Durchschnittliche Abholzeit: 15-25 Minuten." },
+
+      { "type": "h", "text": "5 · Fahren" },
+      { "type": "p", "text": "Du hast das Auto, es gehört dir für den vereinbarten Zeitraum. Die Nutzungsbedingungen (Kilometer, erlaubtes Gebiet, Verbot von Tiertransport oder Rauchen usw.) sind die des Vermietervertrags – lies sie vor der Unterschrift." },
+      { "type": "p", "text": "Treten während der Miete Probleme auf (Panne, Unfall, Bußgeld), ist der erste Ansprechpartner immer der Vermieter – seine Direktnummer findest du auf der Buchungsseite bei MoviQ. Für zusätzliche Unterstützung ist MoviQ unter support@moviq.it erreichbar." },
+
+      { "type": "h", "text": "6 · Rückgabe" },
+      { "type": "p", "text": "Gib das Auto am selben Ort, zur vereinbarten Zeit und mit dem im Vertrag verlangten Tankstand zurück (in der Regel wie bei der Abholung). Der Vermieter prüft Auto, Kilometerstand und Kraftstoff und erstattet die Kaution, wenn alles in Ordnung ist." },
+      { "type": "p", "text": "Innerhalb von 48 Stunden nach der Rückgabe erhältst du eine E-Mail, um eine Bewertung des Vermieters abzugeben. Bewertungen sind öffentlich und helfen denen, die nach dir buchen." },
+
+      { "type": "h", "text": "Stornierung" },
+      { "type": "p", "text": "Du kannst bis 24 Stunden vor der Abholzeit kostenlos über deine Seite \"Buchungen\" oder über den Stornolink in der Bestätigungs-E-Mail stornieren. Eine Begründung ist nicht nötig." },
+      { "type": "p", "text": "Für Stornierungen nach dieser Frist gelten die Bedingungen des jeweiligen Vermieters, die im Inserat bei der Buchung angezeigt und in der Bestätigungs-E-Mail erneut genannt werden. Üblich sind: 50 % Einbehalt bei Stornierung zwischen 24 und 6 Stunden vor Abholung, 100 % Einbehalt bei Nichterscheinen oder Stornierung weniger als 6 Stunden vorher." },
+
+      { "type": "h", "text": "Buchung ändern" },
+      { "type": "p", "text": "Um Daten, Dauer oder Auto zu ändern, kontaktiere den Vermieter direkt (Nummer im Inserat) oder schreibe an support@moviq.it unter Angabe der Buchungsnummer. Änderungen hängen von der Verfügbarkeit des Fahrzeugs ab." },
+
+      { "type": "h", "text": "Die Rolle von MoviQ" },
+      { "type": "p", "text": "MoviQ ist ausschließlich ein Dienst zur informativen Vermittlung: Wir helfen dir, das Auto zu finden und die Anfrage an den Vermieter zu senden. Mietvertrag, Zahlung, Bedingungen, Kaution, Versicherung, Unterstützung während der Miete sowie die Abwicklung von Schäden oder Unfällen liegen vollständig beim Vermieter. MoviQ ist nicht Vertragspartei und haftet nicht für die vertraglichen Pflichten zwischen dir und dem Vermieter." },
+
+      { "type": "h", "text": "Häufige Fragen" },
+      { "type": "h", "text": "Wer zahlt bei Schaden oder Unfall?" },
+      { "type": "p", "text": "Das Verhältnis besteht ausschließlich zwischen dir und dem Vermieter. Deckungen (Pflichthaftpflicht, etwaige Selbstbeteiligung, optionale Vollkasko) und die Schadenabwicklung richten sich nach dem Vertrag des jeweiligen Vermieters. MoviQ greift nicht in die Abwicklung von Unfällen, Schäden oder Streitigkeiten im Zusammenhang mit der Fahrzeugnutzung ein." },
+      { "type": "h", "text": "Wie alt muss man zum Mieten sein?" },
+      { "type": "p", "text": "Das hängt vom Vermieter ab. Die meisten verlangen ≥ 21 Jahre und einen Führerschein der Klasse B seit mindestens 1 Jahr. Für Premium-Autos und große SUV verlangen manche ≥ 25 Jahre. Die konkrete Anforderung steht im Inserat des Autos." },
+      { "type": "h", "text": "Kann ich für einen anderen Fahrer mieten?" },
+      { "type": "p", "text": "Ja, aber der Zweitfahrer muss dem Vermieter gemeldet werden (meist gegen einen kleinen Aufpreis) und bei der Abholung mit Ausweis und Führerschein erscheinen." },
+      { "type": "h", "text": "Was passiert, wenn der Vermieter nicht innerhalb von 24 Std. antwortet?" },
+      { "type": "p", "text": "Die Anfrage verfällt automatisch, ohne Belastung. Du kannst über die Suche eine neue Anfrage an andere Vermieter der Umgebung senden. MoviQ garantiert keine Antwort der Vermieter, die jede Anfrage frei annehmen oder ablehnen können." },
+
+      { "type": "cta", "label": "Finde ein Auto in deiner Nähe", "href": "/" }
+    ]
+  },
+
+  "per-noleggiatori": {
+    "title": "Für Vermieter",
+    "lead": "MoviQ ist der Online-Kanal der kleinen unabhängigen italienischen Autovermieter. Keine Provision auf den Preis, keine Vermittlung der Zahlung, keine Exklusivität.",
+    "blocks": [
+      { "type": "h", "text": "Mit wem wir sprechen" },
+      { "type": "p", "text": "Wenn du in Italien einen kleinen oder mittleren Autovermietbetrieb führst – eine Werkstatt, ein Autohaus mit Mietflotte, eine lokale Agentur, ein unabhängiges Unternehmen mit 5-200 Fahrzeugen – gibt dir MoviQ Online-Sichtbarkeit, ohne dass du auf die direkte Kundenbeziehung verzichten musst." },
+      { "type": "p", "text": "Mit den großen internationalen Ketten sprechen wir nicht. Sie haben ihre eigenen Kanäle. Wir bedienen das Segment, das heute im Web unsichtbar ist." },
+
+      { "type": "h", "text": "Was du bekommst" },
+      { "type": "list", "items": [
+        { "strong": "Sichtbarkeit in den Suchergebnissen", "text": " — deine Flotte erscheint, wenn ein Nutzer in deiner Stadt ein Auto sucht, an den Tagen, an denen du Verfügbarkeit hast." },
+        { "strong": "Null Provision auf den Mietpreis", "text": " — der Kunde zahlt dich direkt, mit der von dir akzeptierten Methode. MoviQ kassiert nicht, blockiert nicht, behält nichts ein." },
+        { "strong": "Vollständiges Backoffice inklusive", "text": " — verwalte Flotte, Preise (auch saisonal dynamisch), Verfügbarkeitskalender je Fahrzeug, eingehende Anfragen, bestätigte Buchungen, Kundenbewertungen, Statistiken und geschätzten Umsatz über ein einziges Dashboard." },
+        { "strong": "Volle Kontrolle über die Kundenbeziehung", "text": " — Telefonnummer und E-Mail des Kunden gehören dir. Du kannst zurückrufen, Kunden binden, ihnen direkt Rabatte für künftige Anmietungen anbieten. Keine \"Mauer\" wie bei den großen Marktplätzen." },
+        { "strong": "Keine Exklusivität", "text": " — du nutzt weiterhin deine Website, Mundpropaganda, andere Portale, das Telefon. MoviQ ist ein zusätzlicher Kanal, nicht der einzige." },
+        { "strong": "Individuelle Mietbedingungen", "text": " — du veröffentlichst deine Bedingungen (Kilometer, Mindestalter, Selbstbeteiligung, Stornopolitik, akzeptierte Zahlungsmethoden). Wir geben keine Geschäftsregeln vor." }
+      ] },
+
+      { "type": "h", "text": "Wie es auf deiner Seite funktioniert" },
+      { "type": "p", "text": "Nach dem Onboarding greifst du mit deinem Magic Link per E-Mail auf das MoviQ-Backoffice zu. Von dort aus:" },
+      { "type": "list", "items": [
+        { "strong": "Du lädst die Flotte hoch", "text": " — für jedes Auto Fotos (5-8 empfohlen), Marke/Modell/Jahr, Antrieb, Getriebe, Sitze, Gepäck, Optionen, Freikilometer, Tagesgrundpreis. Füge eine private \"interne Notiz\" mit Kennzeichen, Vorschäden und Verwaltungsinfos hinzu – für Kunden nicht sichtbar." },
+        { "strong": "Du stellst den Kalender ein", "text": " — sperre die Tage, an denen ein Auto nicht verfügbar ist, lege unterschiedliche Preise für Haupt-/Nebensaison oder Wochenenden fest." },
+        { "strong": "Du erhältst Anfragen", "text": " — wenn ein Nutzer bucht, bekommst du eine E-Mail + Push mit den Details. Du hast 24 Std., um zu bestätigen oder abzulehnen. Schnelle Antwortzeiten verbessern dein Ranking in den Ergebnissen." },
+        { "strong": "Du verwaltest Abholungen und Rückgaben", "text": " — alles läuft an deinem Standort wie bisher. MoviQ greift nicht in den Papier- oder Digitalvertrag ein, den ihr unterschreibt." },
+        { "strong": "Du liest deine Kennzahlen", "text": " — meistgesehene Autos, meistgespeicherte Autos, nachfragestarke Zeiträume, geschätzter Umsatz, meistgefragtes Modell für deine Stadt, Durchschnittspreis je Segment (auch gegenüber dem lokalen Wettbewerb, in aggregierter Form)." }
+      ] },
+
+      { "type": "h", "text": "Was wir von dir verlangen" },
+      { "type": "list", "items": [
+        { "strong": "Aktive italienische USt-IdNr.", "text": " im Bereich Fahrzeugvermietung (ATECO-Code 77.11 oder kompatibel)." },
+        { "strong": "Ausweis des gesetzlichen Vertreters", "text": " zur Betrugsprüfung beim Onboarding (nur einmal)." },
+        { "strong": "Gültige Haftpflichtversicherung", "text": " für die gesamte auf MoviQ gelistete Flotte. Wir verlangen das, weil unsere Nutzer erwarten, dass jedes gelistete Auto versichert ist – es ist die Vertrauensgrundlage der Plattform." },
+        { "strong": "Schriftliche Mietbedingungen", "text": ", die dem Kunden vor der Bestätigung zugänglich sind (du veröffentlichst sie in deinem MoviQ-Profil – jederzeit frei änderbar)." },
+        { "strong": "Antwort innerhalb von 24 Std.", "text": " auf Buchungsanfragen. Darunter verfallen Anfragen und Kunden werden anderswohin geleitet." }
+      ] },
+
+      { "type": "h", "text": "Was es kostet" },
+      { "type": "p", "text": "Ein einziges, pauschales Abo, unabhängig von der Zahl der Autos in der Flotte und vom Umsatz, den du erzielst. Keine Provision auf die Mietpreise, keine Gebühr pro Anfrage, keine Mindestumsatzschwelle." },
+      { "type": "kv", "items": [
+        { "k": "Monatliches Abo", "v": "49 € + MwSt. / Monat" },
+        { "k": "Kostenlose Testphase", "v": "30 Tage bei der ersten Aktivierung" },
+        { "k": "Verlängerung", "v": "Automatisch jeden Monat zum Aktivierungsdatum" },
+        { "k": "Deaktivierung", "v": "Jederzeit im Backoffice, ohne Strafgebühren" }
+      ] },
+      { "type": "p", "text": "Bei der Anmeldung hinterlegst du eine Zahlungsmethode (Kredit- oder Debitkarte Visa/Mastercard/Amex). In den ersten 30 Tagen erfolgt keine Belastung – es ist die kostenlose Testphase, in der du die Flotte hochladen, Buchungen erhalten und den Ertrag bewerten kannst." },
+      { "type": "p", "text": "Nach Ablauf der 30 Tage aktiviert sich das Abo automatisch und die erste Monatsgebühr wird belastet. Ab dann verlängert es sich automatisch jeden Monat am selben Datum, bis du deaktivierst. Die Deaktivierung erfolgt direkt im Backoffice im Bereich \"Abo\" – dein Konto bleibt bis zum Ende des bezahlten Zyklus aktiv und wird danach ohne weitere Belastung ausgesetzt." },
+
+      { "type": "h", "text": "Wie viel verdiene ich?" },
+      { "type": "p", "text": "Das hängt von deiner Flotte, deiner Stadt und deinen Preisen ab. Auf Basis der Pilottests schätzen wir 8-15 zusätzliche Buchungen pro 10 Autos in der Flotte, in den ersten 6 Monaten, in einer mittelgroßen Stadt (>200.000 Einwohner). Der Durchschnittspreis einer Kurzmiete in Mailand 2026 liegt bei rund 65 €/Tag für einen Kleinwagen, 95 €/Tag für einen kompakten SUV." },
+      { "type": "p", "text": "Der Break-even des Abos (49 €/Monat) liegt bei 1 zusätzlichen Anmietung pro Monat eines Kleinwagens für 1 Tag. Darüber ist es Nettomarge." },
+
+      { "type": "h", "text": "Wie wir dir beim Start helfen" },
+      { "type": "list", "items": [
+        "Begleitetes Onboarding: Wir helfen dir, die ersten 5-10 Autos auf die Plattform zu laden, bei Bedarf mit professionellen Fotos (in der Startphase kostenlos).",
+        "Eigener Account Manager für die ersten 60 Tage: eine echte Person, per E-Mail oder Telefon erreichbar, die dir hilft, Preise, Kalender und Bedingungen einzurichten.",
+        "Werbematerial: ein \"Finde mich auf MoviQ\"-Badge für Website und Social Media, kostenlos im Dashboard zum Download.",
+        "Monatliches Partner-Webinar: Best Practices, Plattform-Neuigkeiten, direktes Feedback vom Team."
+      ] },
+
+      { "type": "h", "text": "Häufige Fragen" },
+      { "type": "h", "text": "Kann ich das Konto jederzeit deaktivieren?" },
+      { "type": "p", "text": "Ja, jederzeit in den Einstellungen des Backoffice. Bereits bestätigte Buchungen bleiben gültig. Neue Anfragen stoppen sofort. Das Abo verlängert sich nicht in den nächsten Zyklus." },
+      { "type": "h", "text": "Kann ich die Preise im Laufe des Jahres ändern?" },
+      { "type": "p", "text": "Ja, alle Preise sind jederzeit änderbar. Du kannst auch unterschiedliche Preise für bestimmte Zeiträume (Hauptsaison, Events, Wochenenden) über den Kalender festlegen." },
+      { "type": "h", "text": "Zwingt mich MoviQ, alle Kunden anzunehmen?" },
+      { "type": "p", "text": "Nein. Du kannst eine Anfrage ohne Begründung ablehnen. Sehr hohe Ablehnungsquoten (>30 %) beeinträchtigen deine Sichtbarkeit in den Ergebnissen, der Zugang wird dir aber nicht entzogen." },
+      { "type": "h", "text": "Was passiert, wenn ein Kunde nicht zur Abholung erscheint (No-Show)?" },
+      { "type": "p", "text": "Du wendest deine in den Bedingungen genannte No-Show-Politik an. MoviQ erfasst die Meldung aus deinem Backoffice und sanktioniert den Nutzer im Plattform-Rating. Bei wiederholten No-Shows sperren wir das Nutzerkonto." },
+      { "type": "h", "text": "Sieht MoviQ die Daten meiner Autos und meiner Kunden?" },
+      { "type": "p", "text": "Wir sehen die Autos, die du veröffentlichst (das ist das Produkt). Von den Kunden sehen wir E-Mail, Name, Telefon und Buchungen – ausschließlich zum Betrieb der Plattform genutzt. Wir verkaufen sie nicht weiter, teilen sie nicht mit anderen Partnern und nutzen sie nicht für Werbung Dritter." },
+
+      { "type": "cta", "label": "Schreib an partner@moviq.it", "href": "mailto:partner@moviq.it", "mailto": true }
+    ]
+  }
+}

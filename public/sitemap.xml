@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://moviq.it/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://moviq.it/cerca</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://moviq.it/aiuto</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Landing per città principali (generate da generate-sitemap.js dopo deploy) -->
+  <url><loc>https://moviq.it/auto-noleggio-milano</loc><priority>0.8</priority></url>
+  <url><loc>https://moviq.it/auto-noleggio-roma</loc><priority>0.8</priority></url>
+  <url><loc>https://moviq.it/auto-noleggio-napoli</loc><priority>0.8</priority></url>
+  <url><loc>https://moviq.it/auto-noleggio-torino</loc><priority>0.8</priority></url>
+  <url><loc>https://moviq.it/auto-noleggio-bologna</loc><priority>0.8</priority></url>
+  <url><loc>https://moviq.it/auto-noleggio-firenze</loc><priority>0.8</priority></url>
+  <url><loc>https://moviq.it/auto-noleggio-venezia</loc><priority>0.8</priority></url>
+  <url><loc>https://moviq.it/auto-noleggio-bari</loc><priority>0.8</priority></url>
+  <url><loc>https://moviq.it/auto-noleggio-palermo</loc><priority>0.8</priority></url>
+  <url><loc>https://moviq.it/auto-noleggio-catania</loc><priority>0.8</priority></url>
+
+  <!-- Categorie principali -->
+  <url><loc>https://moviq.it/cerca?cat=citycar</loc><priority>0.7</priority></url>
+  <url><loc>https://moviq.it/cerca?cat=suv</loc><priority>0.7</priority></url>
+  <url><loc>https://moviq.it/cerca?cat=elettrica</loc><priority>0.7</priority></url>
+  <url><loc>https://moviq.it/cerca?cat=cabrio</loc><priority>0.7</priority></url>
+  <url><loc>https://moviq.it/cerca?cat=furgone</loc><priority>0.7</priority></url>
+</urlset>

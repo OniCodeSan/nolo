@@ -1,0 +1,43 @@
+# Config Supabase versionata. M2: rende esplicito `verify_jwt` per ogni edge
+# function così il gateway verifica la FIRMA del JWT prima di eseguire la
+# funzione — la difesa non dipende più da un flag CLI a deploy-time non
+# tracciato (rischio di deploy accidentale --no-verify-jwt = open relay).
+#
+# Deploy: `supabase functions deploy <name>` rispetta questi valori.
+
+project_id = "togcwgymwrnhiihduapb"
+
+# ── Funzioni server-to-server / autenticate: il gateway DEVE validare il JWT ──
+[functions.send-email]
+verify_jwt = true
+
+[functions.booking-emails]
+verify_jwt = true
+
+[functions.create-checkout]
+verify_jwt = true
+
+[functions.billing-portal]
+verify_jwt = true
+
+[functions.admin-coupon]
+verify_jwt = true
+
+[functions.delete-account]
+verify_jwt = true
+
+[functions.admin-ai]
+verify_jwt = true
+
+# ── Endpoint pubblici (verificati con firma/secret propri, NON via JWT) ──
+# auth-login: chiamata da utenti non ancora autenticati (signup/login).
+[functions.auth-login]
+verify_jwt = false
+
+# stripe-webhook: autenticato dalla firma HMAC Stripe-Signature.
+[functions.stripe-webhook]
+verify_jwt = false
+
+# smtp2go-webhook: autenticato dal secret in header/querystring.
+[functions.smtp2go-webhook]
+verify_jwt = false

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Aree riservate, da non indicizzare
+Disallow: /profilo
+Disallow: /prenotazioni
+Disallow: /prenota
+Disallow: /conferma
+Disallow: /salvati
+Disallow: /noleggia
+Disallow: /admin
+
+Sitemap: https://moviq.it/sitemap.xml

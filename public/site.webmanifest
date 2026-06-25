@@ -1,0 +1,16 @@
+{
+  "name": "MoviQ",
+  "short_name": "MoviQ",
+  "description": "L'auto giusta vicino a te. Aggregatore di noleggiatori privati indipendenti in Italia.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#F5C518",
+  "lang": "it",
+  "icons": [
+    { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

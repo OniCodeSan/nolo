@@ -1,0 +1,15 @@
+node_modules
+.git
+.env
+.env.local
+.env.*.local
+.docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+DELIVERY-AUDIT.md
+supabase
+.ralphy
+tests
+playwright-report
+test-results
