@@ -8,6 +8,7 @@ import { useAsync } from '../hooks/useAsync.js';
 import { CarCardSkeleton } from '../components/Skeleton.jsx';
 import { useUserLocation } from '../hooks/useUserLocation.js';
 import { LocationField } from '../components/LocationField.jsx';
+import { cldUrl, cldSrcSet } from '../lib/cloudinary.js';
 import { listCars } from '../services/cars.js';
 import { listCategories } from '../services/catalog.js';
 import { formatDates, monthName } from '../utils/dates.js';
@@ -149,6 +150,24 @@ function Divider({ T }) {
   return <span style={{ width: 1, alignSelf: 'stretch', background: T.line, margin: '6px 0' }} />;
 }
 
+// Copertina auto per le card "vicino a te": foto reale se presente, altrimenti
+// l'illustrazione di fallback.
+function HomeCarCover({ T, car, w = 600 }) {
+  const cover = car.images?.[0];
+  if (cover) {
+    return (
+      <img
+        src={cldUrl(cover.public_id, { w }) || cover.url}
+        srcSet={cldSrcSet(cover.public_id, [300, 600]) || undefined}
+        alt={`${car.brand} ${car.model}`}
+        loading="lazy"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    );
+  }
+  return <CarRender T={T} variant={car.variant} tone={car.tone} />;
+}
+
 function HomeDesktop({ T, search, dateLabel, cars, categories, userCity, saved, toggleSaved, onSearchLocation, onPickLocation, onSearchDate, onListing, onCategory, onCar, onPickCategoryInline }) {
   const { t } = useTranslation();
   return (
@@ -220,7 +239,7 @@ function HomeDesktop({ T, search, dateLabel, cars, categories, userCity, saved, 
                 borderRadius: T.r.lg, overflow: 'hidden', boxShadow: T.sh.soft, cursor: 'pointer',
               }}>
                 <div style={{ position: 'relative', aspectRatio: '1.5 / 1' }}>
-                  <CarRender T={T} variant={c.variant} tone={c.tone} />
+                  <HomeCarCover T={T} car={c} />
                   <HeartButton T={T} active={saved.has(c.id)} onClick={(e) => { e.stopPropagation(); toggleSaved(c.id); }} />
                   {c.hot && (
                     <span style={{ position: 'absolute', top: 8, left: 8 }}>
@@ -329,7 +348,7 @@ function HomeMobile({ T, search, dateLabel, cars, categories, userCity, saved, t
               {cars.slice(0, 4).map(c => (
                 <div key={c.id} onClick={() => onCar(c.id)} style={{ minWidth: 160, flex: 'none', cursor: 'pointer' }}>
                   <div style={{ width: 160, height: 100, borderRadius: T.r.md, overflow: 'hidden', border: `1px solid ${T.line}`, position: 'relative' }}>
-                    <CarRender T={T} variant={c.variant} tone={c.tone} />
+                    <HomeCarCover T={T} car={c} />
                     <HeartButton T={T} active={saved.has(c.id)} onClick={(e) => { e.stopPropagation(); toggleSaved(c.id); }} />
                   </div>
                   <Txt T={T} size={13} weight={600} style={{ display: 'block', marginTop: 6 }}>{c.brand} {c.model}</Txt>
