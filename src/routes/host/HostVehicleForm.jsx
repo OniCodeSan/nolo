@@ -23,6 +23,28 @@ function findPickup(name) {
   return null;
 }
 
+// Ricostruisce (in modifica) i checkbox + la zona da pickup_location salvato
+// (nomi punti separati da " · "; il resto è indirizzo libero).
+function parsePickup(text, carCity, carCoords) {
+  const parts = (text || '').split(/\s·\s|\s\/\s|\//).map(s => s.trim()).filter(Boolean);
+  const pickupTypes = new Set();
+  const zoneParts = [];
+  let pickupCity = '';
+  for (const part of parts) {
+    const pk = findPickup(part);
+    if (pk) { pickupTypes.add(part); if (!pickupCity) pickupCity = pk.citySlug; }
+    else zoneParts.push(part);
+  }
+  if (!pickupCity) pickupCity = CITTA_LIST.find(x => x.nome === carCity)?.slug || '';
+  const pickupZone = zoneParts.join(', ');
+  return {
+    pickupCity,
+    pickupTypes,
+    pickupZone,
+    pickupZoneCoords: pickupZone && Array.isArray(carCoords) ? carCoords : null,
+  };
+}
+
 const CATEGORIES = [
   { id: 'citycar',   l: 'Citycar' },
   { id: 'suv',       l: 'SUV' },
@@ -118,8 +140,8 @@ const EMPTY_FORM = {
   description: '',
   licensePlate: '',
   pickupLocation: '',
-  pickupCity: '',   // slug città selezionata (selettore punti di ritiro)
-  pickupPoint: '',  // nome del punto di ritiro selezionato
+  pickupCity: '',   // slug città selezionata
+  pickupTypes: new Set(), // nomi dei punti di ritiro selezionati (checkbox multipli)
   pickupZone: '',       // indirizzo/zona (testo, da autocomplete Geoapify)
   pickupZoneCoords: null, // [lat,lng] esatte dal suggerimento scelto
   pickupZoneCity: '',   // città dedotta dal suggerimento
@@ -149,6 +171,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
         const car = await getCarOwner(id);
         if (cancelled || !car) { if (!cancelled) toast.error('Veicolo non trovato'); return; }
         if (car.host !== host.id) { toast.error('Non hai accesso a questo veicolo'); navigate('/noleggia/veicoli'); return; }
+        const pk = parsePickup(car.pickupLocation, car.city, car.coords);
         setForm({
           brand: car.brand || '', model: car.model || '',
           brandId: car.brandId ?? null, modelId: car.modelId ?? null,
@@ -166,10 +189,10 @@ export function HostVehicleForm({ T, mode = 'new' }) {
           description: car.description || '',
           licensePlate: car.licensePlate || '',
           pickupLocation: car.pickupLocation || '',
-          pickupCity: findPickup(car.pickupLocation)?.citySlug || (CITTA_LIST.find(x => x.nome === car.city)?.slug) || '',
-          pickupPoint: findPickup(car.pickupLocation)?.pointName || '',
-          pickupZone: findPickup(car.pickupLocation) ? '' : (car.pickupLocation || ''),
-          pickupZoneCoords: findPickup(car.pickupLocation) ? null : (Array.isArray(car.coords) ? car.coords : null),
+          pickupCity: pk.pickupCity,
+          pickupTypes: pk.pickupTypes,
+          pickupZone: pk.pickupZone,
+          pickupZoneCoords: pk.pickupZoneCoords,
           pickupZoneCity: '',
           internalNotes: car.internalNotes || '',
           status: car.status || 'draft',
@@ -189,6 +212,11 @@ export function HostVehicleForm({ T, mode = 'new' }) {
     if (next.has(a)) next.delete(a); else next.add(a);
     return { ...prev, accessories: next };
   });
+  const togglePickupType = (nome) => setForm(prev => {
+    const next = new Set(prev.pickupTypes);
+    if (next.has(nome)) next.delete(nome); else next.add(nome);
+    return { ...prev, pickupTypes: next };
+  });
 
   const validate = (forPublish = false) => {
     const e = {};
@@ -199,7 +227,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
       if (!form.fuel) e.fuel = true;
       if (!form.transmission) e.transmission = true;
       if (!form.seats) e.seats = true;
-      if (!((form.pickupCity && form.pickupPoint) || form.pickupZone?.trim())) e.pickup = true;
+      if (!((form.pickupCity && form.pickupTypes.size) || form.pickupZone?.trim())) e.pickup = true;
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -225,31 +253,22 @@ export function HostVehicleForm({ T, mode = 'new' }) {
     }
     setSaving(true);
     try {
-      // Posizione di ritiro. Priorità: 1) zona/indirizzo libero (geocodato con la
-      // città per puntare con precisione la mappa); 2) punto del dizionario
-      // (coordinate esatte); 3) sola città. Geocoding best-effort: non blocca il salvataggio.
+      // Posizione di ritiro. Punti selezionati (checkbox) + eventuale indirizzo.
+      // Pin mappa: indirizzo preciso (Geoapify) > primo punto selezionato > città.
       const cityObj = form.pickupCity ? PUNTI_RITIRO[form.pickupCity] : null;
       const selCityName = cityObj?.nome || host.city || null;
-      const point = cityObj?.puntiRitiro.find(p => p.nome === form.pickupPoint) || null;
+      const checkedPoints = cityObj ? cityObj.puntiRitiro.filter(p => form.pickupTypes.has(p.nome)) : [];
       const zone = form.pickupZone?.trim() || '';
-      let pickupLabel = null;
+
+      const labelParts = checkedPoints.map(p => p.nome);
+      if (zone) labelParts.push(zone);
+      const pickupLabel = labelParts.join(' · ') || form.pickupLocation?.trim() || selCityName || null;
+      const pickupCityName = form.pickupZoneCity || selCityName;
+
       let coords = null;
-      let pickupCityName = selCityName;
-      if (zone) {
-        // Indirizzo/zona da autocomplete Geoapify → coordinate esatte del
-        // suggerimento scelto; fallback geocoding se l'utente ha solo digitato.
-        pickupLabel = zone;
-        coords = form.pickupZoneCoords
-              || await geocodeAddress(`${zone}, ${selCityName || ''}`)
-              || (selCityName ? await geocodeAddress(selCityName) : null);
-        pickupCityName = form.pickupZoneCity || selCityName;
-      } else if (point) {
-        pickupLabel = point.nome;
-        coords = [point.lat, point.lng];
-      } else {
-        pickupLabel = form.pickupLocation?.trim() || selCityName || null;
-        if (selCityName) coords = await geocodeAddress(selCityName);
-      }
+      if (zone) coords = form.pickupZoneCoords || await geocodeAddress(`${zone}, ${selCityName || ''}`);
+      if (!coords && checkedPoints[0]) coords = [checkedPoints[0].lat, checkedPoints[0].lng];
+      if (!coords && selCityName) coords = await geocodeAddress(selCityName);
 
       const payload = {
         brand: form.brand.trim(),
@@ -304,7 +323,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
     );
   }
 
-  const canPublish = form.brand && form.model && form.pricePerDay && form.fuel && form.transmission && form.seats && ((form.pickupCity && form.pickupPoint) || form.pickupZone?.trim());
+  const canPublish = form.brand && form.model && form.pricePerDay && form.fuel && form.transmission && form.seats && ((form.pickupCity && form.pickupTypes.size) || form.pickupZone?.trim());
 
   return (
     <div style={{ padding: isDesktop ? '24px 36px 60px' : '18px 18px 32px', maxWidth: 1200, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
@@ -490,17 +509,24 @@ export function HostVehicleForm({ T, mode = 'new' }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               <Field T={T} label="Città" required>
                 <Select T={T} value={form.pickupCity}
-                  onChange={(v) => set({ pickupCity: v || '', pickupPoint: '' })}
-                  options={CITY_OPTIONS} placeholder="Seleziona città…" invalid={errors.pickup} />
+                  onChange={(v) => set({ pickupCity: v || '', pickupTypes: new Set() })}
+                  options={CITY_OPTIONS} placeholder="Seleziona città…" invalid={errors.pickup && !form.pickupZone?.trim()} />
               </Field>
-              <Field T={T} label="Punto di ritiro" hint="Stazione/aeroporto/porto/centro · coordinate esatte">
-                <Select T={T} value={form.pickupPoint}
-                  onChange={(v) => set({ pickupPoint: v || '' })}
-                  options={form.pickupCity ? PUNTI_RITIRO[form.pickupCity].puntiRitiro.map(p => ({ id: p.nome, l: `${POINT_ICON[p.tipo] || ''} ${p.nome}` })) : []}
-                  placeholder={form.pickupCity ? 'Stazione, aeroporto, porto, centro…' : 'Scegli prima la città'}
-                  invalid={errors.pickup && !form.pickupZone?.trim()} />
+              <Field T={T} label="Seleziona un punto di ritiro" hint="Spunta i punti dove consegni l'auto · coordinate esatte">
+                {form.pickupCity ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {PUNTI_RITIRO[form.pickupCity].puntiRitiro.map(p => (
+                      <label key={p.nome} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
+                        <input type="checkbox" checked={form.pickupTypes.has(p.nome)} onChange={() => togglePickupType(p.nome)} />
+                        <Txt T={T} size={14} color={T.ink1}>{POINT_ICON[p.tipo] || ''} {p.nome}</Txt>
+                      </label>
+                    ))}
+                  </div>
+                ) : (
+                  <Txt T={T} size={12} color={T.ink3}>Scegli prima la città</Txt>
+                )}
               </Field>
-              <Txt T={T} size={11} color={T.ink3} style={{ display: 'block', textAlign: 'center', margin: '-2px 0' }}>oppure</Txt>
+              <Txt T={T} size={11} color={T.ink3} style={{ display: 'block', textAlign: 'center', margin: '-2px 0' }}>oppure / in più</Txt>
               <Field T={T} label="Zona / indirizzo" hint="Scrivi e scegli dal menu: posiziona l'auto con precisione sulla mappa">
                 <AddressAutocomplete
                   T={T}
@@ -516,9 +542,9 @@ export function HostVehicleForm({ T, mode = 'new' }) {
                   </Txt>
                 )}
               </Field>
-              {form.pickupLocation && !form.pickupPoint && !form.pickupZone && (
+              {form.pickupLocation && !form.pickupTypes.size && !form.pickupZone && (
                 <Txt T={T} size={11} color={T.ink3} style={{ display: 'block' }}>
-                  Ritiro attuale: <strong>{form.pickupLocation}</strong> — scegli un punto o scrivi una zona per aggiornarlo.
+                  Ritiro attuale: <strong>{form.pickupLocation}</strong> — spunta un punto o scrivi una zona per aggiornarlo.
                 </Txt>
               )}
             </div>
