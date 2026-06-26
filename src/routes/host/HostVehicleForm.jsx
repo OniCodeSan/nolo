@@ -6,7 +6,8 @@ import { BrandModelPicker } from '../../components/BrandModelPicker.jsx';
 import { ImageUploader } from '../../components/ImageUploader.jsx';
 import { useToast } from '../../state/ToastContext.jsx';
 import { createCar, getCarOwner, updateCar, listCarsByHost } from '../../services/cars.js';
-import { geocode } from '../../services/geocode.js';
+import { geocodeAddress } from '../../lib/geoapify.js';
+import { AddressAutocomplete } from '../../components/AddressAutocomplete.jsx';
 import { PUNTI_RITIRO, CITTA_LIST } from '../../data/pickup-points.js';
 
 // Opzioni città per il selettore ritiro (slug → "Nome (PROV)").
@@ -119,7 +120,9 @@ const EMPTY_FORM = {
   pickupLocation: '',
   pickupCity: '',   // slug città selezionata (selettore punti di ritiro)
   pickupPoint: '',  // nome del punto di ritiro selezionato
-  pickupZone: '',   // zona/indirizzo libero (geocodato per precisione sulla mappa)
+  pickupZone: '',       // indirizzo/zona (testo, da autocomplete Geoapify)
+  pickupZoneCoords: null, // [lat,lng] esatte dal suggerimento scelto
+  pickupZoneCity: '',   // città dedotta dal suggerimento
   internalNotes: '',
   status: 'draft',
   images: [],
@@ -166,6 +169,8 @@ export function HostVehicleForm({ T, mode = 'new' }) {
           pickupCity: findPickup(car.pickupLocation)?.citySlug || (CITTA_LIST.find(x => x.nome === car.city)?.slug) || '',
           pickupPoint: findPickup(car.pickupLocation)?.pointName || '',
           pickupZone: findPickup(car.pickupLocation) ? '' : (car.pickupLocation || ''),
+          pickupZoneCoords: findPickup(car.pickupLocation) ? null : (Array.isArray(car.coords) ? car.coords : null),
+          pickupZoneCity: '',
           internalNotes: car.internalNotes || '',
           status: car.status || 'draft',
           images: Array.isArray(car.images) ? car.images : [],
@@ -194,7 +199,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
       if (!form.fuel) e.fuel = true;
       if (!form.transmission) e.transmission = true;
       if (!form.seats) e.seats = true;
-      if (!form.pickupCity || (!form.pickupPoint && !form.pickupZone?.trim())) e.pickup = true;
+      if (!((form.pickupCity && form.pickupPoint) || form.pickupZone?.trim())) e.pickup = true;
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -224,23 +229,27 @@ export function HostVehicleForm({ T, mode = 'new' }) {
       // città per puntare con precisione la mappa); 2) punto del dizionario
       // (coordinate esatte); 3) sola città. Geocoding best-effort: non blocca il salvataggio.
       const cityObj = form.pickupCity ? PUNTI_RITIRO[form.pickupCity] : null;
-      const cityName = cityObj?.nome || host.city || null;
+      const selCityName = cityObj?.nome || host.city || null;
       const point = cityObj?.puntiRitiro.find(p => p.nome === form.pickupPoint) || null;
       const zone = form.pickupZone?.trim() || '';
       let pickupLabel = null;
       let coords = null;
+      let pickupCityName = selCityName;
       if (zone) {
-        pickupLabel = zone; // la città è salvata a parte in `city`
-        coords = await geocode(`${zone}, ${cityName || ''}, Italia`)
-              || (cityName ? await geocode(`${cityName}, Italia`) : null);
+        // Indirizzo/zona da autocomplete Geoapify → coordinate esatte del
+        // suggerimento scelto; fallback geocoding se l'utente ha solo digitato.
+        pickupLabel = zone;
+        coords = form.pickupZoneCoords
+              || await geocodeAddress(`${zone}, ${selCityName || ''}`)
+              || (selCityName ? await geocodeAddress(selCityName) : null);
+        pickupCityName = form.pickupZoneCity || selCityName;
       } else if (point) {
         pickupLabel = point.nome;
         coords = [point.lat, point.lng];
       } else {
-        pickupLabel = form.pickupLocation?.trim() || cityName || null;
-        if (cityName) coords = await geocode(`${cityName}, Italia`);
+        pickupLabel = form.pickupLocation?.trim() || selCityName || null;
+        if (selCityName) coords = await geocodeAddress(selCityName);
       }
-      const pickupCityName = cityName;
 
       const payload = {
         brand: form.brand.trim(),
@@ -295,7 +304,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
     );
   }
 
-  const canPublish = form.brand && form.model && form.pricePerDay && form.fuel && form.transmission && form.seats && form.pickupCity && (form.pickupPoint || form.pickupZone?.trim());
+  const canPublish = form.brand && form.model && form.pricePerDay && form.fuel && form.transmission && form.seats && ((form.pickupCity && form.pickupPoint) || form.pickupZone?.trim());
 
   return (
     <div style={{ padding: isDesktop ? '24px 36px 60px' : '18px 18px 32px', maxWidth: 1200, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
@@ -492,11 +501,20 @@ export function HostVehicleForm({ T, mode = 'new' }) {
                   invalid={errors.pickup && !form.pickupZone?.trim()} />
               </Field>
               <Txt T={T} size={11} color={T.ink3} style={{ display: 'block', textAlign: 'center', margin: '-2px 0' }}>oppure</Txt>
-              <Field T={T} label="Zona / indirizzo" hint="Es. Via Roma 12 o quartiere · posiziona l'auto con precisione sulla mappa">
-                <input style={inputStyle(T)} value={form.pickupZone}
-                  onChange={(e) => set({ pickupZone: e.target.value })}
-                  placeholder="Via, piazza o zona specifica"
-                  maxLength={120} />
+              <Field T={T} label="Zona / indirizzo" hint="Scrivi e scegli dal menu: posiziona l'auto con precisione sulla mappa">
+                <AddressAutocomplete
+                  T={T}
+                  value={form.pickupZone}
+                  inputStyle={inputStyle(T)}
+                  placeholder="Via, piazza, quartiere…"
+                  onText={(t) => set({ pickupZone: t, pickupZoneCoords: null, pickupZoneCity: '' })}
+                  onSelect={(r) => set({ pickupZone: r.label, pickupZoneCoords: [r.lat, r.lon], pickupZoneCity: r.city || '' })}
+                />
+                {form.pickupZone && (
+                  <Txt T={T} size={11} color={form.pickupZoneCoords ? '#166534' : T.ink3} style={{ display: 'block', marginTop: 4 }}>
+                    {form.pickupZoneCoords ? '✓ posizione precisa selezionata' : 'scegli un suggerimento dal menu per il pin esatto'}
+                  </Txt>
+                )}
               </Field>
               {form.pickupLocation && !form.pickupPoint && !form.pickupZone && (
                 <Txt T={T} size={11} color={T.ink3} style={{ display: 'block' }}>
