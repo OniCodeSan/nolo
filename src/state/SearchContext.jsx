@@ -76,6 +76,7 @@ export function SearchProvider({ children }) {
     setSearchState(prev => {
       const next = { ...prev };
       if ('location' in patch) next.location = patch.location || null;
+      if ('locationCoords' in patch) next.locationCoords = patch.locationCoords || null;
       if ('from' in patch) next.from = patch.from || null;
       if ('to' in patch) next.to = patch.to || null;
       if ('category' in patch) next.category = patch.category || null;

@@ -64,6 +64,10 @@ function CarCover({ T, car, w = 600 }) {
 import { Chip, Button, Badge, H, Txt, Avatar, Rating, Price } from '../components/ui.jsx';
 import { FiltersSheet } from '../components/FiltersSheet.jsx';
 import { LocationField } from '../components/LocationField.jsx';
+import { geocodeAddress } from '../lib/geoapify.js';
+import { distanceKm, isValidItalyCoord } from '../utils/geo.js';
+
+const SEARCH_RADIUS_KM = 60;
 import { CarCardSkeleton } from '../components/Skeleton.jsx';
 const LeafletMap = lazy(() => import('../components/LeafletMap.jsx').then(m => ({ default: m.LeafletMap })));
 import { useAsync } from '../hooks/useAsync.js';
@@ -660,18 +664,36 @@ export function Listing({ T, isDesktop }) {
   const allCarsQ = useAsync(listCars, []);
   const allCars = allCarsQ.data ?? [];
 
+  // Coordinate del luogo cercato: dalla selezione (Geoapify) o geocodando il testo
+  // (deep-link/URL). Usate per la ricerca per PROSSIMITÀ.
+  const [searchCoords, setSearchCoords] = useState(search.locationCoords || null);
+  useEffect(() => {
+    let cancelled = false;
+    if (search.locationCoords) { setSearchCoords(search.locationCoords); return; }
+    if (search.location) {
+      geocodeAddress(search.location).then(c => { if (!cancelled) setSearchCoords(c); });
+    } else {
+      setSearchCoords(null);
+    }
+    return () => { cancelled = true; };
+  }, [search.location, search.locationCoords]);
+
   const cars = useMemo(() => {
     let list = allCars;
     if (search.category) list = list.filter(c => c.category === search.category);
     if (search.location) {
-      // Match parziale case-insensitive su city / distance / pickupLocation
-      const loc = search.location.toLowerCase();
-      // Token primario (prima virgola o trattino o ·)
-      const primary = loc.split(/[,·\-]/)[0].trim();
-      list = list.filter(c => {
-        const haystack = [c.city, c.pickupLocation, c.distance].filter(Boolean).join(' ').toLowerCase();
-        return haystack.includes(primary);
-      });
+      if (searchCoords) {
+        // Prossimità: auto entro raggio dal punto cercato, ordinate per distanza.
+        list = list
+          .map(c => ({ c, km: isValidItalyCoord(c.coords) ? distanceKm(searchCoords, c.coords) : Infinity }))
+          .filter(x => x.km <= SEARCH_RADIUS_KM)
+          .sort((a, b) => a.km - b.km)
+          .map(x => ({ ...x.c, distance: x.km < 1 ? '<1 km' : `${Math.round(x.km)} km` }));
+      } else {
+        // Fallback testuale finché non abbiamo le coordinate.
+        const primary = search.location.toLowerCase().split(/[,·\-]/)[0].trim();
+        list = list.filter(c => [c.city, c.pickupLocation, c.distance].filter(Boolean).join(' ').toLowerCase().includes(primary));
+      }
     }
     if (filters.brandId) list = list.filter(c => c.brandId === filters.brandId);
     if (filters.priceMax < 100) list = list.filter(c => c.pricePerDay <= filters.priceMax);
@@ -680,7 +702,7 @@ export function Listing({ T, isDesktop }) {
       list = list.filter(c => c.transmission.startsWith(filters.transmission));
     }
     return list;
-  }, [allCars, search.category, search.location, filters]);
+  }, [allCars, search.category, search.location, searchCoords, filters]);
 
   const hostIdsKey = useMemo(() => [...new Set(cars.map(c => c.host))].sort().join(','), [cars]);
   const hostsQ = useAsync(() => getHostsByIds(hostIdsKey ? hostIdsKey.split(',') : []), [hostIdsKey]);
@@ -720,7 +742,7 @@ export function Listing({ T, isDesktop }) {
       navigate(`/auto/${id}`);
     },
     onSearchLocation: () => navigate('/cerca/dove'),
-    onPickLocation: (loc) => updateSearch({ location: loc }),
+    onPickLocation: (loc, coords) => updateSearch({ location: loc, locationCoords: coords || null }),
     onSearchDate: () => navigate('/cerca/quando'),
     onHome: () => navigate('/'),
     onOpenSheet: () => setSheetOpen(true),

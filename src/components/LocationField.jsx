@@ -2,37 +2,24 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Icon } from './icons.jsx';
 import { Txt } from './ui.jsx';
-import { CITTA_LIST } from '../data/pickup-points.js';
+import { autocompleteAddress, hasGeoapify } from '../lib/geoapify.js';
 import { reverseGeocodeCity } from '../services/geocode.js';
-
-const TYPE_EMOJI = { stazione: '🚉', aeroporto: '✈️', porto: '⚓', centro: '📍' };
-
-// Destinazioni "Dove" da tutti i punti di ritiro ufficiali: città + stazione/
-// aeroporto/porto/centro, con sottotitolo "Città, Regione, Italia".
-const ALL_DEST = CITTA_LIST.flatMap(c => {
-  const sub = `${c.nome}, ${c.regione}, Italia`;
-  return [
-    { id: `city-${c.slug}`, emoji: '🏙️', label: c.nome, sub, value: c.nome, isCity: true },
-    ...c.puntiRitiro.map(p => ({
-      id: `${c.slug}-${p.tipo}-${p.nome}`,
-      emoji: TYPE_EMOJI[p.tipo] || '📍',
-      label: p.codiceIata ? `${p.nome} (${p.codiceIata})` : p.nome,
-      sub, value: p.nome, isCity: false,
-    })),
-  ];
-});
 
 const rowStyle = { width: '100%', border: 'none', background: 'transparent', cursor: 'pointer', padding: '10px 10px', display: 'flex', alignItems: 'center', gap: 10, borderRadius: 8, textAlign: 'left' };
 
-// Campo "Dove": si DIGITA direttamente nel campo; i risultati appaiono in una
-// tendina ancorata sotto (no popup). "Usa posizione attuale" usa la geoloc reale.
+// Campo "Dove": si digita, autocomplete Geoapify (stessa fonte usata dagli host
+// per inserire il ritiro) → onChange(label, [lat,lng]). La tendina è ancorata
+// sotto al campo. "Usa posizione attuale" usa la geolocalizzazione del browser.
 export function LocationField({ T, value, onChange, variant = 'desktop', flex = 1.5 }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [locating, setLocating] = useState(false);
   const wrapRef = useRef(null);
   const inputRef = useRef(null);
+  const ctrlRef = useRef(null);
 
   useEffect(() => {
     if (!open) return;
@@ -44,22 +31,32 @@ export function LocationField({ T, value, onChange, variant = 'desktop', flex = 
     return () => { document.removeEventListener('mousedown', onDoc); document.removeEventListener('keydown', onKey); };
   }, [open]);
 
-  const q = query.trim().toLowerCase();
-  const filtered = q.length >= 1
-    ? ALL_DEST.filter(d => d.label.toLowerCase().includes(q) || d.sub.toLowerCase().includes(q)).slice(0, 12)
-    : ALL_DEST.filter(d => d.isCity).slice(0, 8); // città principali quando vuoto
+  useEffect(() => {
+    const q = query.trim();
+    if (!hasGeoapify || q.length < 3) { setResults([]); setLoading(false); return; }
+    setLoading(true);
+    const timer = setTimeout(async () => {
+      ctrlRef.current?.abort();
+      ctrlRef.current = new AbortController();
+      const r = await autocompleteAddress(q, { signal: ctrlRef.current.signal });
+      setResults(r);
+      setLoading(false);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [query]);
 
-  const pick = (v) => { onChange(v); setOpen(false); setQuery(''); };
+  const pick = (label, coords) => { onChange(label, coords); setOpen(false); setQuery(''); setResults([]); };
 
-  // Geolocalizzazione reale del browser → città (reverse geocoding). Niente Milano fisso.
   const useCurrentPosition = () => {
     if (typeof navigator === 'undefined' || !navigator.geolocation) return;
     setLocating(true);
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
-        const city = await reverseGeocodeCity(pos.coords.latitude, pos.coords.longitude).catch(() => null);
+        const lat = pos.coords.latitude, lng = pos.coords.longitude;
+        let city = null;
+        try { city = await reverseGeocodeCity(lat, lng); } catch { /* ignore */ }
         setLocating(false);
-        if (city) pick(city);
+        pick(city || t('locationpicker.near_me', 'Vicino a te'), [lat, lng]);
       },
       () => setLocating(false),
       { enableHighAccuracy: false, timeout: 8000, maximumAge: 5 * 60 * 1000 },
@@ -78,13 +75,8 @@ export function LocationField({ T, value, onChange, variant = 'desktop', flex = 
         <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <Icon name="search" size={14} color={T.ink2} T={T} />
           {open ? (
-            <input
-              ref={inputRef}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={value || t('home.where_ph')}
-              style={fieldInputStyle}
-            />
+            <input ref={inputRef} value={query} onChange={(e) => setQuery(e.target.value)}
+              placeholder={value || t('home.where_ph')} style={fieldInputStyle} autoComplete="off" />
           ) : (
             <span style={{ flex: 1, minWidth: 0, fontFamily: T.fontBody, fontSize: 14, fontWeight: 500, color: value ? T.ink1 : T.ink3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {value || t('home.where_ph')}
@@ -102,31 +94,23 @@ export function LocationField({ T, value, onChange, variant = 'desktop', flex = 
           display: 'flex', flexDirection: 'column', maxHeight: 360,
         }}>
           <div style={{ overflow: 'auto', padding: 4 }}>
-            <button onClick={useCurrentPosition} disabled={locating} style={{ ...rowStyle, opacity: locating ? 0.6 : 1 }}>
+            <button type="button" onClick={useCurrentPosition} disabled={locating} style={{ ...rowStyle, opacity: locating ? 0.6 : 1 }}>
               <span style={{ width: 22, textAlign: 'center', fontSize: 17, flex: 'none' }}>📍</span>
               <Txt T={T} size={14} weight={600} style={{ flex: 1 }}>
                 {locating ? t('locationpicker.locating', 'Localizzazione…') : t('locationpicker.use_current')}
               </Txt>
             </button>
-            {filtered.map(d => (
-              <button key={d.id} onClick={() => pick(d.value)} style={rowStyle}>
-                <span style={{ width: 22, textAlign: 'center', fontSize: 17, flex: 'none' }}>{d.emoji}</span>
-                <span style={{ flex: 1, minWidth: 0 }}>
-                  <Txt T={T} size={14} weight={500} style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.label}</Txt>
-                  <Txt T={T} size={12} color={T.ink2}>{d.sub}</Txt>
-                </span>
+            {loading && !results.length && (
+              <Txt T={T} size={12} color={T.ink3} style={{ display: 'block', padding: 12 }}>Cerco…</Txt>
+            )}
+            {results.map((r, i) => (
+              <button key={i} type="button" onClick={() => pick(r.label, [r.lat, r.lon])} style={rowStyle}>
+                <Icon name="pin" size={14} color={T.ink2} T={T} />
+                <Txt T={T} size={13} color={T.ink1} style={{ flex: 1, lineHeight: 1.3 }}>{r.label}</Txt>
               </button>
             ))}
-            {q.length >= 2 && !filtered.some(d => d.value.toLowerCase() === q) && (
-              <button onClick={() => pick(query.trim())} style={rowStyle}>
-                <span style={{ width: 22, textAlign: 'center', flex: 'none' }}><Icon name="search" size={15} color={T.ink2} T={T} /></span>
-                <Txt T={T} size={14} weight={500} style={{ flex: 1 }}>{t('locationpicker.search_for', { q: query.trim() })}</Txt>
-              </button>
-            )}
-            {!filtered.length && q.length < 2 && (
-              <Txt T={T} size={12} color={T.ink3} style={{ display: 'block', padding: 12, textAlign: 'center' }}>
-                {t('locationpicker.search_ph')}
-              </Txt>
+            {!loading && query.trim().length >= 3 && !results.length && (
+              <Txt T={T} size={12} color={T.ink3} style={{ display: 'block', padding: 12 }}>Nessun risultato</Txt>
             )}
           </div>
         </div>

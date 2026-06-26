@@ -396,7 +396,7 @@ export function Home({ T, isDesktop }) {
     T, search, dateLabel, cars, categories, userCity, saved, toggleSaved,
     loading: carsQ.loading || catsQ.loading,
     onSearchLocation: () => navigate('/cerca/dove'),
-    onPickLocation: (loc) => updateSearch({ location: loc }),
+    onPickLocation: (loc, coords) => updateSearch({ location: loc, locationCoords: coords || null }),
     onSearchDate: () => navigate('/cerca/quando'),
     onListing: () => {
       analyticsEvents.searchStarted({
