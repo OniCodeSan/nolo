@@ -8,6 +8,7 @@ import { useToast } from '../../state/ToastContext.jsx';
 import { createCar, getCarOwner, updateCar, listCarsByHost } from '../../services/cars.js';
 import { geocodeAddress } from '../../lib/geoapify.js';
 import { AddressAutocomplete } from '../../components/AddressAutocomplete.jsx';
+import { MapPinPicker } from '../../components/MapPinPicker.jsx';
 import { PUNTI_RITIRO, CITTA_LIST } from '../../data/pickup-points.js';
 
 // Opzioni città per il selettore ritiro (slug → "Nome (PROV)").
@@ -224,7 +225,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
       if (!form.fuel) e.fuel = true;
       if (!form.transmission) e.transmission = true;
       if (!form.seats) e.seats = true;
-      if (!form.pickupZone?.trim()) e.pickup = true;
+      if (!form.pickupZone?.trim() || !form.pickupZoneCoords) e.pickup = true;
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -237,7 +238,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
     fuel: 'Carburante',
     transmission: 'Cambio',
     seats: 'Posti',
-    pickup: 'Città + punto o zona di ritiro',
+    pickup: 'Indirizzo di ritiro + pin sulla mappa',
   };
   const errorList = Object.keys(errors).map(k => fieldsLabel[k] || k);
 
@@ -312,7 +313,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
     );
   }
 
-  const canPublish = form.brand && form.model && form.pricePerDay && form.fuel && form.transmission && form.seats && form.pickupZone?.trim();
+  const canPublish = form.brand && form.model && form.pricePerDay && form.fuel && form.transmission && form.seats && form.pickupZone?.trim() && form.pickupZoneCoords;
 
   return (
     <div style={{ padding: isDesktop ? '24px 36px 60px' : '18px 18px 32px', maxWidth: 1200, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
@@ -496,21 +497,28 @@ export function HostVehicleForm({ T, mode = 'new' }) {
           <div style={{ background: T.surface, border: `1px solid ${T.line}`, borderRadius: 14, padding: 16, boxShadow: T.sh.soft }}>
             <Txt T={T} size={12} weight={600} color={T.ink2} style={{ textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 10 }}>Ritiro</Txt>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <Field T={T} label="Indirizzo di ritiro" required hint="Scrivi via e città (es. Via Toledo, Napoli) e scegli dal menu il punto esatto">
+              <Field T={T} label="Indirizzo di ritiro" required hint="Scrivi via e città e scegli dal menu; poi sistema il pin sulla mappa">
                 <AddressAutocomplete
                   T={T}
                   value={form.pickupZone}
                   inputStyle={inputStyle(T, errors.pickup && !form.pickupZone?.trim())}
-                  placeholder="Es. Via Toledo 1, Napoli"
-                  onText={(t) => set({ pickupZone: t, pickupZoneCoords: null, pickupZoneCity: '' })}
+                  placeholder="Es. Via Appia, Terracina"
+                  onText={(t) => set({ pickupZone: t, pickupZoneCity: '' })}
                   onSelect={(r) => set({ pickupZone: r.label, pickupZoneCoords: [r.lat, r.lon], pickupZoneCity: r.city || '' })}
                 />
-                {form.pickupZone && (
-                  <Txt T={T} size={11} color={form.pickupZoneCoords ? '#166534' : T.ink3} style={{ display: 'block', marginTop: 4 }}>
-                    {form.pickupZoneCoords ? '✓ posizione confermata sulla mappa' : 'scegli un indirizzo dal menu a tendina'}
-                  </Txt>
-                )}
               </Field>
+
+              <MapPinPicker
+                T={T}
+                coords={form.pickupZoneCoords}
+                onChange={(c) => set({ pickupZoneCoords: c })}
+                height={220}
+              />
+              <Txt T={T} size={11} weight={600} color={form.pickupZoneCoords ? '#166534' : T.coral} style={{ display: 'block' }}>
+                {form.pickupZoneCoords
+                  ? `✓ posizione confermata (${form.pickupZoneCoords[0].toFixed(5)}, ${form.pickupZoneCoords[1].toFixed(5)})`
+                  : 'Posiziona il pin sulla mappa: è obbligatorio per pubblicare'}
+              </Txt>
             </div>
           </div>
 
