@@ -528,7 +528,7 @@
     "q_book": "Comment réserver une voiture ?",
     "a_book": "Cherche par ville et dates, choisis une voiture et appuie sur \"Demander une réservation\". Le loueur confirme sous 24h. Tu ne paies rien avant la prise en charge.",
     "q_payment": "Quand a lieu le paiement ?",
-    "a_payment": "Le paiement et la caution de 200€ sont prélevés à la prise en charge de la voiture par le loueur. La caution est rendue à la restitution.",
+    "a_payment": "Le paiement et la caution sont prélevés à la prise en charge de la voiture par le loueur. Le montant de la caution est indiqué sur la fiche de chaque véhicule et il est rendu à la restitution.",
     "q_cancel": "Puis-je annuler ?",
     "a_cancel": "Oui. Tu peux annuler gratuitement jusqu'à 24h avant la prise en charge depuis la page \"Réservations\".",
     "sec_safety": "Sécurité",

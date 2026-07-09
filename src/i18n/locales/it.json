@@ -528,7 +528,7 @@
     "q_book": "Come prenoto un'auto?",
     "a_book": "Cerca per città e date, scegli un'auto e premi \"Richiedi prenotazione\". Il noleggiatore conferma entro 24h. Non paghi nulla prima del ritiro.",
     "q_payment": "Quando avviene il pagamento?",
-    "a_payment": "Il pagamento e la cauzione di 200€ vengono raccolti al ritiro dell'auto dal noleggiatore. La cauzione viene restituita alla riconsegna.",
+    "a_payment": "Il pagamento e la cauzione vengono raccolti al ritiro dell'auto dal noleggiatore. L'importo della cauzione è indicato sulla scheda di ogni veicolo e viene restituito alla riconsegna.",
     "q_cancel": "Posso annullare?",
     "a_cancel": "Sì. Puoi annullare gratuitamente fino a 24h prima del ritiro dalla pagina \"Prenotazioni\".",
     "sec_safety": "Sicurezza",

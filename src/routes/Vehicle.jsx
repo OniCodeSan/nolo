@@ -73,7 +73,7 @@ function VehicleDesktop({ T, car, host, reviews, search, saved, toggleSaved, toa
   const days = daysBetween(search.from, search.to);
   const hasDates = Boolean(search.from && search.to);
   const subtotal = car.pricePerDay * days;
-  const deposit = 200;
+  const deposit = car.deposit ?? 200;
   const total = subtotal + deposit;
 
   const breadcrumbBtnStyle = {

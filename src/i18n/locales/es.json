@@ -528,7 +528,7 @@
     "q_book": "¿Cómo reservo un coche?",
     "a_book": "Busca por ciudad y fechas, elige un coche y pulsa \"Solicitar reserva\". La empresa de alquiler confirma en 24h. No pagas nada antes de la recogida.",
     "q_payment": "¿Cuándo se realiza el pago?",
-    "a_payment": "El pago y la fianza de 200€ se cobran en la recogida del coche por la empresa de alquiler. La fianza se devuelve en la entrega.",
+    "a_payment": "El pago y la fianza se cobran en la recogida del coche por la empresa de alquiler. El importe de la fianza se indica en la ficha de cada vehículo y se devuelve en la entrega.",
     "q_cancel": "¿Puedo cancelar?",
     "a_cancel": "Sí. Puedes cancelar gratis hasta 24h antes de la recogida desde la página \"Reservas\".",
     "sec_safety": "Seguridad",

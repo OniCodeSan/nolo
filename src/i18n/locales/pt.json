@@ -528,7 +528,7 @@
     "q_book": "Como reservo um carro?",
     "a_book": "Pesquisa por cidade e datas, escolhe um carro e toca em \"Pedir reserva\". A empresa de aluguer confirma em 24h. Não pagas nada antes do levantamento.",
     "q_payment": "Quando é feito o pagamento?",
-    "a_payment": "O pagamento e a caução de 200€ são cobrados no levantamento do carro pela empresa de aluguer. A caução é devolvida na entrega.",
+    "a_payment": "O pagamento e a caução são cobrados no levantamento do carro pela empresa de aluguer. O valor da caução é indicado na ficha de cada veículo e é devolvido na entrega.",
     "q_cancel": "Posso cancelar?",
     "a_cancel": "Sim. Podes cancelar gratuitamente até 24h antes do levantamento na página \"Reservas\".",
     "sec_safety": "Segurança",

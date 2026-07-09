@@ -528,7 +528,7 @@
     "q_book": "Wie buche ich ein Auto?",
     "a_book": "Suche nach Stadt und Daten, wähle ein Auto und tippe auf \"Buchung anfragen\". Der Vermieter bestätigt innerhalb von 24 Std. Du zahlst nichts vor der Abholung.",
     "q_payment": "Wann erfolgt die Zahlung?",
-    "a_payment": "Zahlung und die Kaution von 200€ werden bei der Abholung des Autos vom Vermieter eingezogen. Die Kaution wird bei der Rückgabe erstattet.",
+    "a_payment": "Zahlung und Kaution werden bei der Abholung des Autos vom Vermieter eingezogen. Die Höhe der Kaution steht auf der Seite des jeweiligen Fahrzeugs und wird bei der Rückgabe erstattet.",
     "q_cancel": "Kann ich stornieren?",
     "a_cancel": "Ja. Du kannst bis 24 Std. vor der Abholung kostenlos über die Seite \"Buchungen\" stornieren.",
     "sec_safety": "Sicherheit",

@@ -94,7 +94,7 @@ export function Booking({ T, isDesktop }) {
   const hasDates = Boolean(search.from && search.to);
   const days = daysBetween(search.from, search.to);
   const subtotal = car.pricePerDay * days;
-  const deposit = 200;
+  const deposit = car.deposit ?? 200;
   const total = subtotal + deposit;
 
   const confirm = () => {

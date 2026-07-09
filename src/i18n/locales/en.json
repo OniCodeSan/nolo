@@ -528,7 +528,7 @@
     "q_book": "How do I book a car?",
     "a_book": "Search by city and dates, pick a car and tap \"Request booking\". The rental company confirms within 24h. You don't pay anything before pickup.",
     "q_payment": "When does payment happen?",
-    "a_payment": "Payment and the 200€ deposit are collected at car pickup by the rental company. The deposit is returned on return.",
+    "a_payment": "Payment and the deposit are collected at car pickup by the rental company. The deposit amount is shown on each vehicle page and is returned on drop-off.",
     "q_cancel": "Can I cancel?",
     "a_cancel": "Yes. You can cancel for free up to 24h before pickup from the \"Bookings\" page.",
     "sec_safety": "Safety",

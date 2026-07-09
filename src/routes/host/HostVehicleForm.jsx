@@ -136,6 +136,7 @@ const EMPTY_FORM = {
   seats: 5, doors: 5, engine: '', km: '', range: '',
   powerHp: '', drivetrain: '',
   pricePerDay: '', pricePerWeek: '', pricePerMonth: '',
+  deposit: 200,
   variant: 'hatch', tone: 'neutral',
   accessories: new Set(),
   description: '',
@@ -184,6 +185,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
           engine: car.engine || '', km: car.km || '', range: car.range || '',
           powerHp: car.powerHp || '', drivetrain: car.drivetrain || '',
           pricePerDay: car.pricePerDay || '', pricePerWeek: car.pricePerWeek || '', pricePerMonth: car.pricePerMonth || '',
+          deposit: car.deposit ?? 200,
           variant: car.variant || 'hatch', tone: car.tone || 'neutral',
           accessories: new Set(car.accessories || []),
           description: car.description || '',
@@ -280,6 +282,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
         pricePerDay: form.pricePerDay || null,
         pricePerWeek: form.pricePerWeek || null,
         pricePerMonth: form.pricePerMonth || null,
+        deposit: form.deposit === '' || form.deposit == null ? 200 : Number(form.deposit),
         variant: form.variant,
         tone: form.tone,
         accessories: [...form.accessories],
@@ -490,6 +493,13 @@ export function HostVehicleForm({ T, mode = 'new' }) {
               </Field>
               <Field T={T} label="Mensile (€)" hint="Per noleggi 30+ giorni">
                 <input type="number" min="0" value={form.pricePerMonth} onChange={(e) => set({ pricePerMonth: e.target.value })} style={inputStyle(T)} placeholder="690" />
+              </Field>
+              <div style={{ height: 1, background: T.line, margin: '4px 0' }} />
+              <Field T={T} label="Cauzione (€)" required hint="Raccolta al ritiro e rimborsata alla riconsegna. Si somma al totale mostrato al cliente.">
+                <input type="number" min="0" max="10000" step="50"
+                  value={form.deposit}
+                  onChange={(e) => set({ deposit: e.target.value })}
+                  style={inputStyle(T)} placeholder="200" />
               </Field>
             </div>
           </div>
