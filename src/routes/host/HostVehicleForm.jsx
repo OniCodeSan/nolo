@@ -282,7 +282,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
         pricePerDay: form.pricePerDay || null,
         pricePerWeek: form.pricePerWeek || null,
         pricePerMonth: form.pricePerMonth || null,
-        deposit: form.deposit === '' || form.deposit == null ? 200 : Number(form.deposit),
+        deposit: Number.isFinite(Number(form.deposit)) && Number(form.deposit) >= 0 ? Math.round(Number(form.deposit)) : 0,
         variant: form.variant,
         tone: form.tone,
         accessories: [...form.accessories],
@@ -495,11 +495,16 @@ export function HostVehicleForm({ T, mode = 'new' }) {
                 <input type="number" min="0" value={form.pricePerMonth} onChange={(e) => set({ pricePerMonth: e.target.value })} style={inputStyle(T)} placeholder="690" />
               </Field>
               <div style={{ height: 1, background: T.line, margin: '4px 0' }} />
-              <Field T={T} label="Cauzione (€)" required hint="Raccolta al ritiro e rimborsata alla riconsegna. Si somma al totale mostrato al cliente.">
+              <Field T={T} label="Cauzione (€)" hint="Raccolta al ritiro e rimborsata alla riconsegna. Metti 0 se non richiedi cauzione.">
                 <input type="number" min="0" max="10000" step="50"
                   value={form.deposit}
                   onChange={(e) => set({ deposit: e.target.value })}
-                  style={inputStyle(T)} placeholder="200" />
+                  style={inputStyle(T)} placeholder="0" />
+                <Txt T={T} size={11} color={Number(form.deposit) > 0 ? T.ink3 : '#166534'} style={{ display: 'block', marginTop: 4 }}>
+                  {Number(form.deposit) > 0
+                    ? `Il cliente vedrà ${Math.round(Number(form.deposit))}€ aggiunti al totale (poi rimborsati).`
+                    : '✓ Nessuna cauzione richiesta'}
+                </Txt>
               </Field>
             </div>
           </div>

@@ -479,6 +479,7 @@
     "or": "or",
     "choose": "choose",
     "deposit_refunded": "Deposit (refunded)",
+    "no_deposit": "No deposit",
     "request_booking": "Request booking",
     "contact": "Contact {{host}}",
     "no_charge_note": "You're not charged anything. The rental company confirms within 24h.",

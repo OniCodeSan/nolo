@@ -60,7 +60,11 @@ function carToRow(car, hostId) {
   if (car.pricePerDay !== undefined) row.price_per_day = car.pricePerDay ? Number(car.pricePerDay) : null;
   if (car.pricePerWeek !== undefined) row.price_per_week = car.pricePerWeek ? Number(car.pricePerWeek) : null;
   if (car.pricePerMonth !== undefined) row.price_per_month = car.pricePerMonth ? Number(car.pricePerMonth) : null;
-  if (car.deposit !== undefined) row.deposit = car.deposit === '' || car.deposit == null ? 200 : Number(car.deposit);
+  // Cauzione: 0 è un valore valido ("nessuna cauzione"). Campo vuoto/non valido → 0.
+  if (car.deposit !== undefined) {
+    const d = Number(car.deposit);
+    row.deposit = Number.isFinite(d) && d >= 0 ? Math.round(d) : 0;
+  }
   if (car.city !== undefined) row.city = car.city;
   if (car.coords !== undefined) row.coords = car.coords;
   if (car.distance !== undefined) row.distance = car.distance;

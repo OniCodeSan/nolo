@@ -322,7 +322,9 @@ function VehicleDesktop({ T, car, host, reviews, search, saved, toggleSaved, toa
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Txt T={T} size={13} color={T.ink2}>{t('vehicle.deposit_refunded')}</Txt>
-                    <Txt T={T} size={13}>{deposit}€</Txt>
+                    {deposit > 0
+                      ? <Txt T={T} size={13}>{deposit}€</Txt>
+                      : <Txt T={T} size={13} weight={600} color={T.ok}>{t('vehicle.no_deposit')}</Txt>}
                   </div>
                 </div>
                 <div style={{ height: 1, background: T.line, margin: '14px 0' }} />

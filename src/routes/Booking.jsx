@@ -204,7 +204,7 @@ export function Booking({ T, isDesktop }) {
                 <>
                   <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
                     <CostRow T={T} label={`${car.pricePerDay}€ × ${t('bookings.days', { count: days })}`} value={`${subtotal}€`} />
-                    <CostRow T={T} label={t('booking_detail.deposit')} value={`${deposit}€`} hint={t('booking_detail.deposit_hint')} />
+                    <CostRow T={T} label={t('booking_detail.deposit')} value={deposit > 0 ? `${deposit}€` : t('vehicle.no_deposit')} hint={deposit > 0 ? t('booking_detail.deposit_hint') : undefined} />
                     <CostRow T={T} label={t('booking_detail.platform_fee')} value={t('booking_detail.included')} />
                   </div>
                   <div style={{ height: 1, background: T.line, margin: '14px 0' }} />
@@ -291,7 +291,7 @@ export function Booking({ T, isDesktop }) {
           {hasDates ? (
             <>
               <CostRow T={T} label={`${car.pricePerDay}€ × ${t('bookings.days', { count: days })}`} value={`${subtotal}€`} />
-              <CostRow T={T} label={t('booking_detail.deposit')} value={`${deposit}€`} hint={t('booking_detail.deposit_hint')} />
+              <CostRow T={T} label={t('booking_detail.deposit')} value={deposit > 0 ? `${deposit}€` : t('vehicle.no_deposit')} hint={deposit > 0 ? t('booking_detail.deposit_hint') : undefined} />
               <CostRow T={T} label={t('booking_detail.platform_fee')} value={t('booking_detail.included')} />
               <div style={{ height: 1, background: T.line, margin: '4px 0' }} />
               <CostRow T={T} label={t('confirmation.total')} value={`${total}€`} bold />

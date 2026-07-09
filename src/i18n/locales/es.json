@@ -479,6 +479,7 @@
     "or": "o",
     "choose": "elegir",
     "deposit_refunded": "Fianza (reembolsada)",
+    "no_deposit": "Sin fianza",
     "request_booking": "Solicitar reserva",
     "contact": "Contactar {{host}}",
     "no_charge_note": "No se te cobra nada. La empresa de alquiler confirma en 24h.",

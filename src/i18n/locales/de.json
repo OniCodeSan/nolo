@@ -479,6 +479,7 @@
     "or": "oder",
     "choose": "wählen",
     "deposit_refunded": "Kaution (rückerstattet)",
+    "no_deposit": "Keine Kaution",
     "request_booking": "Buchung anfragen",
     "contact": "{{host}} kontaktieren",
     "no_charge_note": "Dir wird nichts berechnet. Der Vermieter bestätigt innerhalb von 24 Std.",

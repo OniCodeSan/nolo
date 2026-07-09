@@ -479,6 +479,7 @@
     "or": "ou",
     "choose": "choisir",
     "deposit_refunded": "Caution (remboursée)",
+    "no_deposit": "Aucune caution",
     "request_booking": "Demander une réservation",
     "contact": "Contacter {{host}}",
     "no_charge_note": "Rien ne t'est facturé. Le loueur confirme sous 24h.",
