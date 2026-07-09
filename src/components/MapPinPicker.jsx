@@ -60,9 +60,12 @@ export function MapPinPicker({ T, coords, onChange, height = 220 }) {
 
   return (
     <div>
+      {/* position+z-index creano uno stacking context: i controlli zoom di
+          Leaflet (z-index 1000) restano confinati sotto le tendine dei campi. */}
       <div ref={containerRef} style={{
         height, width: '100%', borderRadius: 10, overflow: 'hidden',
         border: `1px solid ${T.line}`, background: T.surfaceAlt,
+        position: 'relative', zIndex: 0, isolation: 'isolate',
       }} />
       <Txt T={T} size={11} color={T.ink3} style={{ display: 'block', marginTop: 5, lineHeight: 1.4 }}>
         Trascina il pin (o clicca sulla mappa) sul <strong>punto esatto</strong> dove consegni l'auto.

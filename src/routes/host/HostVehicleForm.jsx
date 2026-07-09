@@ -6,7 +6,7 @@ import { BrandModelPicker } from '../../components/BrandModelPicker.jsx';
 import { ImageUploader } from '../../components/ImageUploader.jsx';
 import { useToast } from '../../state/ToastContext.jsx';
 import { createCar, getCarOwner, updateCar, listCarsByHost } from '../../services/cars.js';
-import { geocodeAddress } from '../../lib/geoapify.js';
+import { geocodeAddress, reverseGeocode } from '../../lib/geoapify.js';
 import { AddressAutocomplete } from '../../components/AddressAutocomplete.jsx';
 import { MapPinPicker } from '../../components/MapPinPicker.jsx';
 import { PUNTI_RITIRO, CITTA_LIST } from '../../data/pickup-points.js';
@@ -511,7 +511,13 @@ export function HostVehicleForm({ T, mode = 'new' }) {
               <MapPinPicker
                 T={T}
                 coords={form.pickupZoneCoords}
-                onChange={(c) => set({ pickupZoneCoords: c })}
+                onChange={async (c) => {
+                  set({ pickupZoneCoords: c });
+                  // Città dal pin (reverse geocoding): resta corretta anche se
+                  // l'indirizzo scritto non esiste nel geocoder.
+                  const info = await reverseGeocode(c[0], c[1]);
+                  if (info?.city) set({ pickupZoneCity: info.city });
+                }}
                 height={220}
               />
               <Txt T={T} size={11} weight={600} color={form.pickupZoneCoords ? '#166534' : T.coral} style={{ display: 'block' }}>

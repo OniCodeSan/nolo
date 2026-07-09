@@ -90,7 +90,7 @@ export function LocationField({ T, value, onChange, variant = 'desktop', flex = 
           position: 'absolute', top: 'calc(100% + 6px)', left: 0,
           width: variant === 'mobile' ? '100%' : 380, maxWidth: '92vw',
           background: T.bg, border: `1px solid ${T.line}`, borderRadius: 12,
-          boxShadow: T.sh.deep, zIndex: 1000, overflow: 'hidden',
+          boxShadow: T.sh.deep, zIndex: 2000, overflow: 'hidden',
           display: 'flex', flexDirection: 'column', maxHeight: 360,
         }}>
           <div style={{ overflow: 'auto', padding: 4 }}>

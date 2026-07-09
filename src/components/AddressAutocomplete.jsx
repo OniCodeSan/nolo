@@ -57,7 +57,7 @@ export function AddressAutocomplete({ T, value, onText, onSelect, placeholder, i
       />
       {open && (loading || results.length > 0) && (
         <div role="listbox" style={{
-          position: 'absolute', top: 'calc(100% + 4px)', left: 0, right: 0, zIndex: 1000,
+          position: 'absolute', top: 'calc(100% + 4px)', left: 0, right: 0, zIndex: 2000,
           background: T.surface || T.bg, border: `1px solid ${T.line}`, borderRadius: 10,
           boxShadow: T.sh.deep, maxHeight: 280, overflow: 'auto',
         }}>
