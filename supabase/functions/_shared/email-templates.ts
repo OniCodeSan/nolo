@@ -16,6 +16,9 @@ export type TemplateKey =
   | 'host_subscription_suspended'
   | 'host_kyc_approved'
   | 'host_kyc_rejected'
+  | 'host_suspended'
+  | 'host_reactivated'
+  | 'host_no_subscription_suspended'
   | 'host_welcome'
   | 'host_lead_received';
 
@@ -369,6 +372,76 @@ Supporto: support@moviq.it`),
 
 Puoi pubblicare la tua flotta su MoviQ.
 Backoffice: {{backoffice_url}}`),
+  },
+
+  host_suspended: {
+    subject: () => 'Il tuo account MoviQ è stato sospeso',
+    html: wrap(`
+      <h1>Account sospeso</h1>
+      <p>Ciao {{host_name}},</p>
+      <p>ti informiamo che il tuo account noleggiatore su MoviQ è stato <strong>temporaneamente sospeso</strong>. Da questo momento i tuoi veicoli <strong>non sono più visibili</strong> sul marketplace e non possono ricevere nuove prenotazioni.</p>
+      <div class="meta">
+        <dl>
+          <dt>Motivo della sospensione</dt>
+          <dd>{{reason}}</dd>
+        </dl>
+      </div>
+      <p>Le prenotazioni eventualmente già in corso restano valide e vanno onorate normalmente.</p>
+      <p>Vuoi chiarire la situazione e riattivare l'account? Rispondi a questa email o scrivici: troviamo insieme una soluzione.</p>
+      <p><a class="btn btn-secondary" href="mailto:support@moviq.it">Contatta il supporto</a></p>
+    `, '', 'Il tuo account MoviQ è stato sospeso'),
+    text: wrapText(`Account sospeso
+
+Ciao {{host_name}},
+il tuo account noleggiatore su MoviQ è stato temporaneamente sospeso. I tuoi veicoli non sono più visibili sul marketplace e non possono ricevere nuove prenotazioni.
+
+Motivo: {{reason}}
+
+Le prenotazioni già in corso restano valide.
+Per chiarire e riattivare l'account scrivi a support@moviq.it`),
+  },
+
+  host_no_subscription_suspended: {
+    subject: () => 'Account sospeso — attiva l\'abbonamento entro 60 giorni',
+    html: wrap(`
+      <h1>Account sospeso</h1>
+      <p>Ciao {{host_name}},</p>
+      <p>il tuo account noleggiatore su MoviQ è stato <strong>sospeso</strong> perché non risulta attivo alcun abbonamento. Da adesso i tuoi veicoli <strong>non sono più visibili</strong> sul marketplace e non possono ricevere prenotazioni.</p>
+      <div class="meta">
+        <dl>
+          <dt>Attiva entro il</dt>
+          <dd>{{delete_date}}</dd>
+        </dl>
+      </div>
+      <p>Hai <strong>60 giorni</strong> per attivare l'abbonamento e riportare online la tua flotta. Trascorso questo termine <strong>l'account e tutti i dati collegati verranno eliminati definitivamente</strong> e dovrai registrarti da capo.</p>
+      <p><a class="btn btn-secondary" href="{{billing_url}}">Attiva l'abbonamento</a></p>
+      <p style="font-size:13px;color:#5B5246;">Serve aiuto o pensi sia un errore? Scrivici a support@moviq.it.</p>
+    `, '', 'Account sospeso — attiva l\'abbonamento entro 60 giorni'),
+    text: wrapText(`Account sospeso — attiva l'abbonamento entro 60 giorni
+
+Ciao {{host_name}},
+il tuo account noleggiatore su MoviQ è stato sospeso perché non hai attivato alcun abbonamento. I tuoi veicoli non sono più visibili sul marketplace.
+
+Hai tempo fino al {{delete_date}} (60 giorni) per attivare l'abbonamento. Trascorso questo termine l'account e tutti i dati verranno eliminati definitivamente.
+
+Attiva l'abbonamento: {{billing_url}}
+Aiuto: support@moviq.it`),
+  },
+
+  host_reactivated: {
+    subject: () => 'Il tuo account MoviQ è di nuovo attivo',
+    html: wrap(`
+      <h1>Account riattivato</h1>
+      <p>Ciao {{host_name}},</p>
+      <p>buone notizie: il tuo account noleggiatore è stato <strong>riattivato</strong>. I tuoi veicoli sono di nuovo visibili sul marketplace e possono ricevere prenotazioni.</p>
+      <p><a class="btn" href="https://moviq.it/noleggia">Vai al backoffice</a></p>
+    `, '', 'Il tuo account MoviQ è di nuovo attivo'),
+    text: wrapText(`Account riattivato
+
+Ciao {{host_name}},
+il tuo account noleggiatore è stato riattivato: i tuoi veicoli sono di nuovo visibili e prenotabili.
+
+Backoffice: https://moviq.it/noleggia`),
   },
 
   host_kyc_rejected: {

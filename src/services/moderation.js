@@ -83,6 +83,17 @@ export async function adminSetHostStatus(hostId, status, notes) {
   if (error) throw error;
 }
 
+// Invia una comunicazione email all'host (sospensione / riattivazione / 60gg).
+// Applica anche l'effetto collegato (status, countdown) lato server.
+export async function adminSendHostEmail(hostId, template, reason = null) {
+  if (!hasSupabase) throw new Error('Supabase non configurato');
+  const { data, error } = await supabase.rpc('admin_send_host_email', {
+    p_host_id: hostId, p_template: template, p_reason: reason ?? null,
+  });
+  if (error) throw error;
+  return data;
+}
+
 export async function adminSetHostFeatured(hostId, featured) {
   if (!hasSupabase) throw new Error('Supabase non configurato');
   const { error } = await supabase.rpc('admin_set_host_featured', {

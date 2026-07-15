@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { adminListHosts, adminSetHostStatus, adminSetHostFeatured } from '../../services/moderation.js';
+import { adminListHosts, adminSetHostStatus, adminSetHostFeatured, adminSendHostEmail } from '../../services/moderation.js';
 import { assignHostOwner } from '../../services/admin.js';
 import { useToast } from '../../state/ToastContext.jsx';
 import { Button, H, Txt, Badge, TabPills } from '../../components/ui.jsx';
@@ -44,6 +44,27 @@ export function AdminHosts() {
     } catch (e) {
       toast.error(e.message);
     } finally { setBusy(null); }
+  };
+
+  // Comunicazioni email all'host (con effetto collegato lato server).
+  const COMMS = {
+    host_suspended: { l: 'Sospensione (avviso)', reason: true, warn: null },
+    host_no_subscription_suspended: { l: 'Sospensione 60gg — no abbonamento', reason: true, warn: 'Parte il countdown di 60 giorni: dopo la scadenza l\'account può essere cancellato.' },
+    host_reactivated: { l: 'Riattivazione account', reason: false, warn: null },
+  };
+  const sendComm = async (h, template) => {
+    if (!template || !COMMS[template]) return;
+    const cfg = COMMS[template];
+    const to = h.business_email || 'email dell\'account';
+    if (!window.confirm(`Inviare "${cfg.l}" a ${to}?${cfg.warn ? '\n\n⚠️ ' + cfg.warn : ''}`)) return;
+    const reason = cfg.reason ? (window.prompt('Motivo (mostrato nell\'email):') || null) : null;
+    setBusy(h.id);
+    try {
+      await adminSendHostEmail(h.id, template, reason);
+      toast.success('Comunicazione inviata');
+      await load();
+    } catch (e) { toast.error(e.message); }
+    finally { setBusy(null); }
   };
 
   const toggleFeatured = async (h) => {
@@ -103,6 +124,11 @@ export function AdminHosts() {
                     {h.moderation_notes}
                   </Txt>
                 )}
+                {h.deletion_deadline && (
+                  <Txt T={T} size={11} weight={700} color={T.coral} style={{ display: 'block', marginTop: 4 }}>
+                    ⏳ Cancellazione prevista il {new Date(h.deletion_deadline).toLocaleDateString('it-IT')}
+                  </Txt>
+                )}
               </div>
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                 {h.status !== 'verified' && (
@@ -125,6 +151,21 @@ export function AdminHosts() {
                 <Button T={T} variant="outline" size="sm" disabled={busy === h.id} onClick={() => assignOwner(h)}>
                   {h.owner_user_id ? 'Cambia proprietario' : 'Assegna proprietario'}
                 </Button>
+                <select
+                  disabled={busy === h.id}
+                  value=""
+                  onChange={(e) => sendComm(h, e.target.value)}
+                  aria-label="Invia comunicazione all'host"
+                  style={{
+                    padding: '7px 10px', fontSize: 12, fontFamily: T.fontBody,
+                    borderRadius: 8, border: `1px solid ${T.line}`, background: T.surface, color: T.ink1, cursor: 'pointer',
+                  }}
+                >
+                  <option value="">✉️ Invia comunicazione…</option>
+                  <option value="host_suspended">Sospensione (avviso)</option>
+                  <option value="host_no_subscription_suspended">Sospensione 60gg — no abbonamento</option>
+                  <option value="host_reactivated">Riattivazione account</option>
+                </select>
               </div>
             </div>
           ))}
