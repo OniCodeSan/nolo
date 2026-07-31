@@ -103,7 +103,8 @@ export function HostPoliciesBlock({ T, host, title, collapseTerms = true }) {
   if (!host) return null;
   const blockTitle = title || t('policies.default_title');
   const hasPayments = host.paymentCards?.length || host.paymentDebit || host.paymentCash || host.paymentBankTransfer;
-  const hasTerms = !!host.terms;
+  // Guard placeholder/junk: mostra i termini solo se sono un testo sensato (>= 10 char).
+  const hasTerms = (host.terms || '').trim().length >= 10;
   if (!hasPayments && !hasTerms) return null;
 
   return (

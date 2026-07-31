@@ -228,6 +228,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
       if (!form.transmission) e.transmission = true;
       if (!form.seats) e.seats = true;
       if (!form.pickupZone?.trim() || !form.pickupZoneCoords) e.pickup = true;
+      if (!form.images?.length) e.photos = true;
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -241,6 +242,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
     transmission: 'Cambio',
     seats: 'Posti',
     pickup: 'Indirizzo di ritiro + pin sulla mappa',
+    photos: 'Almeno una foto del veicolo',
   };
   const errorList = Object.keys(errors).map(k => fieldsLabel[k] || k);
 
@@ -316,7 +318,7 @@ export function HostVehicleForm({ T, mode = 'new' }) {
     );
   }
 
-  const canPublish = form.brand && form.model && form.pricePerDay && form.fuel && form.transmission && form.seats && form.pickupZone?.trim() && form.pickupZoneCoords;
+  const canPublish = form.brand && form.model && form.pricePerDay && form.fuel && form.transmission && form.seats && form.pickupZone?.trim() && form.pickupZoneCoords && form.images?.length;
 
   return (
     <div style={{ padding: isDesktop ? '24px 36px 60px' : '18px 18px 32px', maxWidth: 1200, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>

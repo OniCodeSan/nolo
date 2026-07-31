@@ -87,7 +87,7 @@ function VehicleDesktop({ T, car, host, reviews, search, saved, toggleSaved, toa
         <nav aria-label="Breadcrumb" style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
           <button onClick={onBack} style={breadcrumbBtnStyle}>{t('nav.explore')}</button>
           <span style={{ color: T.ink3 }}>›</span>
-          <button onClick={onListing} style={breadcrumbBtnStyle}>{host.city}</button>
+          <button onClick={onListing} style={breadcrumbBtnStyle}>{car.city || host.city}</button>
           <span style={{ color: T.ink3 }}>›</span>
           <span style={{ fontFamily: T.fontBody, fontSize: 12, color: T.ink1, fontWeight: 500, whiteSpace: 'nowrap' }}>{car.brand} {car.model} · {car.year}</span>
         </nav>
@@ -166,7 +166,7 @@ function VehicleDesktop({ T, car, host, reviews, search, saved, toggleSaved, toa
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 8, flexWrap: 'wrap' }}>
                 <Rating T={T} value={host.rating} count={host.reviews} size={13} />
                 <Txt T={T} size={13} color={T.ink2} style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                  <Icon name="pin" size={13} color={T.ink2} T={T} /> {host.city}
+                  <Icon name="pin" size={13} color={T.ink2} T={T} /> {car.city || host.city}
                 </Txt>
                 <Badge T={T} tone="success" icon="check">{t('home.available_now')}</Badge>
               </div>
@@ -184,7 +184,7 @@ function VehicleDesktop({ T, car, host, reviews, search, saved, toggleSaved, toa
               { i: 'fuel', l: car.engine, s: car.fuel },
               { i: 'transmission', l: car.transmission, s: car.transmission === 'Manuale' ? `6 ${t('vehicle.gears')}` : t('vehicle.auto_gearbox') },
               { i: 'seat', l: `${car.seats} ${t('vehicle.seats')}`, s: `${car.doors} ${t('vehicle.doors')}` },
-              { i: 'gauge', l: `${car.km} km`, s: car.range ? `${car.range} ${t('vehicle.range_suffix')}` : t('vehicle.recent_service') },
+              { i: 'gauge', l: car.km ? `${car.km} km` : 'n/d', s: car.range ? `${car.range} ${t('vehicle.range_suffix')}` : t('vehicle.recent_service') },
             ].map((s, i) => (
               <div key={i} style={{
                 padding: 16, background: T.surface, border: `1px solid ${T.line}`,
@@ -424,7 +424,7 @@ function VehicleMobile({ T, car, host, reviews, search, saved, toggleSaved, toas
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 8, flexWrap: 'wrap' }}>
             <Rating T={T} value={host.rating} count={host.reviews} size={12} />
             <Txt T={T} size={11} color={T.ink2}>·</Txt>
-            <Txt T={T} size={12} color={T.ink2}><Icon name="pin" size={12} color={T.ink2} T={T} /> {host.city}</Txt>
+            <Txt T={T} size={12} color={T.ink2}><Icon name="pin" size={12} color={T.ink2} T={T} /> {car.city || host.city}</Txt>
           </div>
           <div style={{ marginTop: 10 }}>
             <Badge T={T} tone="success" icon="check">{t('home.available_now')}</Badge>
@@ -436,7 +436,7 @@ function VehicleMobile({ T, car, host, reviews, search, saved, toggleSaved, toas
             { i: 'fuel', l: car.fuel },
             { i: 'transmission', l: car.transmission },
             { i: 'seat', l: `${car.seats} ${t('vehicle.seats')}` },
-            { i: 'gauge', l: car.km.split('.')[0] + 'k km' },
+            { i: 'gauge', l: car.km ? car.km.split('.')[0] + 'k km' : 'n/d' },
           ].map((s, i) => (
             <div key={i} style={{
               padding: '12px 6px', background: T.surface, border: `1px solid ${T.line}`,
