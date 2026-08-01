@@ -60,6 +60,35 @@ function initialSearch(params) {
   return { location: null, from: null, to: null, category: null, timeFrom: '10:00', timeTo: '18:00' };
 }
 
+export const DEFAULT_FILTERS = { priceMax: 100, fuels: new Set(), transmission: 'all', brandId: null, seats: null, depositMax: null, availableNow: false, sort: 'relevance' };
+
+// Filtri ⇄ querystring. Param: prezzomax, alim(csv), cambio, marca, posti, cauzmax, dispo, sort.
+function parseFilters(params) {
+  const f = { ...DEFAULT_FILTERS, fuels: new Set() };
+  const pm = parseInt(params.get('prezzomax'), 10); if (Number.isFinite(pm)) f.priceMax = pm;
+  const alim = params.get('alim'); if (alim) f.fuels = new Set(alim.split(',').filter(Boolean));
+  const cambio = params.get('cambio'); if (cambio === 'Manuale' || cambio === 'Automatico') f.transmission = cambio;
+  const marca = params.get('marca'); if (marca) f.brandId = marca;
+  const posti = parseInt(params.get('posti'), 10); if (Number.isFinite(posti)) f.seats = posti;
+  const cz = parseInt(params.get('cauzmax'), 10); if (Number.isFinite(cz)) f.depositMax = cz;
+  if (params.get('dispo') === '1') f.availableNow = true;
+  const sort = params.get('sort'); if (sort) f.sort = sort;
+  return f;
+}
+function writeFilters(params, f) {
+  const p = new URLSearchParams(params);
+  const set = (k, v) => { if (v === null || v === undefined || v === '') p.delete(k); else p.set(k, String(v)); };
+  set('prezzomax', f.priceMax < 100 ? f.priceMax : null);
+  set('alim', f.fuels && f.fuels.size ? [...f.fuels].join(',') : null);
+  set('cambio', f.transmission && f.transmission !== 'all' ? f.transmission : null);
+  set('marca', f.brandId || null);
+  set('posti', f.seats || null);
+  set('cauzmax', f.depositMax != null ? f.depositMax : null);
+  set('dispo', f.availableNow ? '1' : null);
+  set('sort', f.sort && f.sort !== 'relevance' ? f.sort : null);
+  return p;
+}
+
 export function SearchProvider({ children }) {
   const [params, setParams] = useSearchParams();
 
@@ -97,11 +126,10 @@ export function SearchProvider({ children }) {
     setParams(next, { replace: true });
   };
 
-  const [filters, setFiltersState] = useState(() => readJSON(FILTERS_KEY, { priceMax: 100, fuels: new Set(), transmission: 'all', brandId: null }));
-  const setFilters = (next) => {
-    setFiltersState(next);
-    writeJSON(FILTERS_KEY, next);
-  };
+  // Filtri e ordinamento vivono nell'URL (deep-link condivisibili + back/forward
+  // del browser funzionano gratis). Vedi parseFilters/writeFilters in fondo.
+  const filters = useMemo(() => parseFilters(params), [params]);
+  const setFilters = (next) => { setParams(writeFilters(params, next)); };
 
   const { user } = useAuth();
   const [saved, setSavedState] = useState(() => readSet(SAVED_KEY));

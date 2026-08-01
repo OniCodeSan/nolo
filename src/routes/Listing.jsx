@@ -227,7 +227,11 @@ function FilterChips({ T, filters, setFilters, fuelOptions, onOpenSheet }) {
   const activeCount =
     (filters.priceMax < 100 ? 1 : 0) +
     (filters.fuels.size > 0 ? 1 : 0) +
-    (filters.transmission !== 'all' ? 1 : 0);
+    (filters.transmission !== 'all' ? 1 : 0) +
+    (filters.brandId ? 1 : 0) +
+    (filters.seats ? 1 : 0) +
+    (filters.depositMax != null ? 1 : 0) +
+    (filters.availableNow ? 1 : 0);
   return (
     <div style={{ display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 2, alignItems: 'center' }}>
       <button onClick={onOpenSheet} style={{
@@ -265,7 +269,74 @@ function FilterChips({ T, filters, setFilters, fuelOptions, onOpenSheet }) {
           </button>
         );
       })}
+      {filters.transmission !== 'all' && (
+        <button onClick={onOpenSheet} style={{ border: 'none', background: 'transparent', padding: 0, cursor: 'pointer', flex: 'none' }}>
+          <Chip T={T} size="sm" active icon="check"
+            onClose={() => setFilters({ ...filters, transmission: 'all' })}>
+            {filters.transmission}
+          </Chip>
+        </button>
+      )}
+      {filters.seats && (
+        <button onClick={onOpenSheet} style={{ border: 'none', background: 'transparent', padding: 0, cursor: 'pointer', flex: 'none' }}>
+          <Chip T={T} size="sm" active icon="check"
+            onClose={() => setFilters({ ...filters, seats: null })}>
+            {filters.seats === 7 ? '7+' : filters.seats} {t('filters.seats_short', 'posti')}
+          </Chip>
+        </button>
+      )}
+      {filters.depositMax != null && (
+        <button onClick={onOpenSheet} style={{ border: 'none', background: 'transparent', padding: 0, cursor: 'pointer', flex: 'none' }}>
+          <Chip T={T} size="sm" active icon="check"
+            onClose={() => setFilters({ ...filters, depositMax: null })}>
+            {t('filters.deposit_chip', { amount: filters.depositMax, defaultValue: `Cauzione ≤ {{amount}} €` })}
+          </Chip>
+        </button>
+      )}
+      {filters.availableNow && (
+        <button onClick={onOpenSheet} style={{ border: 'none', background: 'transparent', padding: 0, cursor: 'pointer', flex: 'none' }}>
+          <Chip T={T} size="sm" active icon="check"
+            onClose={() => setFilters({ ...filters, availableNow: false })}>
+            {t('filters.available_now', 'Disponibilità immediata')}
+          </Chip>
+        </button>
+      )}
     </div>
+  );
+}
+
+const SORT_OPTIONS = [
+  { id: 'relevance', key: 'sort.relevance', label: 'Consigliati' },
+  { id: 'distance', key: 'sort.distance', label: 'Distanza' },
+  { id: 'price_asc', key: 'sort.price_asc', label: 'Prezzo crescente' },
+  { id: 'price_desc', key: 'sort.price_desc', label: 'Prezzo decrescente' },
+  { id: 'recent', key: 'sort.recent', label: 'Più recenti' },
+];
+
+function SortSelect({ T, filters, setFilters, hasLocation }) {
+  const { t } = useTranslation();
+  // Il default effettivo è "distanza" quando c'è una località, altrimenti "consigliati".
+  const value = filters.sort && filters.sort !== 'relevance' ? filters.sort : (hasLocation ? 'distance' : 'relevance');
+  const options = SORT_OPTIONS.filter(o => o.id !== 'distance' || hasLocation);
+  return (
+    <label style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flex: 'none' }}>
+      <span style={{ fontFamily: T.fontBody, fontSize: 12, color: T.ink2, whiteSpace: 'nowrap' }}>
+        {t('sort.label', 'Ordina per')}
+      </span>
+      <select
+        value={value}
+        onChange={(e) => setFilters({ ...filters, sort: e.target.value })}
+        style={{
+          fontFamily: T.fontBody, fontSize: 12, fontWeight: 600, color: T.ink1,
+          background: T.surface, border: `1px solid ${T.line}`, borderRadius: T.r.pill,
+          padding: '6px 10px', cursor: 'pointer',
+        }}
+      >
+        {options.map(o => (
+          <option key={o.id} value={o.id}>{t(o.key, o.label)}</option>
+        ))}
+      </select>
+    </label>
   );
 }
 
@@ -382,7 +453,7 @@ function MapMiniCard({ T, car, host, saved, toggleSaved, onClick, onClose, pinPo
   );
 }
 
-function ListingDesktop({ T, cars, hosts, allCount, search, dateLabel, filters, setFilters, saved, toggleSaved, view, setView, userLoc, onSearchLocation, onPickLocation, onSearchDate, onCar, onOpenSheet, onClearCategory, onClearLocation, onClearFilters, loading }) {
+function ListingDesktop({ T, cars, hosts, allCount, search, dateLabel, filters, setFilters, saved, toggleSaved, view, setView, userLoc, onSearchLocation, onPickLocation, onSearchDate, onCar, onOpenSheet, onClearCategory, onClearLocation, onClearFilters, loading, hasLocation }) {
   const { t } = useTranslation();
   const [pinned, setPinned] = useState(null);
   const [cardOpen, setCardOpen] = useState(false);
@@ -446,8 +517,11 @@ function ListingDesktop({ T, cars, hosts, allCount, search, dateLabel, filters, 
           </button>
         </div>
       </div>
-      <div style={{ padding: '12px 40px', borderBottom: `1px solid ${T.line}` }}>
-        <FilterChips T={T} filters={filters} setFilters={setFilters} fuelOptions={['Benzina','Hybrid','Elettrica','Diesel']} onOpenSheet={onOpenSheet} />
+      <div style={{ padding: '12px 40px', borderBottom: `1px solid ${T.line}`, display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <FilterChips T={T} filters={filters} setFilters={setFilters} fuelOptions={['Benzina','Hybrid','Elettrica','Diesel']} onOpenSheet={onOpenSheet} />
+        </div>
+        <SortSelect T={T} filters={filters} setFilters={setFilters} hasLocation={hasLocation} />
       </div>
 
       {view === 'split' ? (
@@ -461,7 +535,7 @@ function ListingDesktop({ T, cars, hosts, allCount, search, dateLabel, filters, 
               <EmptyResults T={T}
                 hasCategory={!!search.category}
                 hasLocation={!!search.location} locationLabel={search.location}
-                hasFilters={filters.priceMax < 100 || filters.fuels.size > 0 || filters.transmission !== 'all' || !!filters.brandId}
+                hasFilters={filters.priceMax < 100 || filters.fuels.size > 0 || filters.transmission !== 'all' || !!filters.brandId || !!filters.seats || filters.depositMax != null || filters.availableNow}
                 onClearCategory={onClearCategory}
                 onClearLocation={onClearLocation}
                 onClearFilters={onClearFilters}
@@ -589,7 +663,7 @@ function ListingInitialMobile({ T, cars, nearest, hosts, saved, toggleSaved, onS
   );
 }
 
-function ListingMobile({ T, cars, hosts, search, dateLabel, filters, setFilters, saved, toggleSaved, onCar, onSearchLocation, onHome, userLoc, onOpenSheet, onClearCategory, onClearLocation, onClearFilters, loading }) {
+function ListingMobile({ T, cars, hosts, search, dateLabel, filters, setFilters, saved, toggleSaved, onCar, onSearchLocation, onHome, userLoc, onOpenSheet, onClearCategory, onClearLocation, onClearFilters, loading, hasLocation }) {
   const { t } = useTranslation();
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, background: T.bg }}>
@@ -617,7 +691,10 @@ function ListingMobile({ T, cars, hosts, search, dateLabel, filters, setFilters,
         <div style={{ marginTop: 10 }}>
           <FilterChips T={T} filters={filters} setFilters={setFilters} fuelOptions={['Benzina','Hybrid','Elettrica','Diesel']} onOpenSheet={onOpenSheet} />
         </div>
-        <Txt T={T} size={12} weight={600} style={{ display: 'block', marginTop: 10 }}>{t('listing.results_count', { count: cars.length })}</Txt>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginTop: 10 }}>
+          <Txt T={T} size={12} weight={600}>{t('listing.results_count', { count: cars.length })}</Txt>
+          <SortSelect T={T} filters={filters} setFilters={setFilters} hasLocation={hasLocation} />
+        </div>
       </div>
 
       {loading ? (
@@ -629,7 +706,7 @@ function ListingMobile({ T, cars, hosts, search, dateLabel, filters, setFilters,
           <EmptyResults T={T}
             hasCategory={!!search.category}
             hasLocation={!!search.location} locationLabel={search.location}
-            hasFilters={filters.priceMax < 100 || filters.fuels.size > 0 || filters.transmission !== 'all' || !!filters.brandId}
+            hasFilters={filters.priceMax < 100 || filters.fuels.size > 0 || filters.transmission !== 'all' || !!filters.brandId || !!filters.seats || filters.depositMax != null || filters.availableNow}
             onClearCategory={onClearCategory}
             onClearLocation={onClearLocation}
             onClearFilters={onClearFilters}
@@ -681,14 +758,16 @@ export function Listing({ T, isDesktop }) {
   const cars = useMemo(() => {
     let list = allCars;
     if (search.category) list = list.filter(c => c.category === search.category);
+    let hasProximity = false;
     if (search.location) {
       if (searchCoords) {
         // Prossimità: auto entro raggio dal punto cercato, ordinate per distanza.
+        hasProximity = true;
         list = list
           .map(c => ({ c, km: isValidItalyCoord(c.coords) ? distanceKm(searchCoords, c.coords) : Infinity }))
           .filter(x => x.km <= SEARCH_RADIUS_KM)
           .sort((a, b) => a.km - b.km)
-          .map(x => ({ ...x.c, distance: x.km < 1 ? '<1 km' : `${Math.round(x.km)} km` }));
+          .map(x => ({ ...x.c, _km: x.km, distance: x.km < 1 ? '<1 km' : `${Math.round(x.km)} km` }));
       } else {
         // Fallback testuale finché non abbiamo le coordinate.
         const primary = search.location.toLowerCase().split(/[,·\-]/)[0].trim();
@@ -699,8 +778,21 @@ export function Listing({ T, isDesktop }) {
     if (filters.priceMax < 100) list = list.filter(c => c.pricePerDay <= filters.priceMax);
     if (filters.fuels.size) list = list.filter(c => filters.fuels.has(c.fuel));
     if (filters.transmission && filters.transmission !== 'all') {
-      list = list.filter(c => c.transmission.startsWith(filters.transmission));
+      list = list.filter(c => (c.transmission || '').startsWith(filters.transmission));
     }
+    if (filters.seats) list = list.filter(c => filters.seats === 7 ? c.seats >= 7 : c.seats === filters.seats);
+    if (filters.depositMax != null) list = list.filter(c => (c.deposit ?? 0) <= filters.depositMax);
+    if (filters.availableNow) list = list.filter(c => c.hot);
+
+    // Ordinamento. Default = distanza quando c'è una località geolocalizzata, altrimenti
+    // ordine naturale (rilevanza). La prossimità è già ordinata per distanza.
+    const sort = filters.sort && filters.sort !== 'relevance'
+      ? filters.sort
+      : (hasProximity ? 'distance' : 'relevance');
+    if (sort === 'price_asc') list = [...list].sort((a, b) => (a.pricePerDay || 0) - (b.pricePerDay || 0));
+    else if (sort === 'price_desc') list = [...list].sort((a, b) => (b.pricePerDay || 0) - (a.pricePerDay || 0));
+    else if (sort === 'recent') list = [...list].sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
+    else if (sort === 'distance' && hasProximity) list = [...list].sort((a, b) => (a._km ?? Infinity) - (b._km ?? Infinity));
     return list;
   }, [allCars, search.category, search.location, searchCoords, filters]);
 
@@ -748,7 +840,8 @@ export function Listing({ T, isDesktop }) {
     onOpenSheet: () => setSheetOpen(true),
     onClearCategory: () => updateSearch({ category: null }),
     onClearLocation: () => updateSearch({ location: null }),
-    onClearFilters: () => setFilters({ priceMax: 100, fuels: new Set(), transmission: 'all', brandId: null }),
+    onClearFilters: () => setFilters({ priceMax: 100, fuels: new Set(), transmission: 'all', brandId: null, seats: null, depositMax: null, availableNow: false, sort: filters.sort || 'relevance' }),
+    hasLocation: !!search.location,
   };
 
   return (

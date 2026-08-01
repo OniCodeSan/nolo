@@ -605,7 +605,14 @@
     "reset": "Azzera",
     "active_count": "{{count}} attivi",
     "see_cars": "Vedi {{count}} auto",
-    "apply": "Applica"
+    "apply": "Applica",
+    "seats_section": "Posti",
+    "seats_short": "posti",
+    "deposit_max": "Cauzione massima",
+    "deposit_le": "≤ {{amount}} €",
+    "deposit_chip": "Cauzione ≤ {{amount}} €",
+    "available_now": "Disponibilità immediata",
+    "available_now_hint": "Solo veicoli con badge \"Disp. ora\""
   },
   "policies": {
     "cards": "Carte credito",
@@ -653,5 +660,13 @@
   "map": {
     "you_are_here": "Sei qui",
     "cars_map": "Mappa auto"
+  },
+  "sort": {
+    "label": "Ordina per",
+    "relevance": "Consigliati",
+    "distance": "Distanza",
+    "price_asc": "Prezzo crescente",
+    "price_desc": "Prezzo decrescente",
+    "recent": "Più recenti"
   }
 }

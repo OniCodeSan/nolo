@@ -605,7 +605,14 @@
     "reset": "Borrar",
     "active_count": "{{count}} activos",
     "see_cars": "Ver {{count}} coches",
-    "apply": "Aplicar"
+    "apply": "Aplicar",
+    "seats_section": "Plazas",
+    "seats_short": "plazas",
+    "deposit_max": "Fianza máxima",
+    "deposit_le": "≤ {{amount}} €",
+    "deposit_chip": "Fianza ≤ {{amount}} €",
+    "available_now": "Disponible ahora",
+    "available_now_hint": "Solo vehículos con la etiqueta \"Disp. ahora\""
   },
   "policies": {
     "cards": "Tarjetas de crédito",
@@ -653,5 +660,13 @@
   "map": {
     "you_are_here": "Estás aquí",
     "cars_map": "Mapa de coches"
+  },
+  "sort": {
+    "label": "Ordenar por",
+    "relevance": "Recomendados",
+    "distance": "Distancia",
+    "price_asc": "Precio: menor a mayor",
+    "price_desc": "Precio: mayor a menor",
+    "recent": "Más recientes"
   }
 }

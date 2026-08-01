@@ -605,7 +605,14 @@
     "reset": "Zurücksetzen",
     "active_count": "{{count}} aktiv",
     "see_cars": "{{count}} Autos ansehen",
-    "apply": "Anwenden"
+    "apply": "Anwenden",
+    "seats_section": "Sitzplätze",
+    "seats_short": "Sitze",
+    "deposit_max": "Max. Kaution",
+    "deposit_le": "≤ {{amount}} €",
+    "deposit_chip": "Kaution ≤ {{amount}} €",
+    "available_now": "Sofort verfügbar",
+    "available_now_hint": "Nur Fahrzeuge mit dem Badge „Sofort verfügbar“"
   },
   "policies": {
     "cards": "Kreditkarten",
@@ -653,5 +660,13 @@
   "map": {
     "you_are_here": "Du bist hier",
     "cars_map": "Autokarte"
+  },
+  "sort": {
+    "label": "Sortieren nach",
+    "relevance": "Empfohlen",
+    "distance": "Entfernung",
+    "price_asc": "Preis aufsteigend",
+    "price_desc": "Preis absteigend",
+    "recent": "Neueste"
   }
 }

@@ -605,7 +605,14 @@
     "reset": "Effacer",
     "active_count": "{{count}} actifs",
     "see_cars": "Voir {{count}} voitures",
-    "apply": "Appliquer"
+    "apply": "Appliquer",
+    "seats_section": "Places",
+    "seats_short": "places",
+    "deposit_max": "Caution maximale",
+    "deposit_le": "≤ {{amount}} €",
+    "deposit_chip": "Caution ≤ {{amount}} €",
+    "available_now": "Disponible maintenant",
+    "available_now_hint": "Uniquement les véhicules avec le badge « Dispo. maintenant »"
   },
   "policies": {
     "cards": "Cartes de crédit",
@@ -653,5 +660,13 @@
   "map": {
     "you_are_here": "Tu es ici",
     "cars_map": "Carte des voitures"
+  },
+  "sort": {
+    "label": "Trier par",
+    "relevance": "Recommandés",
+    "distance": "Distance",
+    "price_asc": "Prix croissant",
+    "price_desc": "Prix décroissant",
+    "recent": "Plus récents"
   }
 }

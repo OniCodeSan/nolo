@@ -40,6 +40,7 @@ function rowToCar(row) {
     internalNotes: row.internal_notes ?? null,
     brandId: row.brand_id ?? null,
     modelId: row.model_id ?? null,
+    createdAt: row.created_at ?? null,
   };
 }
 
