@@ -151,6 +151,7 @@ export function mapHost(h) {
     description: h.description ?? null,
     businessEmail: h.business_email ?? null,
     businessPhone: h.business_phone ?? null,
+    whatsapp: h.whatsapp ?? null,
     vatNumber: h.vat_number ?? null,
     // KYC / dati legali — HostKYC li legge in snake_case. Su hosts_public queste
     // colonne non esistono (→ null): nessun leak, solo passthrough per il backoffice.
@@ -205,6 +206,7 @@ export async function updateHost(hostId, patch) {
   if ('description' in patch) dbPatch.description = patch.description;
   if ('businessEmail' in patch) dbPatch.business_email = patch.businessEmail;
   if ('businessPhone' in patch) dbPatch.business_phone = patch.businessPhone;
+  if ('whatsapp' in patch) dbPatch.whatsapp = patch.whatsapp;
   if ('vatNumber' in patch) dbPatch.vat_number = patch.vatNumber;
   if ('terms' in patch) dbPatch.terms = patch.terms;
   if ('paymentCards' in patch) dbPatch.payment_cards = patch.paymentCards;

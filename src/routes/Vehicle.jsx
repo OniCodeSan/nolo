@@ -20,8 +20,10 @@ import { toE164, toWaNumber } from '../utils/phone.js';
 // Costruisce i link di contatto diretto (WhatsApp + telefono) dal numero host.
 // Ritorna null se il numero non è valido/assente → i pulsanti diretti si nascondono.
 function buildContact(car, host, search) {
-  const wa = toWaNumber(host?.businessPhone);
-  const tel = toE164(host?.businessPhone);
+  // WhatsApp usa il campo dedicato del noleggiatore; il telefono usa business_phone.
+  // Fallback incrociato: se uno dei due manca si usa l'altro.
+  const wa = toWaNumber(host?.whatsapp) || toWaNumber(host?.businessPhone);
+  const tel = toE164(host?.businessPhone) || toE164(host?.whatsapp);
   if (!wa || !tel) return null;
   const fmt = (d) => { try { return new Date(d).toLocaleDateString('it-IT'); } catch { return ''; } };
   let msg = `Ciao ${host?.n || 'noleggiatore'}, ti scrivo da MoviQ per la ${car.brand} ${car.model}${car.year ? ' ' + car.year : ''}`;

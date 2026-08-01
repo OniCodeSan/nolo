@@ -78,6 +78,7 @@ export function HostProfile({ T }) {
     description: host.description || '',
     businessEmail: host.businessEmail || '',
     businessPhone: host.businessPhone || '',
+    whatsapp: host.whatsapp || '',
     vatNumber: host.vatNumber || '',
     terms: host.terms || '',
     paymentCards: new Set(host.paymentCards || []),
@@ -114,6 +115,7 @@ export function HostProfile({ T }) {
         description: form.description,
         businessEmail: form.businessEmail || null,
         businessPhone: form.businessPhone || null,
+        whatsapp: form.whatsapp || null,
         vatNumber: form.vatNumber || null,
         terms: form.terms,
         paymentCards: [...form.paymentCards],
@@ -170,6 +172,9 @@ export function HostProfile({ T }) {
             </Field>
             <Field T={T} label="Telefono">
               <input value={form.businessPhone} onChange={(e) => set({ businessPhone: e.target.value })} style={input(T)} placeholder="+39 …" />
+            </Field>
+            <Field T={T} label="WhatsApp" hint="Mostrato nella scheda auto per il contatto diretto. Se vuoto usa il telefono.">
+              <input value={form.whatsapp} onChange={(e) => set({ whatsapp: e.target.value })} style={input(T)} placeholder="+39 …" />
             </Field>
           </div>
           <Field T={T} label="Descrizione" hint="Una breve presentazione, max 300 caratteri.">
