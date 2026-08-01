@@ -15,6 +15,67 @@ import { useToast } from '../state/ToastContext.jsx';
 import { VehicleSkeleton } from '../components/Skeleton.jsx';
 import { logCarView } from '../services/stats.js';
 import { events as analyticsEvents } from '../lib/analytics.js';
+import { toE164, toWaNumber } from '../utils/phone.js';
+
+// Costruisce i link di contatto diretto (WhatsApp + telefono) dal numero host.
+// Ritorna null se il numero non è valido/assente → i pulsanti diretti si nascondono.
+function buildContact(car, host, search) {
+  const wa = toWaNumber(host?.businessPhone);
+  const tel = toE164(host?.businessPhone);
+  if (!wa || !tel) return null;
+  const fmt = (d) => { try { return new Date(d).toLocaleDateString('it-IT'); } catch { return ''; } };
+  let msg = `Ciao ${host?.n || 'noleggiatore'}, ti scrivo da MoviQ per la ${car.brand} ${car.model}${car.year ? ' ' + car.year : ''}`;
+  if (search?.from && search?.to) msg += ` — ritiro ${fmt(search.from)}, riconsegna ${fmt(search.to)}`;
+  msg += '. È ancora disponibile?';
+  return { waUrl: `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, telUrl: `tel:${tel}` };
+}
+
+// Pulsanti di contatto diretto. layout: 'stack' (box prezzo desktop) | 'bar' (barra mobile).
+function ContactActions({ T, car, host, search, layout, toast, t }) {
+  const c = buildContact(car, host, search);
+  const onWa = () => analyticsEvents.leadWhatsappClick({ car_id: car.id, host_id: car.host });
+  const onTel = () => analyticsEvents.leadCallClick({ car_id: car.id, host_id: car.host });
+  const round = { border: `1px solid ${T.line}`, background: T.surface, width: 44, height: 44, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', textDecoration: 'none', flex: 'none' };
+
+  if (layout === 'bar') {
+    if (!c) return (
+      <button onClick={() => toast.info(t('vehicle.chat_after_request'), { duration: 4500 })} aria-label={t('vehicle.write_to', { host: host.n })} style={round}>
+        <Icon name="chat" size={18} color={T.ink1} T={T} />
+      </button>
+    );
+    return (
+      <>
+        <a href={c.telUrl} onClick={onTel} aria-label={t('vehicle.call_cta', 'Chiama')} style={round}>
+          <Icon name="phone" size={18} color={T.ink1} T={T} />
+        </a>
+        <a href={c.waUrl} target="_blank" rel="noopener noreferrer" onClick={onWa} aria-label="WhatsApp" style={{ ...round, background: '#25D366', border: 'none' }}>
+          <Icon name="chat" size={18} color="#fff" T={T} />
+        </a>
+      </>
+    );
+  }
+
+  // stack (desktop)
+  if (!c) return (
+    <Button T={T} variant="outline" size="md" full icon="chat" style={{ marginTop: 8 }} onClick={() => toast.info(t('vehicle.chat_after_request'), { duration: 4500 })}>
+      {t('vehicle.contact', { host: host.n })}
+    </Button>
+  );
+  const linkBtn = { marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontFamily: T.fontBody, fontWeight: 600, fontSize: 15, padding: '13px 18px', borderRadius: 12, textDecoration: 'none', cursor: 'pointer' };
+  return (
+    <>
+      <a href={c.waUrl} target="_blank" rel="noopener noreferrer" onClick={onWa} style={{ ...linkBtn, background: '#25D366', color: '#fff' }}>
+        <Icon name="chat" size={18} color="#fff" T={T} /> {t('vehicle.whatsapp_cta', 'Scrivi su WhatsApp')}
+      </a>
+      <a href={c.telUrl} onClick={onTel} style={{ ...linkBtn, background: T.surface, color: T.ink1, border: `1px solid ${T.line}` }}>
+        <Icon name="phone" size={17} color={T.ink1} T={T} /> {t('vehicle.call_cta', 'Chiama')}
+      </a>
+      <Txt T={T} size={11} color={T.ink3} style={{ display: 'block', marginTop: 10, textAlign: 'center' }}>
+        {t('vehicle.direct_contact_note', 'Scrivi o chiama direttamente il noleggiatore')}
+      </Txt>
+    </>
+  );
+}
 import { cldUrl, cldSrcSet } from '../lib/cloudinary.js';
 import { ReportModal } from '../components/ReportModal.jsx';
 import { useSeo, vehicleJsonLd } from '../lib/seo.js';
@@ -337,7 +398,7 @@ function VehicleDesktop({ T, car, host, reviews, search, saved, toggleSaved, toa
             <Button T={T} variant="accent" size="lg" full iconRight="arrowRight" style={{ marginTop: 18 }} onClick={onBook}>
               {search.from && search.to ? t('vehicle.request_booking') : t('booking_form.cta_choose_dates')}
             </Button>
-            <Button T={T} variant="outline" size="md" full icon="chat" style={{ marginTop: 8 }} onClick={() => toast.info(t('vehicle.chat_after_request'), { duration: 4500 })}>{t('vehicle.contact', { host: host.n })}</Button>
+            <ContactActions T={T} car={car} host={host} search={search} layout="stack" toast={toast} t={t} />
             <Txt T={T} size={11} color={T.ink3} style={{ display: 'block', marginTop: 12, textAlign: 'center' }}>
               {t('vehicle.no_charge_note')}
             </Txt>
@@ -526,12 +587,7 @@ function VehicleMobile({ T, car, host, reviews, search, saved, toggleSaved, toas
           )}
         </div>
         <div style={{ flex: 1 }} />
-        <button onClick={() => toast.info(t('vehicle.chat_after_request'), { duration: 4500 })} aria-label={t('vehicle.write_to', { host: host.n })} style={{
-          border: `1px solid ${T.line}`, background: T.surface, width: 44, height: 44, borderRadius: '50%',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-        }}>
-          <Icon name="chat" size={18} color={T.ink1} T={T} />
-        </button>
+        <ContactActions T={T} car={car} host={host} search={search} layout="bar" toast={toast} t={t} />
         <Button T={T} variant="accent" size="lg" iconRight="arrowRight" onClick={onBook}>
           {(search.from && search.to) ? t('vehicle.book') : t('booking_form.cta_choose_dates')}
         </Button>

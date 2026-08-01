@@ -156,6 +156,8 @@ export const events = {
   hostAccept: (props) => track('host_accept', props),
   hostDecline: (props) => track('host_decline', props),
   ctaClick: (props) => track('cta_click', props),
+  leadWhatsappClick: (props) => track('lead_whatsapp_click', props),
+  leadCallClick: (props) => track('lead_call_click', props),
   signIn: (props) => track('sign_in', props),
   signOut: (props) => track('sign_out', props),
 };
