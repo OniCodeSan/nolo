@@ -233,7 +233,8 @@
     "cta_title": "Trouve la bonne voiture près de toi",
     "cta_body": "Loueurs indépendants partout en Italie, sans frais cachés.",
     "cta_button": "Chercher une voiture",
-    "article_fallback": "Article"
+    "article_fallback": "Article",
+    "all_categories": "Toutes"
   },
   "confirmation": {
     "title": "Demande envoyée !",

@@ -41,3 +41,8 @@ verify_jwt = false
 # smtp2go-webhook: autenticato dal secret in header/querystring.
 [functions.smtp2go-webhook]
 verify_jwt = false
+
+# magazine-webhook: tool AI esterno che pubblica sul magazine, autenticato
+# dal secret MAGAZINE_WEBHOOK_SECRET in header.
+[functions.magazine-webhook]
+verify_jwt = false

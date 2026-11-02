@@ -233,7 +233,8 @@
     "cta_title": "Encontra o carro certo perto de ti",
     "cta_body": "Empresas de aluguer independentes em toda a Itália, sem comissões ocultas.",
     "cta_button": "Procurar um carro",
-    "article_fallback": "Artigo"
+    "article_fallback": "Artigo",
+    "all_categories": "Todas"
   },
   "confirmation": {
     "title": "Pedido enviado!",

@@ -233,7 +233,8 @@
     "cta_title": "Finde das richtige Auto in deiner Nähe",
     "cta_body": "Unabhängige Autovermieter in ganz Italien, keine versteckten Gebühren.",
     "cta_button": "Auto suchen",
-    "article_fallback": "Artikel"
+    "article_fallback": "Artikel",
+    "all_categories": "Alle"
   },
   "confirmation": {
     "title": "Anfrage gesendet!",

@@ -233,7 +233,8 @@
     "cta_title": "Find the right car near you",
     "cta_body": "Independent car rental companies across Italy, no hidden fees.",
     "cta_button": "Find a car",
-    "article_fallback": "Article"
+    "article_fallback": "Article",
+    "all_categories": "All"
   },
   "confirmation": {
     "title": "Request sent!",

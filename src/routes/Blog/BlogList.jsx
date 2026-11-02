@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { listBlogArticles } from '../../services/blog.js';
+import { listBlogArticles, listBlogCategories } from '../../services/blog.js';
 import { useSeo, organizationJsonLd } from '../../lib/seo.js';
 import i18n from '../../i18n/index.js';
 import { H, Txt, Badge, Button } from '../../components/ui.jsx';
@@ -20,6 +20,9 @@ export function BlogList({ T, isDesktop }) {
   const [articles, setArticles] = useState(null);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(0);
+  const [categories, setCategories] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeCat = searchParams.get('categoria');
 
   useSeo({
     title: 'Magazine',
@@ -35,6 +38,22 @@ export function BlogList({ T, isDesktop }) {
       .catch(e => { if (!cancelled) setError(e.message); });
     return () => { cancelled = true; };
   }, [i18n.language]);
+
+  // Categorie best-effort: senza, la lista funziona come prima (etichetta = primo tag).
+  useEffect(() => {
+    listBlogCategories().then(setCategories, () => {});
+  }, []);
+
+  const catById = Object.fromEntries(categories.map(c => [c.id, c]));
+  const label = (a) => catById[a.category_id]?.name || (Array.isArray(a.tags) && a.tags[0]) || null;
+  // Solo categorie con almeno un articolo pubblicato.
+  const usedCats = categories.filter(c => articles?.some(a => a.category_id === c.id));
+  const selectCat = (slug) => {
+    setPage(0);
+    setSearchParams(slug ? { categoria: slug } : {}, { replace: true });
+  };
+  const activeCatId = categories.find(c => c.slug === activeCat)?.id;
+  const visible = articles && (activeCatId ? articles.filter(a => a.category_id === activeCatId) : articles);
 
   return (
     <div style={{ flex: 1, background: T.bg }}>
@@ -57,14 +76,30 @@ export function BlogList({ T, isDesktop }) {
           <Txt T={T} size={13} color={T.ink3}>{t('common.loading')}</Txt>
         )}
 
-        {articles && articles.length === 0 && (
+        {usedCats.length > 0 && (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: isDesktop ? 36 : 24 }}>
+            {[{ slug: null, name: t('blog.all_categories') }, ...usedCats].map(c => {
+              const on = (activeCatId ? activeCat : null) === c.slug;
+              return (
+                <button key={c.slug || 'all'} onClick={() => selectCat(c.slug)} style={{
+                  padding: '7px 14px', borderRadius: T.r.pill, cursor: 'pointer',
+                  background: on ? T.ink1 : T.surface, color: on ? '#fff' : T.ink1,
+                  border: `1px solid ${on ? T.ink1 : T.line}`,
+                  fontFamily: T.fontBody, fontSize: 13, fontWeight: 600,
+                }}>{c.name}</button>
+              );
+            })}
+          </div>
+        )}
+
+        {visible && visible.length === 0 && (
           <Txt T={T} size={14} color={T.ink3}>{t('blog.empty')}</Txt>
         )}
 
-        {articles && articles.length > 0 && (() => {
-          const totalPages = Math.max(1, Math.ceil(articles.length / PER_PAGE));
+        {visible && visible.length > 0 && (() => {
+          const totalPages = Math.max(1, Math.ceil(visible.length / PER_PAGE));
           const curPage = Math.min(page, totalPages - 1);
-          const pageItems = articles.slice(curPage * PER_PAGE, curPage * PER_PAGE + PER_PAGE);
+          const pageItems = visible.slice(curPage * PER_PAGE, curPage * PER_PAGE + PER_PAGE);
           const featured = pageItems[0];
           const rest = pageItems.slice(1);
           const go = (p) => { setPage(p); window.scrollTo?.({ top: 0, behavior: 'smooth' }); };
@@ -85,7 +120,7 @@ export function BlogList({ T, isDesktop }) {
                 <div style={{ padding: isDesktop ? '34px 38px' : 22, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 12 }}>
                   <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
                     <Badge T={T} tone="accent">{t('blog.featured')}</Badge>
-                    {Array.isArray(featured.tags) && featured.tags[0] && <Txt T={T} size={11} color={T.ink3} style={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>{featured.tags[0]}</Txt>}
+                    {label(featured) && <Txt T={T} size={11} color={T.ink3} style={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label(featured)}</Txt>}
                   </div>
                   <H T={T} size={isDesktop ? 'h2' : 'h3'} style={{ lineHeight: 1.2 }}>{featured.title}</H>
                   {featured.excerpt && <Txt T={T} size={14} color={T.ink2} style={{ lineHeight: 1.6 }}>{featured.excerpt}</Txt>}
@@ -103,7 +138,7 @@ export function BlogList({ T, isDesktop }) {
                   <article style={{ background: T.surface, border: `1px solid ${T.line}`, borderRadius: T.r.lg, overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column', boxShadow: T.sh.soft }}>
                     {cover(a, '16 / 9')}
                     <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 9, flex: 1 }}>
-                      {Array.isArray(a.tags) && a.tags[0] && <Txt T={T} size={10} weight={700} color={T.ink3} style={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>{a.tags[0]}</Txt>}
+                      {label(a) && <Txt T={T} size={10} weight={700} color={T.ink3} style={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label(a)}</Txt>}
                       <H T={T} size="h4" style={{ lineHeight: 1.3 }}>{a.title}</H>
                       {a.excerpt && <Txt T={T} size={13} color={T.ink2} style={{ lineHeight: 1.55, flex: 1 }}>{a.excerpt}</Txt>}
                       <Txt T={T} size={11} color={T.ink3} style={{ marginTop: 6 }}>{formatDate(a.published_at)}</Txt>

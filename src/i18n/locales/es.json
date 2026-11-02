@@ -233,7 +233,8 @@
     "cta_title": "Encuentra el coche adecuado cerca de ti",
     "cta_body": "Empresas de alquiler independientes en toda Italia, sin comisiones ocultas.",
     "cta_button": "Buscar un coche",
-    "article_fallback": "Artículo"
+    "article_fallback": "Artículo",
+    "all_categories": "Todas"
   },
   "confirmation": {
     "title": "¡Solicitud enviada!",

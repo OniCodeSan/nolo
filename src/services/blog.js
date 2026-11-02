@@ -35,6 +35,17 @@ export async function getArticleLangs(slug) {
   return [...new Set(data.map(r => r.lang))];
 }
 
+// Categorie del magazine (lettura pubblica). Solo italiano per ora.
+export async function listBlogCategories() {
+  if (!hasSupabase) return [];
+  const { data, error } = await supabase
+    .from('blog_categories')
+    .select('id, slug, name, description, source')
+    .order('name');
+  if (error) throw error;
+  return data || [];
+}
+
 // Incremento view best-effort (non blocca il render in caso di errore).
 export function incrementBlogView(slug) {
   if (!hasSupabase || !slug) return;
@@ -76,6 +87,34 @@ export async function adminSaveBlogArticle(fields) {
 export async function adminDeleteBlogArticle(id) {
   if (!hasSupabase) throw new Error('Supabase non configurato');
   const { error } = await supabase.rpc('admin_delete_blog_article', { p_id: id });
+  if (error) throw error;
+}
+
+// Assegna la categoria all'articolo (e alle sue traduzioni). null = nessuna.
+export async function adminSetBlogArticleCategory(id, categoryId) {
+  if (!hasSupabase) throw new Error('Supabase non configurato');
+  const { error } = await supabase.rpc('admin_set_blog_article_category', {
+    p_id: id, p_category_id: categoryId || null,
+  });
+  if (error) throw error;
+}
+
+// fields: { id?, name, slug?, description? }
+export async function adminSaveBlogCategory(fields) {
+  if (!hasSupabase) throw new Error('Supabase non configurato');
+  const { data, error } = await supabase.rpc('admin_save_blog_category', {
+    p_id:          fields.id ?? null,
+    p_name:        fields.name ?? '',
+    p_slug:        fields.slug || null,
+    p_description: fields.description || null,
+  });
+  if (error) throw error;
+  return data;
+}
+
+export async function adminDeleteBlogCategory(id) {
+  if (!hasSupabase) throw new Error('Supabase non configurato');
+  const { error } = await supabase.rpc('admin_delete_blog_category', { p_id: id });
   if (error) throw error;
 }
 

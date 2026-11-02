@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { adminListBlogArticles, adminSaveBlogArticle, adminDeleteBlogArticle, BLOG_STATUSES } from '../../services/blog.js';
+import {
+  adminListBlogArticles, adminSaveBlogArticle, adminDeleteBlogArticle, BLOG_STATUSES,
+  listBlogCategories, adminSaveBlogCategory, adminDeleteBlogCategory, adminSetBlogArticleCategory,
+} from '../../services/blog.js';
 import { aiGenerateArticle, aiGenerateImage } from '../../services/ai.js';
 import { uploadImage, validateImageFile, cldUrl, hasCloudinary } from '../../lib/cloudinary.js';
 import { RichEditor } from '../../components/RichEditor.jsx';
@@ -10,7 +13,7 @@ import { H, Txt, Button, Badge } from '../../components/ui.jsx';
 
 const EMPTY = {
   id: null, slug: '', title: '', excerpt: '', contentMd: '', coverImageUrl: '',
-  tags: '', status: 'draft', metaTitle: '', metaDescription: '',
+  tags: '', categoryId: '', status: 'draft', metaTitle: '', metaDescription: '',
 };
 
 function slugify(s) {
@@ -43,6 +46,8 @@ export function AdminBlog() {
   const [aiProgress, setAiProgress] = useState(null); // { done, total, current }
   const [uploading, setUploading] = useState(false);
   const coverInputRef = useRef(null);
+  const [categories, setCategories] = useState([]);
+  const [newCategory, setNewCategory] = useState('');
 
   // Carica un file su Cloudinary (cartella noleggio/blog) e ritorna l'URL
   // ottimizzato (f_auto, q_auto). Riusa l'infrastruttura immagini esistente.
@@ -90,6 +95,42 @@ export function AdminBlog() {
       .catch(e => toast.error(e.message));
   };
   useEffect(() => { refresh(); setPage(0); }, [filter]);
+
+  const refreshCategories = () => {
+    listBlogCategories().then(setCategories).catch(e => toast.error(e.message));
+  };
+  useEffect(() => { refreshCategories(); }, []);
+  const categoryName = (id) => categories.find(c => c.id === id)?.name;
+
+  const onAddCategory = async () => {
+    const name = newCategory.trim();
+    if (!name) return;
+    try {
+      await adminSaveBlogCategory({ name });
+      setNewCategory('');
+      refreshCategories();
+    } catch (err) { toast.error(err.message); }
+  };
+
+  const onRenameCategory = async (c) => {
+    const name = window.prompt('Nuovo nome della categoria', c.name)?.trim();
+    if (!name || name === c.name) return;
+    try {
+      // Lo slug resta invariato: non rompe filtri e link già condivisi.
+      await adminSaveBlogCategory({ id: c.id, name, slug: c.slug, description: c.description });
+      refreshCategories();
+    } catch (err) { toast.error(err.message); }
+  };
+
+  const onDeleteCategory = async (c) => {
+    if (!window.confirm(`Eliminare la categoria "${c.name}"? Gli articoli restano, senza categoria.`)) return;
+    try {
+      await adminDeleteBlogCategory(c.id);
+      if (form.categoryId === c.id) set('categoryId', '');
+      refreshCategories();
+      refresh();
+    } catch (err) { toast.error(err.message); }
+  };
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const editing = !!form.id;
@@ -142,10 +183,11 @@ export function AdminBlog() {
     if (!form.title.trim() || !form.slug.trim()) { toast.error('Titolo e slug sono obbligatori.'); return; }
     setBusy(true);
     try {
-      await adminSaveBlogArticle({
+      const saved = await adminSaveBlogArticle({
         ...form,
         tags: form.tags.split(',').map(t => t.trim()).filter(Boolean),
       });
+      await adminSetBlogArticleCategory(saved.id, form.categoryId);
       toast.success(editing ? 'Articolo aggiornato.' : 'Articolo creato.');
       reset();
       refresh();
@@ -158,7 +200,7 @@ export function AdminBlog() {
     setForm({
       id: a.id, slug: a.slug, title: a.title, excerpt: a.excerpt || '',
       contentMd: toEditorHtml(a.content_md || ''), coverImageUrl: a.cover_image_url || '',
-      tags: (a.tags || []).join(', '), status: a.status,
+      tags: (a.tags || []).join(', '), categoryId: a.category_id || '', status: a.status,
       metaTitle: a.meta_title || '', metaDescription: a.meta_description || '',
     });
     window.scrollTo?.({ top: 0, behavior: 'smooth' });
@@ -255,6 +297,13 @@ export function AdminBlog() {
             <span style={labelStyle(T)}>Tag (separati da virgola)</span>
             <input value={form.tags} onChange={e => set('tags', e.target.value)} placeholder="guide, milano, risparmio" style={inputStyle(T)} />
           </label>
+          <label>
+            <span style={labelStyle(T)}>Categoria</span>
+            <select value={form.categoryId} onChange={e => set('categoryId', e.target.value)} style={inputStyle(T)}>
+              <option value="">— Nessuna —</option>
+              {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+            </select>
+          </label>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <label>
@@ -308,6 +357,11 @@ export function AdminBlog() {
                     <div style={{ minWidth: 0 }}>
                       <Txt T={T} size={14} weight={600} style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.title}</Txt>
                       <Txt T={T} size={11} color={T.ink3}>/blog/{a.slug}</Txt>
+                      {(categoryName(a.category_id) || a.external_id) && (
+                        <Txt T={T} size={11} color={T.ink2} style={{ display: 'block', marginTop: 2 }}>
+                          {[categoryName(a.category_id), a.external_id && 'via webhook'].filter(Boolean).join(' · ')}
+                        </Txt>
+                      )}
                     </div>
                     <Badge T={T} tone={statusTone(a.status)}>{statusLabel(a.status)}</Badge>
                   </div>
@@ -327,6 +381,40 @@ export function AdminBlog() {
             )}
             </>
           )}
+
+          {/* ─── Categorie ─── */}
+          <div style={{ marginTop: 28, padding: 14, background: T.surface, border: `1px solid ${T.line}`, borderRadius: T.r.md }}>
+            <H T={T} size="h4" style={{ marginBottom: 4 }}>Categorie</H>
+            <Txt T={T} size={11} color={T.ink3} style={{ display: 'block', marginBottom: 12 }}>Gestite qui e dal tool AI esterno (webhook), che può crearle e rinominarle ma non eliminarle.</Txt>
+            <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+              <input
+                value={newCategory}
+                onChange={e => setNewCategory(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); onAddCategory(); } }}
+                placeholder="Nuova categoria"
+                style={{ ...inputStyle(T), flex: 1, minWidth: 0 }}
+              />
+              <Button T={T} variant="secondary" size="md" type="button" onClick={onAddCategory} disabled={!newCategory.trim()}>Aggiungi</Button>
+            </div>
+            {categories.length === 0 ? (
+              <Txt T={T} size={12} color={T.ink3}>Nessuna categoria.</Txt>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {categories.map(c => (
+                  <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'space-between' }}>
+                    <div style={{ minWidth: 0 }}>
+                      <Txt T={T} size={13} weight={600} style={{ display: 'block' }}>{c.name}</Txt>
+                      <Txt T={T} size={11} color={T.ink3}>{c.slug}{c.source === 'webhook' ? ' · creata dal webhook' : ''}</Txt>
+                    </div>
+                    <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
+                      <Button T={T} variant="ghost" size="sm" type="button" onClick={() => onRenameCategory(c)}>Rinomina</Button>
+                      <Button T={T} variant="ghost" size="sm" type="button" onClick={() => onDeleteCategory(c)} style={{ color: T.coral }}>Elimina</Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

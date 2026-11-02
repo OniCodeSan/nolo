@@ -233,7 +233,8 @@
     "cta_title": "Trova l'auto giusta vicino a te",
     "cta_body": "Autonoleggi indipendenti in tutta Italia, zero commissioni nascoste.",
     "cta_button": "Cerca un'auto",
-    "article_fallback": "Articolo"
+    "article_fallback": "Articolo",
+    "all_categories": "Tutte"
   },
   "confirmation": {
     "title": "Richiesta inviata!",
