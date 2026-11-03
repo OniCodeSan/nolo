@@ -14,6 +14,10 @@ rm -rf "$TMP" && mkdir -p "$TMP"
 ssh -i ~/.ssh/id_ed25519 -o BatchMode=yes "$HOST" "tar -czf - -C $REMOTE_DIST ." | tar -xzf - -C "$TMP"
 # Mode leggibili per il worker nginx del container.
 chmod -R a+rX "$TMP"
-rm -rf "$DEST" && mv "$TMP" "$DEST"
+# Sincronizza DENTRO la cartella esistente: il container la monta in bind,
+# sostituirla con mv lo lascerebbe agganciato alla vecchia (cancellata).
+mkdir -p "$DEST"
+rsync -a --delete "$TMP/" "$DEST/"
+rm -rf "$TMP"
 
 echo "Copia prod in $DEST ($(find "$DEST" -type f | wc -l | tr -d ' ') file)"

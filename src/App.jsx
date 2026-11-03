@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from './state/AuthContext.jsx';
 import { useSessionTracking } from './hooks/useSessionTracking.js';
 import { page as trackPage } from './lib/analytics.js';
@@ -65,10 +65,20 @@ const AdminSearches   = lazy(() => import('./routes/admin/AdminSearches.jsx').th
 const AdminLeads      = lazy(() => import('./routes/admin/AdminLeads.jsx').then(m => ({ default: m.AdminLeads })));
 const AdminBlog       = lazy(() => import('./routes/admin/AdminBlog.jsx').then(m => ({ default: m.AdminBlog })));
 const AdminAiSettings = lazy(() => import('./routes/admin/AdminAiSettings.jsx').then(m => ({ default: m.AdminAiSettings })));
+const AdminLog        = lazy(() => import('./routes/admin/AdminLog.jsx').then(m => ({ default: m.AdminLog })));
 
 const HIDE_TABBAR = [/^\/auto\//, /^\/prenota\//, /^\/conferma$/, /^\/cerca\/dove$/, /^\/cerca\/quando$/, /^\/noleggia/, /^\/admin/, /^\/benvenuti$/];
 const HIDE_FOOTER = [/^\/auto\//, /^\/prenota\//, /^\/conferma$/, /^\/cerca/, /^\/noleggia/, /^\/admin/];
-const HIDE_NAVBAR = [/^\/noleggia/, /^\/admin/];
+// /magazine e articoli: la testata del Magazine ha la sua navigazione e il login accanto alla data.
+const HIDE_NAVBAR = [/^\/noleggia/, /^\/admin/, /^\/magazine(\/|$)/];
+
+// Vecchi URL del magazine (/blog → /magazine): redirect lato client per i link
+// interni e la navigazione SPA; per i crawler c'è il 301 in nginx.
+function LegacyBlogRedirect() {
+  const { slug } = useParams();
+  const { search } = useLocation();
+  return <Navigate to={`/magazine${slug ? `/${slug}` : ''}${search}`} replace />;
+}
 
 function RouteFallback({ T, label = 'Caricamento…' }) {
   return (
@@ -204,8 +214,10 @@ export function App() {
               SeoLanding estrae la città dal prefisso o mostra NotFound. */}
           <Route path="/:seoCity" element={<SeoLanding T={T} />} />
           <Route path="/benvenuti" element={<HostLeadLanding T={T} isDesktop={isDesktop} />} />
-          <Route path="/blog" element={<BlogList T={T} isDesktop={isDesktop} />} />
-          <Route path="/blog/:slug" element={<BlogPost T={T} isDesktop={isDesktop} />} />
+          <Route path="/magazine" element={<BlogList T={T} isDesktop={isDesktop} />} />
+          <Route path="/magazine/:slug" element={<BlogPost T={T} isDesktop={isDesktop} />} />
+          <Route path="/blog" element={<LegacyBlogRedirect />} />
+          <Route path="/blog/:slug" element={<LegacyBlogRedirect />} />
           <Route path="/admin" element={<AdminLayout T={T} isDesktop={isDesktop} />}>
             <Route index element={<AdminDashboard />} />
             <Route path="reports" element={<AdminReports />} />
@@ -213,6 +225,7 @@ export function App() {
             <Route path="veicoli" element={<AdminCars />} />
             <Route path="prenotazioni" element={<AdminBookings />} />
             <Route path="audit" element={<AdminAudit />} />
+            <Route path="log" element={<AdminLog />} />
             <Route path="immagini" element={<AdminImages />} />
             <Route path="coupon" element={<AdminCoupons T={T} />} />
             <Route path="kyc" element={<AdminKYC T={T} />} />

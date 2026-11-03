@@ -9,7 +9,7 @@ const COLS = [
   {
     title: 'MoviQ',
     links: [
-      { k: 'footer.magazine', to: '/blog' },
+      { k: 'footer.magazine', to: '/magazine' },
       { k: 'footer.manifesto', to: '/manifesto' },
       { k: 'footer.how', to: '/come-funziona' },
       { k: 'footer.for_hosts', to: '/per-noleggiatori' },

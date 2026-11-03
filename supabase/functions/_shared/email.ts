@@ -105,7 +105,7 @@ export async function sendMail(input: SendMailInput): Promise<{ ok: boolean; id?
 
 // Pulisce dati sensibili dal payload prima del log (es. token magic-link).
 function sanitizePayload(p: Record<string, unknown>): Record<string, unknown> {
-  const SENSITIVE = ['token', 'magic_link', 'password', 'card', 'iban'];
+  const SENSITIVE = ['token', 'magic_link', 'reset_link', 'password', 'card', 'iban'];
   const out: Record<string, unknown> = {};
   for (const [k, v] of Object.entries(p)) {
     if (SENSITIVE.some(s => k.toLowerCase().includes(s))) {

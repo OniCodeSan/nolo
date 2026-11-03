@@ -4,6 +4,7 @@
 
 export type TemplateKey =
   | 'magic_link'
+  | 'password_reset'
   | 'booking_request_host'
   | 'booking_confirmed_user'
   | 'booking_rejected_user'
@@ -127,6 +128,22 @@ Clicca il link per entrare nel tuo account (scade tra {{expires_in_minutes}} min
 {{magic_link}}
 
 Se non hai richiesto tu questo accesso, ignora questa email.`),
+  },
+
+  password_reset: {
+    subject: () => 'Reimposta la tua password MoviQ',
+    html: wrap(`
+      <h1>Reimposta la password</h1>
+      <p>Abbiamo ricevuto una richiesta di reimpostare la password del tuo account MoviQ. Clicca il pulsante qui sotto per sceglierne una nuova. Il link scade tra <strong>{{expires_in_minutes}} minuti</strong> e si può usare una sola volta.</p>
+      <p style="margin:22px 0;"><a class="btn" href="{{reset_link}}">Scegli una nuova password</a></p>
+      <p style="font-size:13px;color:#5B5246;">Se non hai richiesto tu il cambio, ignora pure questa email: la tua password resta quella di prima.</p>
+    `, 'Sicurezza account: <a href="https://moviq.it/sicurezza">moviq.it/sicurezza</a><br>'),
+    text: wrapText(`Reimposta la password
+
+Apri questo link per scegliere una nuova password (scade tra {{expires_in_minutes}} minuti, usabile una sola volta):
+{{reset_link}}
+
+Se non hai richiesto tu il cambio, ignora questa email: la password resta quella di prima.`),
   },
 
   booking_request_host: {

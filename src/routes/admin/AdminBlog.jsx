@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import {
   adminListBlogArticles, adminSaveBlogArticle, adminDeleteBlogArticle, BLOG_STATUSES,
   listBlogCategories, adminSaveBlogCategory, adminDeleteBlogCategory, adminSetBlogArticleCategory,
@@ -356,7 +356,7 @@ export function AdminBlog() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
                     <div style={{ minWidth: 0 }}>
                       <Txt T={T} size={14} weight={600} style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.title}</Txt>
-                      <Txt T={T} size={11} color={T.ink3}>/blog/{a.slug}</Txt>
+                      <Txt T={T} size={11} color={T.ink3}>/magazine/{a.slug}</Txt>
                       {(categoryName(a.category_id) || a.external_id) && (
                         <Txt T={T} size={11} color={T.ink2} style={{ display: 'block', marginTop: 2 }}>
                           {[categoryName(a.category_id), a.external_id && 'via webhook'].filter(Boolean).join(' · ')}
@@ -385,7 +385,7 @@ export function AdminBlog() {
           {/* ─── Categorie ─── */}
           <div style={{ marginTop: 28, padding: 14, background: T.surface, border: `1px solid ${T.line}`, borderRadius: T.r.md }}>
             <H T={T} size="h4" style={{ marginBottom: 4 }}>Categorie</H>
-            <Txt T={T} size={11} color={T.ink3} style={{ display: 'block', marginBottom: 12 }}>Gestite qui e dal tool AI esterno (webhook), che può crearle e rinominarle ma non eliminarle.</Txt>
+            <Txt T={T} size={11} color={T.ink3} style={{ display: 'block', marginBottom: 12 }}>Gestite qui e dal tool AI esterno (webhook), che può crearle e rinominarle ma non eliminarle. <Link to="/admin/log" style={{ color: T.ink2, fontWeight: 600 }}>Log chiamate webhook →</Link></Txt>
             <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
               <input
                 value={newCategory}

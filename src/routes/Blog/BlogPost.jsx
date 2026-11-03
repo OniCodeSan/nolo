@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getBlogArticle, incrementBlogView, listBlogArticles, getArticleLangs } from '../../services/blog.js';
+import { getBlogArticle, incrementBlogView, listBlogArticles, listBlogArticleIndex, listBlogCategories, getArticleLangs } from '../../services/blog.js';
 import { toSafeHtml } from '../../lib/contentHtml.js';
 import { useSeo, articleJsonLd, breadcrumbJsonLd } from '../../lib/seo.js';
 import i18n from '../../i18n/index.js';
 import { H, Txt } from '../../components/ui.jsx';
 import { Icon } from '../../components/icons.jsx';
 import { NotFound } from '../NotFound.jsx';
+import { MagazineMasthead } from './MagazineMasthead.jsx';
 
 function formatDate(d) {
   if (!d) return '';
@@ -16,13 +17,15 @@ function formatDate(d) {
   } catch { return ''; }
 }
 
-export function BlogPost({ T }) {
+export function BlogPost({ T, isDesktop }) {
   const { t } = useTranslation();
   const { slug } = useParams();
   const navigate = useNavigate();
   const [article, setArticle] = useState(undefined); // undefined=loading, null=notfound
   const [error, setError] = useState(null);
   const [related, setRelated] = useState([]);
+  const [index, setIndex] = useState(null);       // indice leggero per la testata
+  const [categories, setCategories] = useState([]);
   const [langs, setLangs] = useState(['it']); // lingue con una versione reale
 
   useEffect(() => {
@@ -32,6 +35,11 @@ export function BlogPost({ T }) {
       .catch(() => {});
     return () => { cancelled = true; };
   }, [slug, i18n.language]);
+
+  useEffect(() => {
+    listBlogArticleIndex().then(setIndex, () => {});
+    listBlogCategories().then(setCategories, () => {});
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -56,7 +64,7 @@ export function BlogPost({ T }) {
     title: article.meta_title || article.title,
     description: article.meta_description || article.excerpt || undefined,
     image: article.cover_image_url || undefined,
-    path: `/blog/${slug}`,
+    path: `/magazine/${slug}`,
     type: 'article',
     alternates: langs,
     article: {
@@ -68,16 +76,23 @@ export function BlogPost({ T }) {
       articleJsonLd(article),
       breadcrumbJsonLd([
         { name: t('nav.home'), path: '/' },
-        { name: 'Magazine', path: '/blog' },
-        { name: article.title, path: `/blog/${slug}` },
+        { name: 'Magazine', path: '/magazine' },
+        { name: article.title, path: `/magazine/${slug}` },
       ]),
     ],
-  } : { title: t('blog.article_fallback'), path: `/blog/${slug}`, noindex: true });
+  } : { title: t('blog.article_fallback'), path: `/magazine/${slug}`, noindex: true });
+
+  const activeCat = article && categories.find(c => c.id === article.category_id)?.slug;
+  const masthead = (
+    <div className={`mq ${isDesktop ? 'mq-d' : 'mq-m'}`} style={{ flex: '0 0 auto' }}>
+      <MagazineMasthead T={T} isDesktop={isDesktop} articles={index} categories={categories} activeCat={activeCat || null} />
+    </div>
+  );
 
   if (article === undefined) {
-    return <div style={{ flex: 1, padding: 40, background: T.bg }}><Txt T={T} size={13} color={T.ink3}>{t('common.loading')}</Txt></div>;
+    return <div style={{ flex: 1, background: T.bg }}>{masthead}<div style={{ padding: 40 }}><Txt T={T} size={13} color={T.ink3}>{t('common.loading')}</Txt></div></div>;
   }
-  if (article === null) return <NotFound T={T} />;
+  if (article === null) return <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>{masthead}<NotFound T={T} /></div>;
 
   // Link interni (/...) gestiti dal router senza ricaricare la pagina.
   const onContentClick = (e) => {
@@ -92,6 +107,7 @@ export function BlogPost({ T }) {
 
   return (
     <div style={{ flex: 1, background: T.bg }}>
+      {masthead}
       <style>{`
         .blog-article h2 { font-family:${T.fontDisplay}; font-size:24px; font-weight:700; line-height:1.25; margin:28px 0 10px; }
         .blog-article h3 { font-family:${T.fontDisplay}; font-size:19px; font-weight:600; margin:24px 0 8px; }
@@ -104,7 +120,7 @@ export function BlogPost({ T }) {
         .blog-article strong, .blog-article b { font-weight:700; }
       `}</style>
       <article style={{ maxWidth: 760, margin: '0 auto', padding: '24px 18px 56px', boxSizing: 'border-box' }}>
-        <Link to="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: T.ink2, textDecoration: 'none', fontFamily: T.fontBody, fontSize: 13, marginBottom: 18 }}>
+        <Link to="/magazine" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: T.ink2, textDecoration: 'none', fontFamily: T.fontBody, fontSize: 13, marginBottom: 18 }}>
           <Icon name="chevronLeft" size={14} color={T.ink2} T={T} /> {t('blog.back')}
         </Link>
 
@@ -141,7 +157,7 @@ export function BlogPost({ T }) {
             <H T={T} size="h4" style={{ marginBottom: 14 }}>{t('blog.continue_reading')}</H>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 14 }}>
               {related.map(r => (
-                <Link key={r.id} to={`/blog/${r.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link key={r.id} to={`/magazine/${r.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <div style={{ padding: 14, background: T.surface, border: `1px solid ${T.line}`, borderRadius: T.r.md, height: '100%' }}>
                     <Txt T={T} size={14} weight={600} style={{ display: 'block', lineHeight: 1.3 }}>{r.title}</Txt>
                     {r.excerpt && <Txt T={T} size={12} color={T.ink3} style={{ display: 'block', marginTop: 6, lineHeight: 1.45 }}>{r.excerpt.slice(0, 90)}{r.excerpt.length > 90 ? '…' : ''}</Txt>}

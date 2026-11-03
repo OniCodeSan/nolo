@@ -21,3 +21,4 @@ SECURITY-FIXES-DEPLOY.md
 
 # copia locale della dist di produzione (scripts/pull-prod.sh)
 .docker/prod-dist/
+.docker/stage-dist/

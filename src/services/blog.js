@@ -35,6 +35,19 @@ export async function getArticleLangs(slug) {
   return [...new Set(data.map(r => r.lang))];
 }
 
+// Indice leggero degli articoli pubblicati (righe IT, senza contenuto): basta
+// alla testata del magazine per sezioni e tag di tendenza.
+export async function listBlogArticleIndex() {
+  if (!hasSupabase) return [];
+  const { data, error } = await supabase
+    .from('blog_articles')
+    .select('id, slug, tags, category_id')
+    .eq('lang', 'it')
+    .eq('status', 'published');
+  if (error) throw error;
+  return data || [];
+}
+
 // Categorie del magazine (lettura pubblica). Solo italiano per ora.
 export async function listBlogCategories() {
   if (!hasSupabase) return [];

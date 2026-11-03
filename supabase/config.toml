@@ -42,7 +42,12 @@ verify_jwt = false
 [functions.smtp2go-webhook]
 verify_jwt = false
 
-# magazine-webhook: tool AI esterno che pubblica sul magazine, autenticato
-# dal secret MAGAZINE_WEBHOOK_SECRET in header.
+# magazine-webhook: R-Pie pubblica sul magazine, autenticato dalla firma
+# HMAC X-RPie-Signature (secret RPIE_WEBHOOK_SECRET).
 [functions.magazine-webhook]
+verify_jwt = false
+
+# password-reset: "Password dimenticata" da utenti non autenticati; limite
+# invii per email dentro la funzione.
+[functions.password-reset]
 verify_jwt = false

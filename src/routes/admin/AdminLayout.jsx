@@ -3,11 +3,13 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../state/AuthContext.jsx';
 import { useToast } from '../../state/ToastContext.jsx';
 import { isAdmin } from '../../services/moderation.js';
+import { supabase } from '../../lib/supabase.js';
 import { Icon } from '../../components/icons.jsx';
 import { H, Txt } from '../../components/ui.jsx';
 
 const SECTIONS = [
   { id: 'dashboard', l: 'Dashboard',     path: '/admin', exact: true, icon: 'grid' },
+  { id: 'log',       l: 'Log',           path: '/admin/log',          icon: 'list' },
   { id: 'users',     l: 'Utenti',        path: '/admin/utenti',       icon: 'user' },
   { id: 'sessions',  l: 'Sessioni live', path: '/admin/sessioni',     icon: 'bolt' },
   { id: 'leads',     l: 'Lead host',     path: '/admin/lead',         icon: 'bell' },
@@ -30,6 +32,7 @@ export function AdminLayout({ T, isDesktop }) {
   const navigate = useNavigate();
   const [checking, setChecking] = useState(true);
   const [allowed, setAllowed] = useState(false);
+  const [logErrors, setLogErrors] = useState(0);
 
   useEffect(() => {
     if (loading) return;
@@ -47,6 +50,24 @@ export function AdminLayout({ T, isDesktop }) {
       }
     });
   }, [user, loading]);
+
+  // Errori delle ultime 24h (webhook magazine + email): contatore sulla voce Log.
+  useEffect(() => {
+    if (!allowed) return;
+    const since = Date.now() - 24 * 3600_000;
+    Promise.all(['admin_magazine_webhook_log', 'admin_email_log'].map(fn =>
+      supabase.rpc(fn, { p_limit: 100, p_only_errors: true })))
+      .then(res => setLogErrors(res.reduce((n, { data }) =>
+        n + (data || []).filter(r => new Date(r.created_at).getTime() > since).length, 0)))
+      .catch(() => {});
+  }, [allowed]);
+
+  const badge = (s) => s.id === 'log' && logErrors > 0 && (
+    <span title="Errori nelle ultime 24 ore" style={{
+      marginLeft: 'auto', minWidth: 18, padding: '1px 6px', borderRadius: 999, boxSizing: 'border-box',
+      background: T.alert, color: '#fff', fontSize: 11, fontWeight: 700, textAlign: 'center',
+    }}>{logErrors}</span>
+  );
 
   if (loading || checking) {
     return (
@@ -79,6 +100,7 @@ export function AdminLayout({ T, isDesktop }) {
             })}>
               <Icon name={s.icon} size={16} color={T.ink1} T={T} />
               {s.l}
+              {badge(s)}
             </NavLink>
           ))}
         </aside>
@@ -95,7 +117,8 @@ export function AdminLayout({ T, isDesktop }) {
                 border: `1px solid ${isActive ? T.ink1 : T.line}`,
                 fontFamily: T.fontBody, fontSize: 12, fontWeight: 600,
                 whiteSpace: 'nowrap', textDecoration: 'none',
-              })}>{s.l}</NavLink>
+                display: 'flex', alignItems: 'center', gap: 6,
+              })}>{s.l}{badge(s)}</NavLink>
             ))}
           </div>
         )}

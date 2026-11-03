@@ -65,12 +65,13 @@ function ProfileMenu({ T, displayName, isHost, onClose, onNavigate, onSignOut })
   );
 }
 
-export function NavBar({ T }) {
+// Blocco account (Accedi/Registrati, o avatar + menu profilo). Usato dalla
+// NavBar e dalla testata del Magazine, che nasconde la NavBar.
+export function NavAccount({ T }) {
   const { t } = useTranslation();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isAuthed, isHost, user, profile, openAuthModal, signOut } = useAuth();
-  const items = isHost ? BASE_ITEMS : [...BASE_ITEMS.slice(0, 2), PER_NOLEGGIATORI, ...BASE_ITEMS.slice(2)];
   const [menuOpen, setMenuOpen] = useState(false);
   const [unread, setUnread] = useState(0);
 
@@ -86,16 +87,67 @@ export function NavBar({ T }) {
     return () => { cancelled = true; clearInterval(t); };
   }, [isAuthed, user?.id, pathname]);
 
+  const displayName = profile?.full_name || user?.email?.split('@')[0] || t('nav.profile');
+
+  const goAndClose = (to) => { setMenuOpen(false); navigate(to); };
+  const doSignOut = async () => { setMenuOpen(false); await signOut(); };
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12, position: 'relative' }}>
+      {isAuthed ? (
+        <>
+          <button
+            onClick={() => setMenuOpen(o => !o)}
+            aria-haspopup="menu"
+            aria-expanded={menuOpen}
+            aria-label="Menu profilo"
+            style={{
+              position: 'relative',
+              display: 'inline-flex', alignItems: 'center', gap: 10,
+              background: T.surface, border: `1px solid ${T.line}`, borderRadius: T.r.pill,
+              padding: '4px 12px 4px 4px', cursor: 'pointer',
+            }}
+          >
+            <Avatar T={T} name={displayName} size={28} />
+            <Txt T={T} size={13} weight={500}>{displayName}</Txt>
+            <Icon name="chevronDown" size={14} color={T.ink2} T={T} />
+            {unread > 0 && (
+              <span style={{
+                position: 'absolute', top: 2, left: 24, minWidth: 16, height: 16,
+                borderRadius: 8, background: T.coral, color: '#fff',
+                fontFamily: T.fontBody, fontSize: 10, fontWeight: 700,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                padding: '0 4px', border: `2px solid ${T.bg}`,
+              }}>{unread > 9 ? '9+' : unread}</span>
+            )}
+          </button>
+          {menuOpen && (
+            <ProfileMenu T={T} displayName={displayName} isHost={isHost} onClose={() => setMenuOpen(false)} onNavigate={goAndClose} onSignOut={doSignOut} />
+          )}
+        </>
+      ) : (
+        <>
+          <button onClick={openAuthModal} style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}>
+            <Txt T={T} size={14} weight={500}>{t('auth.sign_in')}</Txt>
+          </button>
+          <Button T={T} variant="primary" size="sm" onClick={openAuthModal}>{t('auth.sign_up')}</Button>
+        </>
+      )}
+    </div>
+  );
+}
+
+export function NavBar({ T }) {
+  const { t } = useTranslation();
+  const { pathname } = useLocation();
+  const { isHost } = useAuth();
+  const items = isHost ? BASE_ITEMS : [...BASE_ITEMS.slice(0, 2), PER_NOLEGGIATORI, ...BASE_ITEMS.slice(2)];
+
   const activeId =
     pathname === '/' ? 'explore' :
     pathname.startsWith('/cerca') || pathname.startsWith('/auto') ? 'map' :
     pathname.startsWith('/aiuto') ? 'help' :
     null;
-
-  const displayName = profile?.full_name || user?.email?.split('@')[0] || t('nav.profile');
-
-  const goAndClose = (to) => { setMenuOpen(false); navigate(to); };
-  const doSignOut = async () => { setMenuOpen(false); await signOut(); };
 
   return (
     <header style={{
@@ -118,47 +170,7 @@ export function NavBar({ T }) {
           }}>{t(item.key)}</Link>
         ))}
       </nav>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, position: 'relative' }}>
-        {isAuthed ? (
-          <>
-            <button
-              onClick={() => setMenuOpen(o => !o)}
-              aria-haspopup="menu"
-              aria-expanded={menuOpen}
-              aria-label="Menu profilo"
-              style={{
-                position: 'relative',
-                display: 'inline-flex', alignItems: 'center', gap: 10,
-                background: T.surface, border: `1px solid ${T.line}`, borderRadius: T.r.pill,
-                padding: '4px 12px 4px 4px', cursor: 'pointer',
-              }}
-            >
-              <Avatar T={T} name={displayName} size={28} />
-              <Txt T={T} size={13} weight={500}>{displayName}</Txt>
-              <Icon name="chevronDown" size={14} color={T.ink2} T={T} />
-              {unread > 0 && (
-                <span style={{
-                  position: 'absolute', top: 2, left: 24, minWidth: 16, height: 16,
-                  borderRadius: 8, background: T.coral, color: '#fff',
-                  fontFamily: T.fontBody, fontSize: 10, fontWeight: 700,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  padding: '0 4px', border: `2px solid ${T.bg}`,
-                }}>{unread > 9 ? '9+' : unread}</span>
-              )}
-            </button>
-            {menuOpen && (
-              <ProfileMenu T={T} displayName={displayName} isHost={isHost} onClose={() => setMenuOpen(false)} onNavigate={goAndClose} onSignOut={doSignOut} />
-            )}
-          </>
-        ) : (
-          <>
-            <button onClick={openAuthModal} style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}>
-              <Txt T={T} size={14} weight={500}>{t('auth.sign_in')}</Txt>
-            </button>
-            <Button T={T} variant="primary" size="sm" onClick={openAuthModal}>{t('auth.sign_up')}</Button>
-          </>
-        )}
-      </div>
+      <NavAccount T={T} />
     </header>
   );
 }

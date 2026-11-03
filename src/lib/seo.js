@@ -222,7 +222,7 @@ export function breadcrumbJsonLd(items) {
 // JSON-LD per un articolo del blog (schema BlogPosting).
 export function articleJsonLd(article) {
   if (!article) return null;
-  const url = `${SITE_URL}/blog/${article.slug}`;
+  const url = `${SITE_URL}/magazine/${article.slug}`;
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',

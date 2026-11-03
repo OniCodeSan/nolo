@@ -103,13 +103,13 @@ async function main() {
     // Pagine localizzate in tutte le lingue → un <url> per lingua + hreflang.
     ...localizedUrls('/', { changefreq: 'weekly', priority: '1.0' }),
     ...localizedUrls('/cerca', { changefreq: 'daily', priority: '0.9' }),
-    ...localizedUrls('/blog', { changefreq: 'weekly', priority: '0.8' }),
+    ...localizedUrls('/magazine', { changefreq: 'weekly', priority: '0.8' }),
     ...localizedUrls('/aiuto', { changefreq: 'monthly', priority: '0.5' }),
     ...CITIES.flatMap(c => localizedUrls(`/auto-noleggio-${c}`, { priority: '0.8' })),
     // Categorie: query string, solo IT per non moltiplicare URL con parametri.
     ...CATEGORIES.map(c => urlNode(`${SITE_URL}/cerca?cat=${c}`, { priority: '0.7' })),
     // Articoli Magazine: un <url> per lingua effettivamente tradotta + hreflang.
-    ...blog.flatMap(b => localizedUrls(`/blog/${b.slug}`, {
+    ...blog.flatMap(b => localizedUrls(`/magazine/${b.slug}`, {
       lastmod: b.updated_at?.slice(0, 10),
       changefreq: 'monthly',
       priority: '0.7',

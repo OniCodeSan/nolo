@@ -152,13 +152,16 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // Reset password: invia email con link a /reset-password.
+  // Reset password: l'edge function password-reset genera il link e lo
+  // spedisce via SMTP2GO (l'SMTP interno di Supabase Auth non funziona).
   const requestPasswordReset = async (email) => {
     if (!hasSupabase) throw new Error('Supabase non configurato.');
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin + '/reset-password',
-    });
-    if (error) throw error;
+    const { error } = await supabase.functions.invoke('password-reset', { body: { email } });
+    if (error) {
+      let msg = error.message;
+      try { msg = (await error.context.json()).error || msg; } catch { /* risposta non JSON o rete */ }
+      throw new Error(msg);
+    }
   };
 
   // Update password (usato nella pagina /reset-password dopo PASSWORD_RECOVERY event).

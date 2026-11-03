@@ -29,7 +29,7 @@ const TARGETS = [
 const sys = (langName) => `Sei un traduttore professionista madrelingua. Traduci TUTTI i valori stringa del JSON dall'italiano al ${langName}.
 REGOLE FERREE:
 - Mantieni invariate le CHIAVI del JSON, la struttura e l'annidamento.
-- NON tradurre: il nome del brand "MoviQ", i placeholder come {{nome}} o {count}, i tag HTML, gli URL e i percorsi (es. /cerca, /blog).
+- NON tradurre: il nome del brand "MoviQ", i placeholder come {{nome}} o {count}, i tag HTML, gli URL e i percorsi (es. /cerca, /magazine).
 - Tono naturale e idiomatico per un sito di noleggio auto tra privati e autonoleggi indipendenti.
 - Mantieni la stessa punteggiatura/maiuscole dove sensato.
 Rispondi ESCLUSIVAMENTE con il JSON tradotto valido, nessun testo prima o dopo, niente \`\`\`.`;

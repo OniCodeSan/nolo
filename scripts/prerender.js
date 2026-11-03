@@ -1,6 +1,6 @@
 // Prerender statico delle pagine blog DOPO `vite build`.
 // Serve la dist con vite preview, la apre con Chromium (Playwright), aspetta il
-// render React e salva l'HTML completo in dist/blog/<slug>/index.html. Così
+// render React e salva l'HTML completo in dist/magazine/<slug>.html. Così
 // nginx serve ai crawler una pagina già renderizzata (testo + meta + JSON-LD),
 // senza bisogno che eseguano il JS. La SPA si re-idrata normalmente per gli utenti.
 //
@@ -44,7 +44,7 @@ const CITIES = ['milano', 'roma', 'napoli', 'torino', 'bologna', 'firenze', 'ven
 const withLang = (lang, path) => (path === '/' ? (base(lang) || '/') : `${base(lang)}${path}`);
 
 // Per ogni lingua prerendiamo: home + pagine statiche + landing città + lista
-// /blog e SOLO gli slug che hanno una versione pubblicata in quella lingua
+// /magazine e SOLO gli slug che hanno una versione pubblicata in quella lingua
 // (per IT: tutti; per le altre: solo i tradotti). Così i crawler ricevono il
 // contenuto reale tradotto, senza pagine /xx/... che sarebbero fallback IT.
 async function collectRoutes() {
@@ -55,7 +55,7 @@ async function collectRoutes() {
     for (const p of STATIC_ALL_LANGS) routes.push(withLang(lang, p));
     if (lang === 'it' || lang === 'en') for (const p of STATIC_IT_EN) routes.push(withLang(lang, p));
     for (const c of CITIES) routes.push(withLang(lang, `/auto-noleggio-${c}`));
-    routes.push(`${base(lang)}/blog`);
+    routes.push(`${base(lang)}/magazine`);
     if (!sb) continue;
     try {
       const { data, error } = await sb
@@ -65,7 +65,7 @@ async function collectRoutes() {
         .eq('lang', lang)
         .limit(2000);
       if (error) throw error;
-      for (const a of (data || [])) routes.push(`${base(lang)}/blog/${a.slug}`);
+      for (const a of (data || [])) routes.push(`${base(lang)}/magazine/${a.slug}`);
     } catch (e) {
       console.warn(`[prerender] elenco articoli (${lang}) non disponibile:`, e.message);
     }

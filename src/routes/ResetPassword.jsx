@@ -6,13 +6,17 @@ import { supabase } from '../lib/supabase.js';
 import { Button, H, Txt } from '../components/ui.jsx';
 
 // Atterraggio dal link "Hai dimenticato la password?".
-// Supabase emette evento PASSWORD_RECOVERY al consumo del token nell'URL;
-// la sessione è temporanea finché non chiamiamo updateUser({password}).
+// Link dell'edge function password-reset: ?token_hash=…&type=recovery → lo
+// verifichiamo qui con verifyOtp (un prefetch dell'email non lo consuma).
+// Link vecchi di Supabase Auth: evento PASSWORD_RECOVERY al consumo del token.
+// La sessione è temporanea finché non chiamiamo updateUser({password}).
 export function ResetPassword({ T }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { updatePassword } = useAuth();
   const [ready, setReady] = useState(false);
+  const [verifying, setVerifying] = useState(() =>
+    typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('token_hash'));
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [status, setStatus] = useState('idle');
@@ -27,6 +31,15 @@ export function ResetPassword({ T }) {
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) setReady(true);
     });
+    const tokenHash = new URLSearchParams(window.location.search).get('token_hash');
+    if (tokenHash) {
+      supabase.auth.verifyOtp({ token_hash: tokenHash, type: 'recovery' }).then(({ error }) => {
+        if (!error) setReady(true);
+        setVerifying(false);
+        // Token monouso: toglilo dalla barra degli indirizzi.
+        window.history.replaceState(null, '', window.location.pathname);
+      });
+    }
     return () => { sub?.subscription?.unsubscribe(); };
   }, []);
 
@@ -45,6 +58,14 @@ export function ResetPassword({ T }) {
       setStatus('error');
     }
   };
+
+  if (!ready && verifying) {
+    return (
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 32, background: T.bg }}>
+        <Txt T={T} size={13} color={T.ink3}>{t('common.loading')}</Txt>
+      </div>
+    );
+  }
 
   if (!ready) {
     return (
